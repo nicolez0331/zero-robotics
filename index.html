@@ -385,6 +385,55 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 #ccm-head span{font-weight:700;font-size:13px;}
 #ccm-close{background:none;border:none;font-size:17px;cursor:pointer;color:#999;}
 #ccm-pre{padding:18px;font-family:'Source Code Pro',monospace;font-size:12px;line-height:1.7;overflow:auto;max-height:60vh;background:#f8f9fb;color:#1c2733;margin:0;}
+
+/* ── ONBOARDING ── */
+#ov{position:fixed;inset:0;background:rgba(8,14,24,.86);z-index:2000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(5px);}
+.modal{width:460px;background:#fff;border-radius:14px;box-shadow:0 28px 72px rgba(0,0,0,.4);overflow:hidden;animation:mIn .3s cubic-bezier(.175,.885,.32,1.275);}
+@keyframes mIn{from{transform:scale(.86) translateY(20px);opacity:0}to{transform:scale(1);opacity:1}}
+.m-stripe{height:5px;background:linear-gradient(90deg,#1a6bc1,#7a4aab,#5a8a3c);}
+.m-hd{padding:22px 26px 14px;}.m-hd h2{font-size:18px;font-weight:700;}.m-hd p{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.55;}
+.m-bd{padding:0 26px 10px;}
+.m-ft{padding:14px 26px 22px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #eee;}
+.sdots{display:flex;gap:5px;margin-bottom:12px;}
+.sd{width:7px;height:7px;border-radius:50%;background:#dde1e8;transition:all .25s;}
+.sd.on{background:#1a6bc1;transform:scale(1.3);}.sd.done{background:#5a8a3c;}
+.pbar{height:3px;background:#e8eaf0;border-radius:2px;margin-bottom:14px;}
+.pfill{height:100%;background:linear-gradient(90deg,#1a6bc1,#7a4aab);border-radius:2px;transition:width .4s;}
+.btn-p{background:#1a6bc1;color:#fff;border:none;border-radius:7px;padding:8px 20px;font-family:'Inter',sans-serif;font-weight:600;font-size:13px;cursor:pointer;}
+.btn-p:hover{background:#155fa8;}
+.btn-g{background:transparent;border:1px solid #cdd2d9;color:var(--muted);border-radius:7px;padding:7px 16px;font-family:'Inter',sans-serif;font-size:13px;cursor:pointer;}
+.btn-g:hover{border-color:#1a6bc1;color:#1a6bc1;}
+.s-ctr{font-size:11px;font-weight:600;color:var(--muted);}
+.ob-bullets{display:flex;flex-direction:column;gap:9px;}
+.ob-bull{display:flex;gap:11px;background:#f7f8fb;border-radius:9px;padding:10px 13px;border:1px solid #e8eaf0;}
+.ob-num{min-width:22px;height:22px;border-radius:50%;background:#1a6bc1;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;margin-top:1px;}
+.ob-label{font-size:12.5px;font-weight:600;}.ob-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+.ob-checks{display:flex;flex-direction:column;gap:7px;}
+.ob-chk{display:flex;align-items:center;gap:11px;padding:10px 13px;border-radius:9px;border:1px solid #e8eaf0;background:#f7f8fb;}
+.ob-chk.on{border-color:#1a6bc1;background:#f0f6ff;}
+.ob-chkbox{width:20px;height:20px;border-radius:5px;border:2px solid #cdd2d9;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
+.ob-chk.on .ob-chkbox{background:#1a6bc1;border-color:#1a6bc1;color:#fff;}
+.ob-bprev{background:#f4f6f8;border-radius:9px;border:1px solid #dde1e8;padding:14px;margin:8px 0;}
+.ob-ring-w{position:relative;display:inline-block;}
+.ob-ring{position:absolute;inset:-4px;border:2px solid #f5c518;border-radius:8px;animation:rp 1.2s ease-in-out infinite;}
+@keyframes rp{0%,100%{box-shadow:0 0 0 0 rgba(245,197,24,.4)}50%{box-shadow:0 0 0 6px rgba(245,197,24,0)}}
+.ob-tip{background:#1c2733;color:#fff;border-radius:7px;padding:8px 12px;font-size:11.5px;line-height:1.5;margin-top:10px;position:relative;}
+.ob-tip::before{content:'';position:absolute;top:-6px;left:24px;border:6px solid transparent;border-bottom-color:#1c2733;border-top:none;}
+.ob-cdemo{background:#f4f6f8;border-radius:9px;border:1px dashed #c4cad4;padding:13px;margin:8px 0;display:flex;flex-direction:column;gap:8px;}
+.ob-cpin{width:17px;height:17px;border-radius:50%;background:#1a6bc1;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;animation:pp 1.5s ease-in-out infinite;}
+@keyframes pp{0%,100%{box-shadow:0 0 0 0 rgba(26,107,193,.5)}50%{box-shadow:0 0 0 7px rgba(26,107,193,0)}}
+.ob-hint{font-size:11px;color:#1a6bc1;background:rgba(26,107,193,.08);border:1px solid rgba(26,107,193,.2);border-radius:6px;padding:6px 10px;text-align:center;font-weight:600;margin-top:9px;}
+/* mini block previews inside modal */
+.ob-block{display:inline-flex;align-items:center;border-radius:4px;color:#fff;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;box-shadow:0 2px 4px rgba(0,0,0,.2);}
+.ob-block .ob-row{padding:5px 9px;display:flex;align-items:center;gap:5px;}
+.ob-block.ob-pill{border-radius:12px;}
+.ob-block.ob-cblk{flex-direction:column;align-items:stretch;}
+.ob-mouth{margin-left:14px;min-height:22px;background:rgba(255,255,255,.13);border-radius:3px;padding:4px 5px;display:flex;flex-direction:column;gap:4px;}
+.ob-cap{height:9px;border-radius:0 0 4px 4px;}
+.ob-slot{background:rgba(255,255,255,.88);color:#1c2733;border-radius:3px;padding:2px 5px;font-size:10px;font-weight:600;}
+.ob-rslot{background:rgba(0,0,0,.2);border-radius:9px;padding:2px 7px;font-size:10px;color:rgba(255,255,255,.6);border:1.5px dashed rgba(255,255,255,.35);}
+.help-fab{position:fixed;bottom:18px;left:18px;z-index:50;background:#1a6bc1;color:#fff;border:none;border-radius:9px;padding:8px 14px;font-family:'Inter',sans-serif;font-weight:600;font-size:12px;cursor:pointer;display:none;box-shadow:0 3px 14px rgba(26,107,193,.35);}
+.help-fab.show{display:block;}.help-fab:hover{background:#155fa8;}
 </style>
 </head>
 <body>
@@ -507,7 +556,84 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
   </div>
 </div>
 
-<div class="drag-type-badge" id="dtb"></div>
+<!-- ══ ONBOARDING OVERLAY ══ -->
+<div id="ov">
+<div class="modal">
+  <div class="m-stripe"></div>
+  <div id="ob-s1">
+    <div class="m-hd"><h2>Welcome to Zero Robotics</h2><p>Build your Astrobee program by snapping blocks together — just like Scratch. Watch it fly in the simulation panel on the right.</p></div>
+    <div class="m-bd">
+      <div class="sdots"><div class="sd on"></div><div class="sd"></div><div class="sd"></div><div class="sd"></div></div>
+      <div class="pbar"><div class="pfill" style="width:25%"></div></div>
+      <div class="ob-bullets">
+        <div class="ob-bull"><div class="ob-num">1</div><div><div class="ob-label">Drag blocks from the palette</div><div class="ob-sub">Command blocks snap into loop bodies. Reporter blocks snap into input slots.</div></div></div>
+        <div class="ob-bull"><div class="ob-num">2</div><div><div class="ob-label">Connect the starter blocks</div><div class="ob-sub">A loop block is already on the canvas — fill it with setPos and scanner</div></div></div>
+        <div class="ob-bull"><div class="ob-num">3</div><div><div class="ob-label">Run and watch the simulation</div><div class="ob-sub">See Astrobee move live in the panel on the right</div></div></div>
+      </div>
+    </div>
+    <div class="m-ft"><span class="s-ctr">Step 1 of 4</span><button class="btn-p" onclick="goStep(2)">Next &rarr;</button></div>
+  </div>
+  <div id="ob-s2" style="display:none">
+    <div class="m-hd"><h2>How Snapping Works</h2><p>Two kinds of blocks — knowing the difference helps you build faster.</p></div>
+    <div class="m-bd">
+      <div class="sdots"><div class="sd done"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div>
+      <div class="pbar"><div class="pfill" style="width:50%"></div></div>
+      <div class="ob-checks">
+        <div class="ob-chk on"><div class="ob-chkbox">C</div><div><div class="ob-label" style="font-size:12.5px;font-weight:600">Command blocks (green, blue, teal)</div><div class="ob-sub">Snap vertically inside a loop body. They run in order.</div></div></div>
+        <div class="ob-chk"><div class="ob-chkbox">R</div><div><div class="ob-label" style="font-size:12.5px;font-weight:600">Reporter blocks (orange, purple)</div><div class="ob-sub">Snap into oval input slots inside command blocks — they supply values.</div></div></div>
+        <div class="ob-chk"><div class="ob-chkbox" style="font-size:13px">&#10005;</div><div><div class="ob-label" style="font-size:12.5px;font-weight:600">Invalid snaps are blocked</div><div class="ob-sub">Reporters cannot go into body areas. Commands cannot fill input slots.</div></div></div>
+      </div>
+    </div>
+    <div class="m-ft"><button class="btn-g" onclick="goStep(1)">&larr; Back</button><button class="btn-p" onclick="goStep(3)">Next &rarr;</button></div>
+  </div>
+  <div id="ob-s3" style="display:none">
+    <div class="m-hd"><h2>Starter Template Loaded</h2><p>A loop block is on the canvas. Drag setPos and activate scanner from the palette into its body.</p></div>
+    <div class="m-bd">
+      <div class="sdots"><div class="sd done"></div><div class="sd done"></div><div class="sd on"></div><div class="sd"></div></div>
+      <div class="pbar"><div class="pfill" style="width:75%"></div></div>
+      <div class="ob-bprev">
+        <div class="ob-block ob-cblk c-green" style="font-size:11px">
+          <div class="ob-row">loop</div>
+          <div class="ob-mouth">
+            <div class="ob-ring-w">
+              <div class="ob-block c-blue" style="font-size:10.5px">
+                <div class="ob-row">setPos &nbsp;<span class="ob-slot">0</span> <span class="ob-slot">0</span> <span class="ob-slot">0</span></div>
+              </div>
+              <div class="ob-ring"></div>
+            </div>
+            <div class="ob-block ob-pill c-teal" style="font-size:10.5px"><div class="ob-row">activate scanner</div></div>
+          </div>
+          <div class="ob-cap c-green"></div>
+        </div>
+        <div class="ob-tip">The highlighted setPos has 0,0,0 — Astrobee will not move. Change those numbers to a real target like 1.5, 0.3, -0.8. You can also drag a "get ZRState" reporter into an input slot!</div>
+      </div>
+    </div>
+    <div class="m-ft"><button class="btn-g" onclick="goStep(2)">&larr; Back</button><button class="btn-p" onclick="goStep(4)">Next &rarr;</button></div>
+  </div>
+  <div id="ob-s4" style="display:none">
+    <div class="m-hd"><h2>Team Collaboration</h2><p>Drop comment pins on blocks and get replies from your mentor in real time.</p></div>
+    <div class="m-bd">
+      <div class="sdots"><div class="sd done"></div><div class="sd done"></div><div class="sd done"></div><div class="sd on"></div></div>
+      <div class="pbar"><div class="pfill" style="width:100%"></div></div>
+      <div class="ob-cdemo">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div class="ob-cpin">+</div>
+          <div class="ob-block c-blue" style="font-size:10.5px"><div class="ob-row">setPos &nbsp;<span class="ob-slot">1.5</span> <span class="ob-slot">0.3</span> <span class="ob-slot">-0.8</span></div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:17px"></div>
+          <div class="ob-block ob-pill c-teal" style="font-size:10.5px"><div class="ob-row">activate scanner</div></div>
+        </div>
+      </div>
+      <div class="ob-hint">Enable Pin Mode in the toolbar, then click any block to start a thread.</div>
+      <p style="font-size:11.5px;color:var(--muted);margin-top:10px">Use <strong style="color:var(--text)">Ask for Help</strong> to send your current error directly to your mentor.</p>
+    </div>
+    <div class="m-ft"><button class="btn-g" onclick="goStep(3)">&larr; Back</button><button class="btn-p" onclick="startCoding()">Start Coding &rarr;</button></div>
+  </div>
+</div>
+</div>
+<button class="help-fab" id="hfab" onclick="reopenGuide()">Need Help?</button>
+
 <div class="toast" id="toast"><span id="tmsg"></span></div>
 <div id="ccm"><div id="ccm-inner"><div id="ccm-head"><span>Generated C Code</span><button id="ccm-close" onclick="document.getElementById('ccm').classList.remove('show')">x</button></div><pre id="ccm-pre"></pre></div></div>
 
@@ -1321,6 +1447,27 @@ function toast(msg,type){ const el=document.getElementById('toast'); clearTimeou
 function tt(ms,fn){ setTimeout(fn,ms); }
 
 // ── Init ──
+// ── Onboarding ──
+let _obStep = 1;
+function goStep(n) {
+  document.getElementById('ob-s' + _obStep).style.display = 'none';
+  _obStep = n;
+  document.getElementById('ob-s' + n).style.display = 'block';
+}
+function startCoding() {
+  const ov = document.getElementById('ov');
+  ov.style.transition = 'opacity .4s';
+  ov.style.opacity = '0';
+  setTimeout(() => { ov.style.display = 'none'; document.getElementById('hfab').classList.add('show'); }, 400);
+}
+function reopenGuide() {
+  _obStep = 1;
+  ['ob-s1','ob-s2','ob-s3','ob-s4'].forEach(id => { document.getElementById(id).style.display = 'none'; });
+  document.getElementById('ob-s1').style.display = 'block';
+  const ov = document.getElementById('ov');
+  ov.style.opacity = '1'; ov.style.display = 'flex';
+}
+
 initStarterBlocks();
 </script>
 </body>
