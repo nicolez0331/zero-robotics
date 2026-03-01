@@ -6,16 +6,54 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Inter:wght@400;500;600;700&display=swap');
 :root{
-  --nav:#1a2332; --sb:#1e2d3e; --border:#cdd2d9; --text:#1c2733; --muted:#6b7a8d;
-  --bg:#5a8a3c; --bg2:#4a7a2c; --bt:#3a8a7a; --bbl:#3a6abf; --bpu:#7a4aab;
-  --bor:#c47a1a; --bgr:#5a6b7d; --bol:#7a8a3a;
-  --snap-glow: rgba(255,200,50,0.85);
-  --slot-glow: rgba(100,180,255,0.8);
+  --nav:#1a2332;--sb:#1e2d3e;--border:#cdd2d9;--text:#1c2733;--muted:#6b7a8d;
+  --c-green:#5a8a3c;--c-green2:#4a7a2c;--c-teal:#3a8a7a;--c-blue:#3a6abf;
+  --c-purple:#7a4aab;--c-orange:#c47a1a;--c-gray:#5a6b7d;--c-olive:#7a8a3a;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(--text);}
 
-/* ── IDE Shell ── */
+/* ── ONBOARDING ── */
+#ov{position:fixed;inset:0;background:rgba(8,14,24,.86);z-index:2000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(5px);}
+.modal{width:460px;background:#fff;border-radius:14px;box-shadow:0 28px 72px rgba(0,0,0,.4);overflow:hidden;animation:mIn .3s cubic-bezier(.175,.885,.32,1.275);}
+@keyframes mIn{from{transform:scale(.86) translateY(20px);opacity:0}to{transform:scale(1);opacity:1}}
+.m-stripe{height:5px;background:linear-gradient(90deg,#1a6bc1,#7a4aab,#5a8a3c);}
+.m-hd{padding:22px 26px 14px;}.m-hd h2{font-size:18px;font-weight:700;}.m-hd p{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.55;}
+.m-bd{padding:0 26px 10px;}.m-ft{padding:14px 26px 22px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #eee;}
+.sdots{display:flex;gap:5px;margin-bottom:12px;}.sd{width:7px;height:7px;border-radius:50%;background:#dde1e8;transition:all .25s;}.sd.on{background:#1a6bc1;transform:scale(1.3);}.sd.done{background:#5a8a3c;}
+.pbar{height:3px;background:#e8eaf0;border-radius:2px;margin-bottom:14px;}.pfill{height:100%;background:linear-gradient(90deg,#1a6bc1,#7a4aab);border-radius:2px;transition:width .4s;}
+.btn-p{background:#1a6bc1;color:#fff;border:none;border-radius:7px;padding:8px 20px;font-family:'Inter',sans-serif;font-weight:600;font-size:13px;cursor:pointer;}.btn-p:hover{background:#155fa8;}
+.btn-g{background:transparent;border:1px solid #cdd2d9;color:var(--muted);border-radius:7px;padding:7px 16px;font-family:'Inter',sans-serif;font-size:13px;cursor:pointer;}.btn-g:hover{border-color:#1a6bc1;color:#1a6bc1;}
+.s-ctr{font-size:11px;font-weight:600;color:var(--muted);}
+.ob-bull{display:flex;gap:11px;background:#f7f8fb;border-radius:9px;padding:10px 13px;border:1px solid #e8eaf0;margin-bottom:8px;}
+.ob-num{min-width:22px;height:22px;border-radius:50%;background:#1a6bc1;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;margin-top:1px;}
+.ob-label{font-size:12.5px;font-weight:600;}.ob-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+.ob-chk{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;border-radius:9px;border:1px solid #e8eaf0;background:#f7f8fb;margin-bottom:7px;}
+.ob-chk.on{border-color:#1a6bc1;background:#f0f6ff;}
+.ob-chkbox{min-width:20px;height:20px;border-radius:5px;border:2px solid #cdd2d9;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
+.ob-chk.on .ob-chkbox{background:#1a6bc1;border-color:#1a6bc1;color:#fff;}
+.ob-bprev{background:#f4f6f8;border-radius:9px;border:1px solid #dde1e8;padding:14px;margin:8px 0;}
+.ob-ring-w{position:relative;display:inline-block;}
+.ob-ring{position:absolute;inset:-4px;border:2px solid #f5c518;border-radius:8px;animation:rp 1.2s ease-in-out infinite;}
+@keyframes rp{0%,100%{box-shadow:0 0 0 0 rgba(245,197,24,.4)}50%{box-shadow:0 0 0 6px rgba(245,197,24,0)}}
+.ob-tip{background:#1c2733;color:#fff;border-radius:7px;padding:8px 12px;font-size:11.5px;line-height:1.5;margin-top:10px;position:relative;}
+.ob-tip::before{content:'';position:absolute;top:-6px;left:24px;border:6px solid transparent;border-bottom-color:#1c2733;border-top:none;}
+.ob-cdemo{background:#f4f6f8;border-radius:9px;border:1px dashed #c4cad4;padding:13px;margin:8px 0;}
+.ob-cpin{width:17px;height:17px;border-radius:50%;background:#1a6bc1;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;animation:pp 1.5s ease-in-out infinite;}
+@keyframes pp{0%,100%{box-shadow:0 0 0 0 rgba(26,107,193,.5)}50%{box-shadow:0 0 0 7px rgba(26,107,193,0)}}
+.ob-hint{font-size:11px;color:#1a6bc1;background:rgba(26,107,193,.08);border:1px solid rgba(26,107,193,.2);border-radius:6px;padding:6px 10px;text-align:center;font-weight:600;margin-top:9px;}
+/* mini blocks in modal */
+.ob-blk{display:inline-flex;align-items:center;border-radius:4px;color:#fff;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;box-shadow:0 2px 4px rgba(0,0,0,.2);}
+.ob-blk .r{padding:5px 9px;display:flex;align-items:center;gap:4px;}
+.ob-blk.pill{border-radius:12px;}
+.ob-blk.cblk{flex-direction:column;align-items:stretch;}
+.ob-mouth{margin-left:14px;min-height:22px;background:rgba(255,255,255,.13);border-radius:3px;padding:4px 5px;display:flex;flex-direction:column;gap:4px;}
+.ob-cap{height:9px;border-radius:0 0 4px 4px;}
+.ob-s{background:rgba(255,255,255,.88);color:#1c2733;border-radius:3px;padding:2px 5px;font-size:10px;font-weight:600;}
+.help-fab{position:fixed;bottom:18px;left:18px;z-index:50;background:#1a6bc1;color:#fff;border:none;border-radius:9px;padding:8px 14px;font-family:'Inter',sans-serif;font-weight:600;font-size:12px;cursor:pointer;display:none;}
+.help-fab.show{display:block;}.help-fab:hover{background:#155fa8;}
+
+/* ── IDE SHELL ── */
 #ide{display:flex;flex-direction:column;height:100vh;}
 .ann{background:linear-gradient(90deg,#1a2b40,#1e3550,#1a2b40);color:#7aabda;font-size:11.5px;text-align:center;padding:5px;flex-shrink:0;}
 .ann a{color:#58a0e0;text-decoration:underline;cursor:pointer;}
@@ -35,20 +73,17 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 .tb:hover{background:#f4f6f8;border-color:var(--border);color:var(--text);}
 .tb-sep{width:1px;height:20px;background:var(--border);margin:0 2px;}
 .run-btn{background:#2e7d32;color:#fff;border:none;border-radius:6px;padding:5px 13px;font-family:'Inter',sans-serif;font-weight:600;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:5px;}
-.run-btn:hover{background:#256428;}
-.run-btn.running{opacity:.7;cursor:default;}
+.run-btn:hover{background:#256428;}.run-btn.running{opacity:.7;cursor:default;}
 .run-btn svg{width:10px;height:10px;fill:currentColor;}
-.ccode-btn,.pm-btn,.cs-btn{background:#fff;border:1px solid var(--border);color:var(--muted);font-family:'Inter',sans-serif;font-size:12px;font-weight:500;padding:5px 11px;border-radius:6px;cursor:pointer;}
-.ccode-btn:hover,.pm-btn:hover,.cs-btn:hover{border-color:#1a6bc1;color:#1a6bc1;}
-.pm-btn.on{background:#eef3fb;border-color:#1a6bc1;color:#1a6bc1;}
+.pill-btn{background:#fff;border:1px solid var(--border);color:var(--muted);font-family:'Inter',sans-serif;font-size:12px;font-weight:500;padding:5px 11px;border-radius:6px;cursor:pointer;}
+.pill-btn:hover,.pill-btn.on{border-color:#1a6bc1;color:#1a6bc1;}
+.pill-btn.on{background:#eef3fb;}
 .ask-btn{background:#eef3fb;border:1px solid #b3caf0;color:#1a6bc1;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;padding:5px 11px;border-radius:6px;cursor:pointer;}
 .ask-btn:hover{background:#d8e8f8;}
-.proj-meta{text-align:right;margin-left:4px;}
-.proj-name{font-size:12.5px;font-weight:700;}
-.proj-sub{font-size:10.5px;color:var(--muted);}
+.proj-meta{text-align:right;margin-left:4px;}.proj-name{font-size:12.5px;font-weight:700;}.proj-sub{font-size:10.5px;color:var(--muted);}
 .save-st{font-size:11.5px;color:#5a8a3c;font-weight:500;}
 
-/* ── Main layout ── */
+/* ── LAYOUT ── */
 .main{display:flex;flex:1;overflow:hidden;}
 .pages-panel{width:178px;background:#f4f6f8;border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;}
 .pp-head{padding:10px 14px 6px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;}
@@ -59,228 +94,174 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 .paddbtn{width:24px;height:24px;background:#fff;border:1px solid var(--border);border-radius:5px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:15px;cursor:pointer;}
 .log-head{padding:10px 14px 5px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;border-top:1px solid var(--border);}
 .log-list{flex:1;overflow-y:auto;}
-.log-entry{padding:7px 14px;border-bottom:1px solid #eaecf0;cursor:pointer;}
-.log-entry:hover{background:#eaedf1;}
-.le-name{font-size:11px;font-weight:600;}
-.le-date{font-size:10px;color:var(--muted);}
+.log-entry{padding:7px 14px;border-bottom:1px solid #eaecf0;cursor:pointer;}.log-entry:hover{background:#eaedf1;}
+.le-name{font-size:11px;font-weight:600;}.le-date{font-size:10px;color:var(--muted);}
 .le-st{display:flex;align-items:center;gap:4px;font-size:10.5px;color:var(--muted);margin-top:2px;}
-.le-dot{width:7px;height:7px;border-radius:50%;}
-.le-dot.fail{background:#c0392b;}.le-dot.ok{background:#5a8a3c;}
+.le-dot{width:7px;height:7px;border-radius:50%;}.le-dot.fail{background:#c0392b;}.le-dot.ok{background:#5a8a3c;}
 .le-msg{font-size:10px;color:var(--muted);margin-top:2px;line-height:1.4;}
 
-/* ── Palette ── */
+/* ── PALETTE ── */
 .palette{width:210px;background:var(--sb);border-right:1px solid #1a2b3c;display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;}
-.palette::-webkit-scrollbar{width:3px;}
-.palette::-webkit-scrollbar-thumb{background:#2a3f58;}
+.palette::-webkit-scrollbar{width:3px;}.palette::-webkit-scrollbar-thumb{background:#2a3f58;}
 .cat-btn{padding:9px 16px;font-size:12px;font-weight:500;color:#8ab4d0;cursor:pointer;border-left:3px solid transparent;background:transparent;border-top:none;border-right:none;border-bottom:none;text-align:left;width:100%;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:7px;}
 .cat-btn:hover{background:rgba(255,255,255,.07);color:#fff;}
 .cat-btn.active{background:rgba(255,255,255,.1);color:#fff;border-left-color:#1a6bc1;}
 .cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 .cat-sep{height:1px;background:#1e2d3e;margin:3px 10px;}
-.pal-blocks{padding:10px 8px;border-top:1px solid #1e2d3e;display:flex;flex-direction:column;gap:8px;}
-/* Palette block wrapper — draggable, shows block preview */
-.pal-item{cursor:grab;display:inline-flex;}
-.pal-item:hover{opacity:.85;transform:scale(1.02);}
+.pal-blocks{padding:10px 8px;border-top:1px solid #1e2d3e;display:flex;flex-direction:column;gap:7px;}
+.pal-item{cursor:grab;display:inline-flex;user-select:none;}
+.pal-item:hover{opacity:.85;}
 .pal-item:active{cursor:grabbing;}
 
-/* ── BLOCK SYSTEM ──
-   Each block is built with CSS puzzle connectors.
-   .block-wrap = outer container (what gets positioned)
-   .block      = colored pill (command or reporter)
-   .block-cslot = the C-shaped mouth inside loop/if blocks
-*/
-.block-wrap{
+/* ══════════════════════════════════════════════
+   BLOCK RENDERING
+   Structure of a command block on canvas:
+   
+   <div class="zr-block" data-bid="b1" data-type="command">
+     <div class="zr-notch"></div>          ← top connector tab
+     <div class="zr-face c-blue">          ← colored face
+       <div class="zr-row">label <input class="bi"> </div>
+     </div>
+     <div class="zr-nub"></div>            ← bottom connector nub
+   </div>
+
+   C-block adds a .zr-mouth between face and nub,
+   and a .zr-cap below the mouth.
+   
+   Reporter:
+   <div class="zr-block" data-type="reporter">
+     <div class="zr-face c-orange reporter-face">
+       <div class="zr-row">label</div>
+     </div>
+   </div>
+══════════════════════════════════════════════ */
+
+.zr-block{
   display:inline-flex;
   flex-direction:column;
   position:relative;
   user-select:none;
+  cursor:grab;
 }
-/* Command block — has top notch and bottom nub via pseudo */
-.block{
-  display:inline-flex;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:4px;
-  color:#fff;
-  font-family:'Inter',sans-serif;
-  font-size:11.5px;
-  font-weight:600;
+.zr-block:active{ cursor:grabbing; }
+
+/* Connector tab on top */
+.zr-notch{
+  width:14px; height:7px;
+  margin-left:12px;
+  border-radius:4px 4px 0 0;
+  /* color set by JS to match face */
+  flex-shrink:0;
+}
+/* Connector nub on bottom */
+.zr-nub{
+  width:14px; height:7px;
+  margin-left:12px;
+  border-radius:0 0 4px 4px;
+  filter:brightness(.78);
+  flex-shrink:0;
+}
+/* Colored face */
+.zr-face{
   border-radius:4px;
-  position:relative;
-  white-space:nowrap;
   box-shadow:0 2px 5px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.18),inset 0 -2px 0 rgba(0,0,0,.2);
+  position:relative;
 }
-.block .brow{
+.zr-row{
   padding:6px 10px;
   display:flex;align-items:center;gap:5px;flex-wrap:wrap;
+  color:#fff;font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;white-space:nowrap;
 }
-/* top notch (female socket) via SVG drawn via background-image trick
-   We use a real div approach for reliability */
-.notch-top{
-  position:absolute;top:-6px;left:12px;
-  width:14px;height:7px;
-  background:inherit;
-  border-radius:4px 4px 0 0;
-  box-shadow:inset 0 2px 3px rgba(0,0,0,.15);
+/* Reporter pill face */
+.reporter-face{
+  border-radius:12px !important;
 }
-/* bottom nub */
-.nub-bottom{
-  position:absolute;bottom:-6px;left:12px;
-  width:14px;height:7px;
-  background:inherit;
-  filter:brightness(.8);
-  border-radius:0 0 4px 4px;
-}
-.no-top .notch-top{display:none;}
-.no-bot .nub-bottom{display:none;}
-
-/* C-block (loop/if) */
-.block-cslot{
+/* C-block mouth */
+.zr-mouth{
   margin-left:16px;
-  min-height:30px;
-  min-width:120px;
+  min-height:32px;
+  min-width:80px;
   background:rgba(255,255,255,.13);
   border-radius:3px;
   display:flex;
   flex-direction:column;
   gap:0;
-  padding:3px 4px;
-  position:relative;
+  padding:4px;
+  /* gap between children added via margin on child blocks */
 }
-/* The bottom cap of a C-block */
-.block-cap{
-  height:11px;
+.zr-mouth > .zr-block{
+  margin-bottom:6px;
+}
+.zr-mouth > .zr-block:last-child{
+  margin-bottom:0;
+}
+/* Drop preview shown inside mouth during hover */
+.drop-preview{
+  height:26px;
+  background:rgba(255,200,50,.2);
+  border:2px dashed rgba(255,200,50,.6);
+  border-radius:4px;
+  pointer-events:none;
+  margin-bottom:6px;
+}
+/* C-block bottom cap */
+.zr-cap{
+  height:10px;
   border-radius:0 0 4px 4px;
   position:relative;
 }
-.block-cap .notch-top{
-  position:absolute;top:-6px;left:12px;
-  width:14px;height:7px;
-  border-radius:4px 4px 0 0;
+/* Mouth highlight during drag */
+.zr-mouth.drop-hi{
+  background:rgba(255,200,50,.22);
+  outline:2px dashed rgba(255,200,50,.7);
 }
-.block-cap .nub-bottom{
-  position:absolute;bottom:-6px;left:12px;
-  width:14px;height:7px;
-  border-radius:0 0 4px 4px;
-}
-
-/* Reporter block (oval shape) */
-.block.reporter{
-  border-radius:12px;
-  font-size:11px;
-}
-.block.reporter .notch-top,
-.block.reporter .nub-bottom{display:none;}
-
-/* Color classes */
-.c-green{background:#5a8a3c;}
-.c-green2{background:#4a7a2c;}
-.c-teal{background:#3a8a7a;}
-.c-blue{background:#3a6abf;}
-.c-purple{background:#7a4aab;}
-.c-orange{background:#c47a1a;}
-.c-gray{background:#5a6b7d;}
-.c-olive{background:#7a8a3a;}
-
-/* Inline inputs inside blocks */
-.bi{
-  background:rgba(255,255,255,.9);color:#1c2733;
-  border:none;border-radius:3px;padding:2px 5px;
-  font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;
-  outline:none;text-align:center;min-width:28px;
-}
-.bi:focus{background:#fff;box-shadow:0 0 0 2px #f5c518;}
-.bsel{
-  background:rgba(255,255,255,.9);color:#1c2733;
-  border:none;border-radius:3px;padding:2px 4px;
-  font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;cursor:pointer;outline:none;
-}
-/* Reporter slot — an empty oval slot that accepts reporter blocks */
-.reporter-slot{
+/* Reporter slot (oval placeholder inside a block) */
+.rslot{
   display:inline-flex;align-items:center;justify-content:center;
-  min-width:32px;height:18px;
-  background:rgba(0,0,0,.2);
+  min-width:28px;height:18px;
+  background:rgba(0,0,0,.22);
   border-radius:9px;
   border:2px dashed rgba(255,255,255,.35);
-  font-size:9.5px;color:rgba(255,255,255,.5);
-  font-weight:600;padding:0 5px;
-  cursor:default;
-  position:relative;
-  transition:background .15s,border-color .15s,box-shadow .15s;
+  color:rgba(255,255,255,.5);font-size:9.5px;font-weight:600;
+  padding:0 5px;cursor:default;
+  transition:background .12s,border-color .12s,box-shadow .12s;
   vertical-align:middle;
 }
-.reporter-slot.slot-highlight{
-  background:rgba(100,180,255,.25);
-  border-color:var(--slot-glow);
-  box-shadow:0 0 0 3px rgba(100,180,255,.3);
+.rslot.hi{background:rgba(80,180,255,.3);border-color:rgba(100,200,255,.9);box-shadow:0 0 0 3px rgba(100,200,255,.25);}
+.rslot.filled{background:transparent;border:none;padding:0;min-width:0;}
+/* Inline inputs */
+.bi{background:rgba(255,255,255,.9);color:#1c2733;border:none;border-radius:3px;padding:2px 5px;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;outline:none;text-align:center;min-width:28px;}
+.bi:focus{background:#fff;box-shadow:0 0 0 2px #f5c518;}
+.bsel{background:rgba(255,255,255,.9);color:#1c2733;border:none;border-radius:3px;padding:2px 4px;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;cursor:pointer;outline:none;}
+/* Color classes */
+.c-green{background:#5a8a3c;} .c-green2{background:#4a7a2c;} .c-teal{background:#3a8a7a;}
+.c-blue{background:#3a6abf;} .c-purple{background:#7a4aab;} .c-orange{background:#c47a1a;}
+.c-gray{background:#5a6b7d;} .c-olive{background:#7a8a3a;}
+/* Drag ghost */
+.drag-ghost{
+  position:fixed;pointer-events:none;z-index:2000;
+  opacity:.8;filter:drop-shadow(0 8px 22px rgba(0,0,0,.38));
+  top:0;left:0;will-change:transform;
 }
-.reporter-slot.slot-filled{
-  background:transparent;
-  border:none;
-  padding:0;
-}
-
-/* ── SNAP INDICATOR ──
-   A glowing outline shown on the target position during drag */
-.snap-ghost{
-  position:absolute;
-  pointer-events:none;
-  z-index:100;
-  border:2px solid var(--snap-glow);
-  border-radius:5px;
-  box-shadow:0 0 0 4px rgba(255,200,50,.2);
-  background:rgba(255,200,50,.07);
-  display:none;
-}
-.snap-ghost.visible{display:block;}
-
-/* BODY-DROP highlight — glows when a command block hovers over a C-slot */
-.block-cslot.body-highlight{
-  background:rgba(255,200,50,.18) !important;
-  outline:2px dashed rgba(255,200,50,.6);
-}
+/* Type badge shown during drag */
+.type-badge{position:fixed;z-index:2001;background:#1c2733;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px;pointer-events:none;display:none;}
+.type-badge.show{display:block;}
+/* Snap ghost outline at target drop point */
+.snap-ghost{position:fixed;pointer-events:none;z-index:1999;border:2px solid rgba(255,200,50,.85);border-radius:5px;box-shadow:0 0 0 4px rgba(255,200,50,.18);display:none;}
+.snap-ghost.show{display:block;}
 
 /* ── CANVAS ── */
 .work-area{flex:1;display:flex;flex-direction:column;overflow:hidden;}
 .editor-sim{flex:1;display:flex;overflow:hidden;}
-.canvas-wrap{
-  flex:1;position:relative;overflow:auto;background:#fff;
-  background-image:radial-gradient(circle,#d4dae3 1px,transparent 1px);
-  background-size:22px 22px;
-}
-.canvas-wrap::-webkit-scrollbar{width:5px;height:5px;}
-.canvas-wrap::-webkit-scrollbar-thumb{background:#cdd2d9;border-radius:3px;}
-.canvas-inner{position:relative;min-width:1100px;min-height:700px;}
-
-/* Floating block on canvas */
-.canvas-block{
-  position:absolute;
-  cursor:grab;
-  z-index:10;
-}
-.canvas-block:active{cursor:grabbing;}
-.canvas-block.dragging{
-  z-index:200;
-  opacity:.92;
-  filter:drop-shadow(0 8px 20px rgba(0,0,0,.35));
-  pointer-events:none;
-}
-
-/* snap placeholder preview while dragging — shown inside loop body */
-.drop-preview{
-  height:28px;
-  background:rgba(255,200,50,.15);
-  border:2px dashed rgba(255,200,50,.5);
-  border-radius:4px;
-  margin:2px 0;
-  pointer-events:none;
-}
-
-/* Trash zone */
-.trash{position:absolute;bottom:14px;right:14px;width:40px;height:40px;background:#fff;border:1px solid var(--border);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);transition:all .15s;box-shadow:0 1px 4px rgba(0,0,0,.06);}
-.trash:hover{background:#ffeaea;border-color:#c0392b;color:#c0392b;}
+.canvas-wrap{flex:1;position:relative;overflow:auto;background:#fff;background-image:radial-gradient(circle,#d4dae3 1px,transparent 1px);background-size:22px 22px;}
+.canvas-wrap::-webkit-scrollbar{width:5px;height:5px;}.canvas-wrap::-webkit-scrollbar-thumb{background:#cdd2d9;border-radius:3px;}
+/* Canvas inner — blocks are absolutely positioned here when free-floating */
+#ci{position:relative;min-width:1100px;min-height:700px;}
+/* Free-floating block on canvas */
+.zr-block.free{position:absolute;}
+.trash{position:absolute;bottom:14px;right:14px;width:40px;height:40px;background:#fff;border:1px solid var(--border);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);transition:all .15s;}
+.trash:hover,.trash.on{background:#ffeaea;border-color:#c0392b;color:#c0392b;}
 .trash svg{width:16px;height:16px;}
-.trash.trash-active{background:#ffeaea;border-color:#c0392b;color:#c0392b;transform:scale(1.1);}
 
 /* ── SIM PANEL ── */
 .sim-panel{width:300px;background:#0d1520;border-left:1px solid #1e2d3e;display:flex;flex-direction:column;flex-shrink:0;transition:width .3s;}
@@ -290,7 +271,7 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 .sim-hbtn{background:transparent;border:1px solid #1e2d3e;color:#8ab4d0;border-radius:5px;padding:3px 9px;font-family:'Inter',sans-serif;font-size:11px;cursor:pointer;}
 .sim-hbtn:hover{border-color:#3a6abf;color:#fff;}
 .sim-vp{flex:1;position:relative;overflow:hidden;background:radial-gradient(ellipse at center,#0a1628 0%,#060d18 100%);min-height:0;}
-.sim-vp::before{content:'';position:absolute;inset:0;background-image:radial-gradient(1px 1px at 15% 22%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 65% 15%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 85% 65%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1px 1px at 10% 78%,rgba(255,255,255,.4) 0%,transparent 100%),radial-gradient(1px 1px at 42% 50%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 92% 35%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1px 1px at 30% 90%,rgba(255,255,255,.4) 0%,transparent 100%),radial-gradient(1px 1px at 55% 6%,rgba(255,255,255,.5) 0%,transparent 100%);pointer-events:none;}
+.sim-vp::before{content:'';position:absolute;inset:0;background-image:radial-gradient(1px 1px at 15% 22%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 65% 15%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 85% 65%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1px 1px at 10% 78%,rgba(255,255,255,.4) 0%,transparent 100%),radial-gradient(1px 1px at 42% 50%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 92% 35%,rgba(255,255,255,.6) 0%,transparent 100%);pointer-events:none;}
 .iss-room{position:absolute;inset:12px;border:1px solid rgba(100,160,220,.1);border-radius:3px;}
 .iss-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(100,160,220,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(100,160,220,.04) 1px,transparent 1px);background-size:28px 28px;}
 .axis-x{position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(255,80,80,.12);}
@@ -298,10 +279,10 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 .astrobee{position:absolute;width:34px;height:34px;transition:left 1.5s cubic-bezier(.4,0,.2,1),top 1.5s cubic-bezier(.4,0,.2,1);z-index:10;}
 .ab-body{width:34px;height:34px;background:linear-gradient(135deg,#e0e4e8,#a8b4be);border-radius:6px;border:1.5px solid #7a8898;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;box-shadow:0 4px 14px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.3);position:relative;}
 .ab-eye{width:8px;height:5px;background:#1a6bc1;border-radius:2px;box-shadow:0 0 6px rgba(26,107,193,.8);}
-.ab-mouth{width:11px;height:2px;background:#788898;border-radius:1px;}
+.ab-mouth-px{width:11px;height:2px;background:#788898;border-radius:1px;}
 .ab-body::before,.ab-body::after{content:'';position:absolute;width:7px;height:16px;background:rgba(80,130,180,.3);border-radius:2px;border:1px solid rgba(80,130,180,.4);}
 .ab-body::before{left:-9px;top:9px;}.ab-body::after{right:-9px;top:9px;}
-.thglow{position:absolute;inset:-4px;border-radius:9px;background:rgba(26,107,193,0);transition:background .3s;pointer-events:none;}
+.thglow{position:absolute;inset:-4px;border-radius:9px;background:rgba(26,107,193,0);pointer-events:none;}
 .astrobee.moving .thglow{animation:thr .4s ease-in-out infinite alternate;}
 @keyframes thr{from{background:rgba(26,107,193,.2);}to{background:rgba(80,160,255,.4);}}
 .target-m{position:absolute;width:20px;height:20px;z-index:8;opacity:0;transition:opacity .3s;}
@@ -322,62 +303,36 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 .hud-score{font-size:13px;font-weight:700;color:#fff;margin-top:2px;}
 .sim-console{height:115px;border-top:1px solid #1e2d3e;overflow-y:auto;padding:7px 12px;flex-shrink:0;}
 .sim-console::-webkit-scrollbar{width:3px;}
-.sim-console::-webkit-scrollbar-thumb{background:#1e2d3e;}
 .sc{font-family:'Source Code Pro',monospace;font-size:10.5px;line-height:1.8;}
 .sc.dim{color:#38506a;}.sc.ok{color:#5a8a3c;font-weight:600;}.sc.err{color:#c0392b;font-weight:600;}.sc.info{color:#3a6abf;}.sc.warn{color:#c47a1a;}
 
-/* Error bar */
-.eb{background:#fff8f7;border-top:2px solid #e8c0ba;padding:7px 13px;display:none;flex-direction:column;gap:6px;flex-shrink:0;}
-.eb.show{display:flex;}
-.eb-title{font-size:12px;font-weight:700;color:#c0392b;}
-.eb-explain{background:#fff;border:1px solid #e8c0ba;border-radius:6px;padding:8px 11px;font-size:12px;line-height:1.55;display:none;}
-.eb-explain.show{display:block;}
-.fix-diff{background:#f4fff6;border:1px solid #b8dfc0;border-radius:6px;padding:7px 11px;font-family:'Source Code Pro',monospace;font-size:11px;display:none;}
-.fix-diff.show{display:block;}
-.fd-del{color:#c0392b;text-decoration:line-through;}.fd-add{color:#2e7d32;}
-.eb-acts{display:flex;gap:5px;flex-wrap:wrap;}
-.eb-btn{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;padding:4px 11px;border-radius:5px;border:none;cursor:pointer;}
-.eb-btn:hover{filter:brightness(.92);}
-.eb-xpl{background:#eef3fb;color:#1a6bc1;}.eb-jmp{background:#eefaf2;color:#2e7d32;}.eb-fix{background:#f5f0fc;color:#7a4aab;}.eb-apl{background:#2e7d32;color:#fff;}.eb-men{background:#fff0ee;color:#c0392b;}
-
-/* Comments sidebar */
+/* ── COMMENTS / ERROR / ETC ── */
 .cs{width:0;background:#fff;border-left:1px solid var(--border);overflow:hidden;transition:width .25s;display:flex;flex-direction:column;flex-shrink:0;}
 .cs.open{width:240px;}
 .cs-head{padding:11px 13px 9px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
-.cs-head h3{font-size:12.5px;font-weight:700;}
-.cs-close{background:none;border:none;color:var(--muted);font-size:15px;cursor:pointer;}
+.cs-head h3{font-size:12.5px;font-weight:700;}.cs-close{background:none;border:none;color:var(--muted);font-size:15px;cursor:pointer;}
 .cs-body{flex:1;overflow-y:auto;padding:10px;}
 .cs-empty{font-size:11.5px;color:var(--muted);text-align:center;padding:16px 0;line-height:1.7;}
 .cc{background:#f7f8fb;border:1px solid #e8eaf0;border-radius:8px;padding:9px 11px;margin-bottom:7px;}
 .cc-meta{display:flex;align-items:center;gap:5px;margin-bottom:5px;}
-.cc-av{width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:700;color:#fff;flex-shrink:0;}
+.cc-av{width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:700;color:#fff;}
 .cc-auth{font-size:11px;font-weight:700;}.cc-time{font-size:10px;color:var(--muted);margin-left:auto;}
 .cc-body{font-size:11.5px;line-height:1.5;}
 .ri-row{display:flex;gap:5px;margin-top:7px;}
 .ri-ta{flex:1;background:#fff;border:1px solid var(--border);border-radius:5px;font-family:'Inter',sans-serif;font-size:11px;padding:5px 7px;resize:none;outline:none;}
 .ri-ta:focus{border-color:#1a6bc1;}
 .ri-send{background:#1a6bc1;color:#fff;border:none;border-radius:5px;padding:4px 8px;cursor:pointer;font-size:12px;}
-
-/* Toast */
+.eb{background:#fff8f7;border-top:2px solid #e8c0ba;padding:7px 13px;display:none;flex-direction:column;gap:6px;flex-shrink:0;}
+.eb.show{display:flex;}.eb-title{font-size:12px;font-weight:700;color:#c0392b;}
+.eb-explain{background:#fff;border:1px solid #e8c0ba;border-radius:6px;padding:8px 11px;font-size:12px;line-height:1.55;display:none;}.eb-explain.show{display:block;}
+.fix-diff{background:#f4fff6;border:1px solid #b8dfc0;border-radius:6px;padding:7px 11px;font-family:'Source Code Pro',monospace;font-size:11px;display:none;}.fix-diff.show{display:block;}
+.fd-del{color:#c0392b;text-decoration:line-through;}.fd-add{color:#2e7d32;}
+.eb-acts{display:flex;gap:5px;flex-wrap:wrap;}
+.eb-btn{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;padding:4px 11px;border-radius:5px;border:none;cursor:pointer;}.eb-btn:hover{filter:brightness(.92);}
+.eb-xpl{background:#eef3fb;color:#1a6bc1;}.eb-jmp{background:#eefaf2;color:#2e7d32;}.eb-fix{background:#f5f0fc;color:#7a4aab;}.eb-apl{background:#2e7d32;color:#fff;}.eb-men{background:#fff0ee;color:#c0392b;}
 .toast{position:fixed;bottom:18px;right:18px;z-index:999;background:#fff;border:1px solid var(--border);border-radius:9px;padding:9px 14px;font-size:12px;font-weight:600;box-shadow:0 5px 20px rgba(0,0,0,.1);transform:translateY(60px);opacity:0;transition:all .28s;max-width:300px;}
 .toast.show{transform:translateY(0);opacity:1;}
 .toast.t-ok{border-left:4px solid #5a8a3c;}.toast.t-err{border-left:4px solid #c0392b;}.toast.t-inf{border-left:4px solid #1a6bc1;}
-
-/* Type badge shown during drag */
-.drag-type-badge{
-  position:fixed;z-index:300;
-  background:#1c2733;color:#fff;
-  font-size:10px;font-weight:700;
-  padding:3px 8px;border-radius:10px;
-  pointer-events:none;display:none;
-}
-.drag-type-badge.show{display:block;}
-
-/* Invalid snap flash */
-@keyframes invalidFlash{0%{background:rgba(255,60,60,.3)}50%{background:rgba(255,60,60,.1)}100%{background:rgba(255,60,60,.3)}}
-.invalid-flash{animation:invalidFlash .4s ease-in-out 2;}
-
-/* C code modal */
 #ccm{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:500;align-items:center;justify-content:center;}
 #ccm.show{display:flex;}
 #ccm-inner{background:#fff;border-radius:12px;width:540px;max-height:78vh;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3);}
@@ -385,68 +340,81 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 #ccm-head span{font-weight:700;font-size:13px;}
 #ccm-close{background:none;border:none;font-size:17px;cursor:pointer;color:#999;}
 #ccm-pre{padding:18px;font-family:'Source Code Pro',monospace;font-size:12px;line-height:1.7;overflow:auto;max-height:60vh;background:#f8f9fb;color:#1c2733;margin:0;}
-
-/* ── ONBOARDING ── */
-#ov{position:fixed;inset:0;background:rgba(8,14,24,.86);z-index:2000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(5px);}
-.modal{width:460px;background:#fff;border-radius:14px;box-shadow:0 28px 72px rgba(0,0,0,.4);overflow:hidden;animation:mIn .3s cubic-bezier(.175,.885,.32,1.275);}
-@keyframes mIn{from{transform:scale(.86) translateY(20px);opacity:0}to{transform:scale(1);opacity:1}}
-.m-stripe{height:5px;background:linear-gradient(90deg,#1a6bc1,#7a4aab,#5a8a3c);}
-.m-hd{padding:22px 26px 14px;}.m-hd h2{font-size:18px;font-weight:700;}.m-hd p{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.55;}
-.m-bd{padding:0 26px 10px;}
-.m-ft{padding:14px 26px 22px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #eee;}
-.sdots{display:flex;gap:5px;margin-bottom:12px;}
-.sd{width:7px;height:7px;border-radius:50%;background:#dde1e8;transition:all .25s;}
-.sd.on{background:#1a6bc1;transform:scale(1.3);}.sd.done{background:#5a8a3c;}
-.pbar{height:3px;background:#e8eaf0;border-radius:2px;margin-bottom:14px;}
-.pfill{height:100%;background:linear-gradient(90deg,#1a6bc1,#7a4aab);border-radius:2px;transition:width .4s;}
-.btn-p{background:#1a6bc1;color:#fff;border:none;border-radius:7px;padding:8px 20px;font-family:'Inter',sans-serif;font-weight:600;font-size:13px;cursor:pointer;}
-.btn-p:hover{background:#155fa8;}
-.btn-g{background:transparent;border:1px solid #cdd2d9;color:var(--muted);border-radius:7px;padding:7px 16px;font-family:'Inter',sans-serif;font-size:13px;cursor:pointer;}
-.btn-g:hover{border-color:#1a6bc1;color:#1a6bc1;}
-.s-ctr{font-size:11px;font-weight:600;color:var(--muted);}
-.ob-bullets{display:flex;flex-direction:column;gap:9px;}
-.ob-bull{display:flex;gap:11px;background:#f7f8fb;border-radius:9px;padding:10px 13px;border:1px solid #e8eaf0;}
-.ob-num{min-width:22px;height:22px;border-radius:50%;background:#1a6bc1;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;margin-top:1px;}
-.ob-label{font-size:12.5px;font-weight:600;}.ob-sub{font-size:11px;color:var(--muted);margin-top:2px;}
-.ob-checks{display:flex;flex-direction:column;gap:7px;}
-.ob-chk{display:flex;align-items:center;gap:11px;padding:10px 13px;border-radius:9px;border:1px solid #e8eaf0;background:#f7f8fb;}
-.ob-chk.on{border-color:#1a6bc1;background:#f0f6ff;}
-.ob-chkbox{width:20px;height:20px;border-radius:5px;border:2px solid #cdd2d9;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
-.ob-chk.on .ob-chkbox{background:#1a6bc1;border-color:#1a6bc1;color:#fff;}
-.ob-bprev{background:#f4f6f8;border-radius:9px;border:1px solid #dde1e8;padding:14px;margin:8px 0;}
-.ob-ring-w{position:relative;display:inline-block;}
-.ob-ring{position:absolute;inset:-4px;border:2px solid #f5c518;border-radius:8px;animation:rp 1.2s ease-in-out infinite;}
-@keyframes rp{0%,100%{box-shadow:0 0 0 0 rgba(245,197,24,.4)}50%{box-shadow:0 0 0 6px rgba(245,197,24,0)}}
-.ob-tip{background:#1c2733;color:#fff;border-radius:7px;padding:8px 12px;font-size:11.5px;line-height:1.5;margin-top:10px;position:relative;}
-.ob-tip::before{content:'';position:absolute;top:-6px;left:24px;border:6px solid transparent;border-bottom-color:#1c2733;border-top:none;}
-.ob-cdemo{background:#f4f6f8;border-radius:9px;border:1px dashed #c4cad4;padding:13px;margin:8px 0;display:flex;flex-direction:column;gap:8px;}
-.ob-cpin{width:17px;height:17px;border-radius:50%;background:#1a6bc1;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;animation:pp 1.5s ease-in-out infinite;}
-@keyframes pp{0%,100%{box-shadow:0 0 0 0 rgba(26,107,193,.5)}50%{box-shadow:0 0 0 7px rgba(26,107,193,0)}}
-.ob-hint{font-size:11px;color:#1a6bc1;background:rgba(26,107,193,.08);border:1px solid rgba(26,107,193,.2);border-radius:6px;padding:6px 10px;text-align:center;font-weight:600;margin-top:9px;}
-/* mini block previews inside modal */
-.ob-block{display:inline-flex;align-items:center;border-radius:4px;color:#fff;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;box-shadow:0 2px 4px rgba(0,0,0,.2);}
-.ob-block .ob-row{padding:5px 9px;display:flex;align-items:center;gap:5px;}
-.ob-block.ob-pill{border-radius:12px;}
-.ob-block.ob-cblk{flex-direction:column;align-items:stretch;}
-.ob-mouth{margin-left:14px;min-height:22px;background:rgba(255,255,255,.13);border-radius:3px;padding:4px 5px;display:flex;flex-direction:column;gap:4px;}
-.ob-cap{height:9px;border-radius:0 0 4px 4px;}
-.ob-slot{background:rgba(255,255,255,.88);color:#1c2733;border-radius:3px;padding:2px 5px;font-size:10px;font-weight:600;}
-.ob-rslot{background:rgba(0,0,0,.2);border-radius:9px;padding:2px 7px;font-size:10px;color:rgba(255,255,255,.6);border:1.5px dashed rgba(255,255,255,.35);}
-.help-fab{position:fixed;bottom:18px;left:18px;z-index:50;background:#1a6bc1;color:#fff;border:none;border-radius:9px;padding:8px 14px;font-family:'Inter',sans-serif;font-weight:600;font-size:12px;cursor:pointer;display:none;box-shadow:0 3px 14px rgba(26,107,193,.35);}
-.help-fab.show{display:block;}.help-fab:hover{background:#155fa8;}
 </style>
 </head>
 <body>
+
+<!-- ONBOARDING -->
+<div id="ov">
+<div class="modal">
+  <div class="m-stripe"></div>
+  <div id="ob1">
+    <div class="m-hd"><h2>Welcome to Zero Robotics</h2><p>Build your Astrobee program by snapping blocks together — just like Scratch. Watch it fly in the simulation panel on the right.</p></div>
+    <div class="m-bd">
+      <div class="sdots"><div class="sd on"></div><div class="sd"></div><div class="sd"></div><div class="sd"></div></div>
+      <div class="pbar"><div class="pfill" style="width:25%"></div></div>
+      <div class="ob-bull"><div class="ob-num">1</div><div><div class="ob-label">Drag blocks from the palette</div><div class="ob-sub">Command blocks snap vertically inside a loop body. Reporters snap into oval slots.</div></div></div>
+      <div class="ob-bull"><div class="ob-num">2</div><div><div class="ob-label">Fill the starter loop block</div><div class="ob-sub">A loop is waiting on the canvas — add setPos and activate scanner into it.</div></div></div>
+      <div class="ob-bull"><div class="ob-num">3</div><div><div class="ob-label">Press Run to simulate</div><div class="ob-sub">Watch Astrobee fly to your coordinates in the live 3D panel on the right.</div></div></div>
+    </div>
+    <div class="m-ft"><span class="s-ctr">Step 1 of 4</span><button class="btn-p" onclick="goStep(2)">Next &rarr;</button></div>
+  </div>
+  <div id="ob2" style="display:none">
+    <div class="m-hd"><h2>Two Kinds of Blocks</h2><p>Knowing the difference makes snapping intuitive.</p></div>
+    <div class="m-bd">
+      <div class="sdots"><div class="sd done"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div>
+      <div class="pbar"><div class="pfill" style="width:50%"></div></div>
+      <div class="ob-chk on"><div class="ob-chkbox">C</div><div><div class="ob-label">Command blocks (green, blue, teal)</div><div class="ob-sub">Stack vertically inside a C-block body — they run top to bottom.</div></div></div>
+      <div class="ob-chk"><div class="ob-chkbox">R</div><div><div class="ob-label">Reporter blocks (orange, purple)</div><div class="ob-sub">Fill oval input slots inside command blocks — they return a value.</div></div></div>
+      <div class="ob-chk"><div class="ob-chkbox" style="font-size:13px">✕</div><div><div class="ob-label">Invalid snaps are blocked</div><div class="ob-sub">Reporters can't go into body areas. Commands can't fill value slots.</div></div></div>
+    </div>
+    <div class="m-ft"><button class="btn-g" onclick="goStep(1)">&larr; Back</button><button class="btn-p" onclick="goStep(3)">Next &rarr;</button></div>
+  </div>
+  <div id="ob3" style="display:none">
+    <div class="m-hd"><h2>Starter Template</h2><p>A loop block is already on the canvas. Drag blocks from the palette into its body.</p></div>
+    <div class="m-bd">
+      <div class="sdots"><div class="sd done"></div><div class="sd done"></div><div class="sd on"></div><div class="sd"></div></div>
+      <div class="pbar"><div class="pfill" style="width:75%"></div></div>
+      <div class="ob-bprev">
+        <div class="ob-blk cblk c-green">
+          <div class="r">loop</div>
+          <div class="ob-mouth">
+            <div class="ob-ring-w">
+              <div class="ob-blk c-blue"><div class="r">setPos &nbsp;<span class="ob-s">0</span><span class="ob-s">0</span><span class="ob-s">0</span></div></div>
+              <div class="ob-ring"></div>
+            </div>
+            <div class="ob-blk pill c-teal"><div class="r">activate scanner</div></div>
+          </div>
+          <div class="ob-cap c-green"></div>
+        </div>
+        <div class="ob-tip">The setPos inputs are 0,0,0 — Astrobee won't move. Change them to a real target like 1.5, 0.3, -0.8.</div>
+      </div>
+    </div>
+    <div class="m-ft"><button class="btn-g" onclick="goStep(2)">&larr; Back</button><button class="btn-p" onclick="goStep(4)">Next &rarr;</button></div>
+  </div>
+  <div id="ob4" style="display:none">
+    <div class="m-hd"><h2>Team Collaboration</h2><p>Drop comment pins on blocks and get real-time mentor replies.</p></div>
+    <div class="m-bd">
+      <div class="sdots"><div class="sd done"></div><div class="sd done"></div><div class="sd done"></div><div class="sd on"></div></div>
+      <div class="pbar"><div class="pfill" style="width:100%"></div></div>
+      <div class="ob-cdemo" style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:8px"><div class="ob-cpin">+</div><div class="ob-blk c-blue"><div class="r">setPos &nbsp;<span class="ob-s">1.5</span><span class="ob-s">0.3</span><span class="ob-s">-0.8</span></div></div></div>
+        <div style="display:flex;align-items:center;gap:8px"><div style="width:17px"></div><div class="ob-blk pill c-teal"><div class="r">activate scanner</div></div></div>
+      </div>
+      <div class="ob-hint">Enable Pin Mode in the toolbar, then click a block to open a comment thread.</div>
+    </div>
+    <div class="m-ft"><button class="btn-g" onclick="goStep(3)">&larr; Back</button><button class="btn-p" onclick="startCoding()">Start Coding &rarr;</button></div>
+  </div>
+</div>
+</div>
+<button class="help-fab" id="hfab" onclick="reopenGuide()">Need Help?</button>
+
+<!-- IDE -->
 <div id="ide">
   <div class="ann">Tune in to the <a>Galactic Greenhouse Finals Livestream</a> and <a>follow the live bracket</a></div>
   <div class="topnav">
-    <div class="logo">
-      <div class="logo-mark"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="white" stroke-width="1.3"><polygon points="6.5,1 12,4 12,9 6.5,12 1,9 1,4"/><circle cx="6.5" cy="6.5" r="2" fill="white" stroke="none"/></svg></div>
-      Zero Robotics
-    </div>
-    <button class="navlink">ABOUT ZR</button>
-    <button class="navlink">TOURNAMENTS</button>
-    <button class="navlink">IDE</button>
+    <div class="logo"><div class="logo-mark"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="white" stroke-width="1.3"><polygon points="6.5,1 12,4 12,9 6.5,12 1,9 1,4"/><circle cx="6.5" cy="6.5" r="2" fill="white" stroke="none"/></svg></div>Zero Robotics</div>
+    <button class="navlink">ABOUT ZR</button><button class="navlink">TOURNAMENTS</button><button class="navlink">IDE</button>
     <div class="nav-r">
       <div style="display:flex;gap:4px">
         <div class="av" style="background:linear-gradient(135deg,#1a6bc1,#1559a8);color:#fff">YO<div class="av-tip">You</div></div>
@@ -464,16 +432,15 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
     <div class="tb-sep"></div>
     <span class="save-st">All changes saved.</span>
     <div class="tb-sep"></div>
-    <button class="pm-btn" id="pm-btn" onclick="togglePinMode()">Pin Mode</button>
-    <button class="cs-btn" onclick="toggleCS()">Comments</button>
+    <button class="pill-btn" id="pm-btn" onclick="togglePinMode()">Pin Mode</button>
+    <button class="pill-btn" onclick="toggleCS()">Comments</button>
     <div class="tb-sep"></div>
     <button class="ask-btn" onclick="askHelp()">Ask for Help</button>
-    <button class="ccode-btn" onclick="showCCode()">C Code</button>
+    <button class="pill-btn" onclick="showCCode()">C Code</button>
     <div class="tb-sep"></div>
     <div class="proj-meta"><div class="proj-name">xxxx</div><div class="proj-sub">Free Mode (C language)</div></div>
   </div>
   <div class="main">
-    <!-- Pages + Log -->
     <div class="pages-panel">
       <div class="pp-head">Pages</div>
       <div class="page-item" onclick="selPage(this)">init</div>
@@ -482,7 +449,6 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
       <div class="log-head">Log</div>
       <div class="log-list" id="log-list"><div style="padding:10px 14px;font-size:11px;color:var(--muted);font-style:italic" id="log-empty">No entries yet.</div></div>
     </div>
-    <!-- Palette -->
     <div class="palette" id="palette">
       <button class="cat-btn active" onclick="selCat(this,'spheres')"><span class="cat-dot" style="background:#5a8a3c"></span>SPHERES Controls</button>
       <button class="cat-btn" onclick="selCat(this,'debug')"><span class="cat-dot" style="background:#3a8a7a"></span>Debug</button>
@@ -490,60 +456,38 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
       <button class="cat-btn" onclick="selCat(this,'logic')"><span class="cat-dot" style="background:#3a6abf"></span>Logic</button>
       <button class="cat-btn" onclick="selCat(this,'math')"><span class="cat-dot" style="background:#7a4aab"></span>Math</button>
       <div class="cat-sep"></div>
-      <button class="cat-btn" onclick="selCat(this,'loops')"><svg width="10" height="10" viewBox="0 0 10 10" fill="#8ab4d0"><rect x="0" y="0" width="4" height="4"/><rect x="6" y="0" width="4" height="4"/><rect x="0" y="6" width="4" height="4"/><rect x="6" y="6" width="4" height="4"/></svg>Loops</button>
+      <button class="cat-btn" onclick="selCat(this,'loops')">Loops</button>
       <button class="cat-btn" onclick="selCat(this,'zrms')"><span class="cat-dot" style="background:#7a8a3a"></span>Used for ZR MS</button>
       <button class="cat-btn" onclick="selCat(this,'advanced')"><span class="cat-dot" style="background:#5a6b7d"></span>Advanced</button>
       <button class="cat-btn" onclick="selCat(this,'fns')"><span class="cat-dot" style="background:#5a6b7d"></span>Functions</button>
       <div class="pal-blocks" id="pal-blocks"></div>
     </div>
-    <!-- Work area -->
     <div class="work-area">
       <div class="editor-sim">
-        <!-- Canvas -->
         <div class="canvas-wrap" id="cw">
-          <div class="canvas-inner" id="ci">
-            <!-- Starter loop block will be injected by JS -->
-          </div>
-          <div class="trash" id="trash" title="Drag here to delete">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 18 18"><path d="M3 5h12M7 5V3h4v2M5 5l1 10h6l1-10"/></svg>
-          </div>
+          <div id="ci"></div>
+          <div class="trash" id="trash"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 18 18"><path d="M3 5h12M7 5V3h4v2M5 5l1 10h6l1-10"/></svg></div>
         </div>
-        <!-- Sim panel -->
         <div class="sim-panel" id="sim-panel">
-          <div class="sim-hdr">
-            <span class="sim-title">Simulation</span>
-            <div style="display:flex;gap:5px">
-              <button class="sim-hbtn" onclick="resetSim()">Reset</button>
-              <button class="sim-hbtn" onclick="document.getElementById('sim-panel').classList.toggle('collapsed')">Hide</button>
-            </div>
-          </div>
+          <div class="sim-hdr"><span class="sim-title">Simulation</span><div style="display:flex;gap:5px"><button class="sim-hbtn" onclick="resetSim()">Reset</button><button class="sim-hbtn" onclick="document.getElementById('sim-panel').classList.toggle('collapsed')">Hide</button></div></div>
           <div class="sim-vp" id="svp">
             <div class="iss-room"><div class="iss-grid"></div><div class="axis-x"></div><div class="axis-y"></div></div>
             <div class="target-m" id="tm"><div class="tm-ring"></div><div class="tm-dot"></div></div>
-            <div class="astrobee" id="ab" style="left:calc(50% - 17px);top:calc(50% - 17px)">
-              <div class="thglow"></div>
-              <div class="ab-body"><div class="ab-eye"></div><div class="ab-mouth"></div></div>
-            </div>
-            <div class="scan-ring" id="sr1"></div>
-            <div class="scan-ring" id="sr2"></div>
-            <div class="hud">
-              <div class="hud-coord" id="hc">X: 0.000<br>Y: 0.000<br>Z: 0.000</div>
-              <div class="hud-status"><div><span class="hud-dot idle" id="hd"></span><span id="hs">Idle</span></div><div class="hud-score" id="hscore"></div></div>
-            </div>
+            <div class="astrobee" id="ab" style="left:calc(50% - 17px);top:calc(50% - 17px)"><div class="thglow"></div><div class="ab-body"><div class="ab-eye"></div><div class="ab-mouth-px"></div></div></div>
+            <div class="scan-ring" id="sr1"></div><div class="scan-ring" id="sr2"></div>
+            <div class="hud"><div class="hud-coord" id="hc">X: 0.000<br>Y: 0.000<br>Z: 0.000</div><div class="hud-status"><div><span class="hud-dot idle" id="hd"></span><span id="hs">Idle</span></div><div class="hud-score" id="hscore"></div></div></div>
           </div>
           <div class="sim-console" id="scon"><div class="sc dim">[SIM] Ready. Press Run to start.</div></div>
         </div>
-        <!-- Comments -->
         <div class="cs" id="cs">
-          <div class="cs-head"><h3>Comments</h3><button class="cs-close" onclick="toggleCS()">x</button></div>
+          <div class="cs-head"><h3>Comments</h3><button class="cs-close" onclick="toggleCS()">×</button></div>
           <div class="cs-body" id="csb"><div class="cs-empty" id="cse">No comments yet.</div></div>
         </div>
       </div>
-      <!-- Error bar -->
       <div class="eb" id="eb">
         <div class="eb-title">Block warning: "setPos" has zero coordinates — Astrobee will not move</div>
         <div class="eb-explain" id="ebx">The setPos block is telling Astrobee to move to (0,0,0) — where it already is. Change the X, Y, Z inputs to a real target like 1.5, 0.3, -0.8 and run again.</div>
-        <div class="fix-diff" id="fd"><div class="fd-del">setPos &nbsp; 0 , 0 , 0</div><div class="fd-add">setPos &nbsp; 1.5 , 0.3 , -0.8</div></div>
+        <div class="fix-diff" id="fd"><div class="fd-del">setPos 0 , 0 , 0</div><div class="fd-add">setPos 1.5 , 0.3 , -0.8</div></div>
         <div class="eb-acts">
           <button class="eb-btn eb-xpl" onclick="toggleExplain()">Explain Error</button>
           <button class="eb-btn eb-jmp" onclick="jumpToBlock()">Jump to Block</button>
@@ -556,919 +500,750 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
   </div>
 </div>
 
-<!-- ══ ONBOARDING OVERLAY ══ -->
-<div id="ov">
-<div class="modal">
-  <div class="m-stripe"></div>
-  <div id="ob-s1">
-    <div class="m-hd"><h2>Welcome to Zero Robotics</h2><p>Build your Astrobee program by snapping blocks together — just like Scratch. Watch it fly in the simulation panel on the right.</p></div>
-    <div class="m-bd">
-      <div class="sdots"><div class="sd on"></div><div class="sd"></div><div class="sd"></div><div class="sd"></div></div>
-      <div class="pbar"><div class="pfill" style="width:25%"></div></div>
-      <div class="ob-bullets">
-        <div class="ob-bull"><div class="ob-num">1</div><div><div class="ob-label">Drag blocks from the palette</div><div class="ob-sub">Command blocks snap into loop bodies. Reporter blocks snap into input slots.</div></div></div>
-        <div class="ob-bull"><div class="ob-num">2</div><div><div class="ob-label">Connect the starter blocks</div><div class="ob-sub">A loop block is already on the canvas — fill it with setPos and scanner</div></div></div>
-        <div class="ob-bull"><div class="ob-num">3</div><div><div class="ob-label">Run and watch the simulation</div><div class="ob-sub">See Astrobee move live in the panel on the right</div></div></div>
-      </div>
-    </div>
-    <div class="m-ft"><span class="s-ctr">Step 1 of 4</span><button class="btn-p" onclick="goStep(2)">Next &rarr;</button></div>
-  </div>
-  <div id="ob-s2" style="display:none">
-    <div class="m-hd"><h2>How Snapping Works</h2><p>Two kinds of blocks — knowing the difference helps you build faster.</p></div>
-    <div class="m-bd">
-      <div class="sdots"><div class="sd done"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div>
-      <div class="pbar"><div class="pfill" style="width:50%"></div></div>
-      <div class="ob-checks">
-        <div class="ob-chk on"><div class="ob-chkbox">C</div><div><div class="ob-label" style="font-size:12.5px;font-weight:600">Command blocks (green, blue, teal)</div><div class="ob-sub">Snap vertically inside a loop body. They run in order.</div></div></div>
-        <div class="ob-chk"><div class="ob-chkbox">R</div><div><div class="ob-label" style="font-size:12.5px;font-weight:600">Reporter blocks (orange, purple)</div><div class="ob-sub">Snap into oval input slots inside command blocks — they supply values.</div></div></div>
-        <div class="ob-chk"><div class="ob-chkbox" style="font-size:13px">&#10005;</div><div><div class="ob-label" style="font-size:12.5px;font-weight:600">Invalid snaps are blocked</div><div class="ob-sub">Reporters cannot go into body areas. Commands cannot fill input slots.</div></div></div>
-      </div>
-    </div>
-    <div class="m-ft"><button class="btn-g" onclick="goStep(1)">&larr; Back</button><button class="btn-p" onclick="goStep(3)">Next &rarr;</button></div>
-  </div>
-  <div id="ob-s3" style="display:none">
-    <div class="m-hd"><h2>Starter Template Loaded</h2><p>A loop block is on the canvas. Drag setPos and activate scanner from the palette into its body.</p></div>
-    <div class="m-bd">
-      <div class="sdots"><div class="sd done"></div><div class="sd done"></div><div class="sd on"></div><div class="sd"></div></div>
-      <div class="pbar"><div class="pfill" style="width:75%"></div></div>
-      <div class="ob-bprev">
-        <div class="ob-block ob-cblk c-green" style="font-size:11px">
-          <div class="ob-row">loop</div>
-          <div class="ob-mouth">
-            <div class="ob-ring-w">
-              <div class="ob-block c-blue" style="font-size:10.5px">
-                <div class="ob-row">setPos &nbsp;<span class="ob-slot">0</span> <span class="ob-slot">0</span> <span class="ob-slot">0</span></div>
-              </div>
-              <div class="ob-ring"></div>
-            </div>
-            <div class="ob-block ob-pill c-teal" style="font-size:10.5px"><div class="ob-row">activate scanner</div></div>
-          </div>
-          <div class="ob-cap c-green"></div>
-        </div>
-        <div class="ob-tip">The highlighted setPos has 0,0,0 — Astrobee will not move. Change those numbers to a real target like 1.5, 0.3, -0.8. You can also drag a "get ZRState" reporter into an input slot!</div>
-      </div>
-    </div>
-    <div class="m-ft"><button class="btn-g" onclick="goStep(2)">&larr; Back</button><button class="btn-p" onclick="goStep(4)">Next &rarr;</button></div>
-  </div>
-  <div id="ob-s4" style="display:none">
-    <div class="m-hd"><h2>Team Collaboration</h2><p>Drop comment pins on blocks and get replies from your mentor in real time.</p></div>
-    <div class="m-bd">
-      <div class="sdots"><div class="sd done"></div><div class="sd done"></div><div class="sd done"></div><div class="sd on"></div></div>
-      <div class="pbar"><div class="pfill" style="width:100%"></div></div>
-      <div class="ob-cdemo">
-        <div style="display:flex;align-items:center;gap:8px">
-          <div class="ob-cpin">+</div>
-          <div class="ob-block c-blue" style="font-size:10.5px"><div class="ob-row">setPos &nbsp;<span class="ob-slot">1.5</span> <span class="ob-slot">0.3</span> <span class="ob-slot">-0.8</span></div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <div style="width:17px"></div>
-          <div class="ob-block ob-pill c-teal" style="font-size:10.5px"><div class="ob-row">activate scanner</div></div>
-        </div>
-      </div>
-      <div class="ob-hint">Enable Pin Mode in the toolbar, then click any block to start a thread.</div>
-      <p style="font-size:11.5px;color:var(--muted);margin-top:10px">Use <strong style="color:var(--text)">Ask for Help</strong> to send your current error directly to your mentor.</p>
-    </div>
-    <div class="m-ft"><button class="btn-g" onclick="goStep(3)">&larr; Back</button><button class="btn-p" onclick="startCoding()">Start Coding &rarr;</button></div>
-  </div>
-</div>
-</div>
-<button class="help-fab" id="hfab" onclick="reopenGuide()">Need Help?</button>
-
+<!-- Drag UI elements (appended to body) -->
+<div class="drag-ghost" id="dg" style="display:none"></div>
+<div class="snap-ghost" id="sg"></div>
+<div class="type-badge" id="tb"></div>
 <div class="toast" id="toast"><span id="tmsg"></span></div>
-<div id="ccm"><div id="ccm-inner"><div id="ccm-head"><span>Generated C Code</span><button id="ccm-close" onclick="document.getElementById('ccm').classList.remove('show')">x</button></div><pre id="ccm-pre"></pre></div></div>
+<div id="ccm"><div id="ccm-inner"><div id="ccm-head"><span>Generated C Code</span><button id="ccm-close" onclick="document.getElementById('ccm').classList.remove('show')">×</button></div><pre id="ccm-pre"></pre></div></div>
 
 <script>
-// ════════════════════════════════════════════════════════
-//  BLOCK DATA MODEL
-//  Each block definition has:
-//    id       – unique string
-//    type     – 'command' | 'c-block' | 'reporter'
-//    color    – CSS color class (c-green, c-blue, …)
-//    label    – display text
-//    slots    – array of slot descriptors inside the label
-//    children – (c-block only) array of child block ids (in body)
-//    parent   – id of parent block body this is in, or null
-//    pos      – {x,y} if free-floating on canvas
-// ════════════════════════════════════════════════════════
-
-let blocks = {};  // id → block state
-let nextId = 1;
-function uid(prefix='b'){ return prefix + (nextId++); }
-
-// Slot descriptor: { kind:'input'|'reporter-slot', accepts:'reporter', value, filledBy }
-// 'input' = plain text input (bi)
-// 'reporter-slot' = oval slot that accepts reporter blocks
-
-const PALETTE_DEFS = {
+'use strict';
+// ═══════════════════════════════════════════════
+//  PALETTE DEFINITIONS
+// ═══════════════════════════════════════════════
+// type: 'command' | 'cblock' | 'reporter'
+// color: CSS class
+// slots: array of {k:'input'|'select'|'rslot', v:default, opts:[...]}
+const DEFS = {
   spheres:[
-    { type:'command', color:'c-blue',  label:'setPos',          slots:[{kind:'input',value:'0'},{kind:'input',value:'0'},{kind:'input',value:'0'}] },
-    { type:'command', color:'c-blue',  label:'setVel',          slots:[{kind:'input',value:'0'},{kind:'input',value:'0'},{kind:'input',value:'0'}] },
-    { type:'reporter',color:'c-green', label:'get ZRState',     slots:[{kind:'select',options:['pos_x','pos_y','pos_z','vel_x','vel_y'],value:'pos_x'}] },
-    { type:'reporter',color:'c-green', label:'getTime',         slots:[] },
-    { type:'command', color:'c-teal',  label:'activate scanner',slots:[], pill:true },
-    { type:'command', color:'c-green2',label:'I am Blue',       slots:[], pill:true },
-    { type:'command', color:'c-green2',label:'I am Red',        slots:[], pill:true },
+    {type:'command', color:'c-blue',   label:'setPos',           slots:[{k:'input',v:'0'},{k:'input',v:'0'},{k:'input',v:'0'}]},
+    {type:'command', color:'c-blue',   label:'setVel',           slots:[{k:'input',v:'0'},{k:'input',v:'0'},{k:'input',v:'0'}]},
+    {type:'reporter',color:'c-green',  label:'get ZRState',      slots:[{k:'select',opts:['pos_x','pos_y','pos_z','vel_x','vel_y'],v:'pos_x'}]},
+    {type:'reporter',color:'c-green',  label:'getTime',          slots:[]},
+    {type:'command', color:'c-teal',   label:'activate scanner', slots:[], pill:true},
+    {type:'command', color:'c-green2', label:'I am Blue',        slots:[], pill:true},
+    {type:'command', color:'c-green2', label:'I am Red',         slots:[], pill:true},
   ],
   debug:[
-    { type:'command', color:'c-teal',  label:'DEBUG',           slots:[{kind:'reporter-slot',accepts:'reporter'}], pill:true },
-    { type:'command', color:'c-teal',  label:'print value',     slots:[{kind:'input',value:'val'}], pill:true },
+    {type:'command', color:'c-teal',   label:'DEBUG',            slots:[{k:'rslot'}], pill:true},
+    {type:'command', color:'c-teal',   label:'print value',      slots:[{k:'input',v:'val'}], pill:true},
   ],
   vars:[
-    { type:'reporter',color:'c-orange',label:'myVar',           slots:[] },
-    { type:'command', color:'c-orange',label:'set myVar to',    slots:[{kind:'reporter-slot',accepts:'reporter'}] },
-    { type:'command', color:'c-orange',label:'change myVar by', slots:[{kind:'input',value:'1'}] },
+    {type:'reporter',color:'c-orange', label:'myVar',            slots:[]},
+    {type:'command', color:'c-orange', label:'set myVar to',     slots:[{k:'rslot'}]},
+    {type:'command', color:'c-orange', label:'change myVar by',  slots:[{k:'input',v:'1'}]},
   ],
   logic:[
-    { type:'c-block', color:'c-blue',  label:'if',              slots:[{kind:'reporter-slot',accepts:'reporter'}] },
-    { type:'reporter',color:'c-blue',  label:'not',             slots:[{kind:'reporter-slot',accepts:'reporter'}] },
-    { type:'reporter',color:'c-blue',  label:'true',            slots:[] },
-    { type:'reporter',color:'c-blue',  label:'false',           slots:[] },
-    { type:'reporter',color:'c-blue',  label:'and',             slots:[{kind:'reporter-slot',accepts:'reporter'},{kind:'reporter-slot',accepts:'reporter'}] },
+    {type:'cblock',  color:'c-blue',   label:'if',               slots:[{k:'rslot'}]},
+    {type:'reporter',color:'c-blue',   label:'not',              slots:[{k:'rslot'}]},
+    {type:'reporter',color:'c-blue',   label:'true',             slots:[]},
+    {type:'reporter',color:'c-blue',   label:'false',            slots:[]},
   ],
   math:[
-    { type:'reporter',color:'c-purple',label:'0',               slots:[] },
-    { type:'reporter',color:'c-purple',label:'+',               slots:[{kind:'reporter-slot',accepts:'reporter'},{kind:'reporter-slot',accepts:'reporter'}] },
-    { type:'reporter',color:'c-purple',label:'sqrt',            slots:[{kind:'reporter-slot',accepts:'reporter'}] },
-    { type:'reporter',color:'c-purple',label:'sin',             slots:[{kind:'reporter-slot',accepts:'reporter'}] },
-    { type:'reporter',color:'c-purple',label:'pi',              slots:[] },
+    {type:'reporter',color:'c-purple', label:'number',           slots:[{k:'input',v:'0'}]},
+    {type:'reporter',color:'c-purple', label:'+',                slots:[{k:'rslot'},{k:'rslot'}]},
+    {type:'reporter',color:'c-purple', label:'sqrt',             slots:[{k:'rslot'}]},
+    {type:'reporter',color:'c-purple', label:'pi',               slots:[]},
   ],
   loops:[
-    { type:'c-block', color:'c-green', label:'loop',            slots:[] },
-    { type:'c-block', color:'c-green', label:'repeat',          slots:[{kind:'input',value:'10'}] },
-    { type:'c-block', color:'c-green', label:'for index1 from', slots:[{kind:'input',value:'0'},{kind:'input',value:'9'}] },
-    { type:'c-block', color:'c-green', label:'while',           slots:[{kind:'reporter-slot',accepts:'reporter'}] },
+    {type:'cblock',  color:'c-green',  label:'loop',             slots:[]},
+    {type:'cblock',  color:'c-green',  label:'repeat',           slots:[{k:'input',v:'10'}]},
+    {type:'cblock',  color:'c-green',  label:'while',            slots:[{k:'rslot'}]},
   ],
   zrms:[
-    { type:'command', color:'c-olive', label:'setPos row',      slots:[{kind:'input',value:'0'},{kind:'input',value:'0'},{kind:'input',value:'0'}] },
-    { type:'reporter',color:'c-olive', label:'ZR get',          slots:[{kind:'select',options:['pos_x','pos_y','pos_z'],value:'pos_x'}] },
+    {type:'command', color:'c-olive',  label:'setPos row',       slots:[{k:'input',v:'0'},{k:'input',v:'0'},{k:'input',v:'0'}]},
   ],
   advanced:[
-    { type:'command', color:'c-gray',  label:'#include',        slots:[{kind:'input',value:'math.h'}] },
-    { type:'command', color:'c-gray',  label:'#define',         slots:[{kind:'input',value:'NAME'},{kind:'input',value:'val'}] },
+    {type:'command', color:'c-gray',   label:'#define',          slots:[{k:'input',v:'NAME'},{k:'input',v:'val'}]},
   ],
   fns:[
-    { type:'c-block', color:'c-gray',  label:'define',          slots:[{kind:'input',value:'myFn'}], hat:true },
-    { type:'command', color:'c-gray',  label:'call',            slots:[{kind:'input',value:'myFn'}] },
-    { type:'command', color:'c-gray',  label:'return',          slots:[{kind:'reporter-slot',accepts:'reporter'}] },
+    {type:'cblock',  color:'c-gray',   label:'define',           slots:[{k:'input',v:'myFn'}], hat:true},
+    {type:'command', color:'c-gray',   label:'call',             slots:[{k:'input',v:'myFn'}]},
+    {type:'command', color:'c-gray',   label:'return',           slots:[{k:'rslot'}]},
   ],
 };
 
-// ── Render palette ──
+// ═══════════════════════════════════════════════
+//  BLOCK STATE  (simple flat map)
+// ═══════════════════════════════════════════════
+// Each block:
+//   id, def (deep copy), parent (id|null), children (ids, for cblock)
+//   x, y (canvas pos when free)
+let BLK = {};   // id → state
+let nextId = 0;
+function uid(){ return 'b'+(nextId++); }
+
+// ═══════════════════════════════════════════════
+//  BUILD BLOCK DOM
+//  Returns a .zr-block element (NOT yet placed)
+// ═══════════════════════════════════════════════
+function buildBlock(def, id){
+  const isCmd      = def.type === 'command';
+  const isCblock   = def.type === 'cblock';
+  const isReporter = def.type === 'reporter';
+  const col        = def.color;
+
+  const root = document.createElement('div');
+  root.className = 'zr-block';
+  root.dataset.bid = id;
+  root.dataset.type = def.type;
+
+  if(isCmd || isCblock){
+    // Top notch tab
+    if(!def.hat){
+      const notch = document.createElement('div');
+      notch.className = 'zr-notch';
+      notch.style.background = getComputedColor(col);
+      root.appendChild(notch);
+    }
+    // Face
+    const face = document.createElement('div');
+    face.className = 'zr-face ' + col;
+    face.appendChild(buildRow(def, id));
+    root.appendChild(face);
+    // Mouth (cblock only)
+    if(isCblock){
+      const mouth = document.createElement('div');
+      mouth.className = 'zr-mouth';
+      mouth.dataset.parentBid = id;
+      root.appendChild(mouth);
+      // Cap
+      const cap = document.createElement('div');
+      cap.className = 'zr-cap ' + col;
+      root.appendChild(cap);
+    } else {
+      // Bottom nub
+      const nub = document.createElement('div');
+      nub.className = 'zr-nub';
+      nub.style.background = getComputedColor(col);
+      root.appendChild(nub);
+    }
+    // Cblock also gets a nub on the cap
+    if(isCblock){
+      const capNub = document.createElement('div');
+      capNub.className = 'zr-nub';
+      capNub.style.background = getComputedColor(col);
+      capNub.style.marginLeft = '12px';
+      root.querySelector('.zr-cap').appendChild(capNub);
+    }
+  } else {
+    // Reporter
+    const face = document.createElement('div');
+    face.className = 'zr-face reporter-face ' + col;
+    face.appendChild(buildRow(def, id));
+    root.appendChild(face);
+  }
+
+  root.addEventListener('mousedown', onBlockMouseDown);
+  return root;
+}
+
+// Color map for notch/nub (needs actual hex, not class)
+const COLOR_MAP = {
+  'c-green':'#5a8a3c','c-green2':'#4a7a2c','c-teal':'#3a8a7a',
+  'c-blue':'#3a6abf','c-purple':'#7a4aab','c-orange':'#c47a1a',
+  'c-gray':'#5a6b7d','c-olive':'#7a8a3a',
+};
+function getComputedColor(cls){ return COLOR_MAP[cls] || '#555'; }
+
+function buildRow(def, id){
+  const row = document.createElement('div');
+  row.className = 'zr-row';
+  if(def.label){
+    row.appendChild(document.createTextNode(def.label));
+  }
+  if(def.slots){
+    def.slots.forEach((slot, si) => {
+      row.appendChild(document.createTextNode(' '));
+      if(slot.k === 'input'){
+        const inp = document.createElement('input');
+        inp.className = 'bi';
+        inp.type = 'text';
+        inp.value = slot.v || '0';
+        inp.style.width = Math.max(28, (slot.v||'0').length*8+14)+'px';
+        inp.dataset.bid = id; inp.dataset.si = si;
+        inp.addEventListener('mousedown', e => e.stopPropagation());
+        inp.addEventListener('input', e => { inp.style.width = Math.max(28,e.target.value.length*8+14)+'px'; });
+        row.appendChild(inp);
+      } else if(slot.k === 'select'){
+        const sel = document.createElement('select');
+        sel.className = 'bsel';
+        (slot.opts||[]).forEach(o => { const op = document.createElement('option'); op.value=op.textContent=o; sel.appendChild(op); });
+        sel.value = slot.v || '';
+        sel.dataset.bid = id; sel.dataset.si = si;
+        sel.addEventListener('mousedown', e => e.stopPropagation());
+        row.appendChild(sel);
+      } else if(slot.k === 'rslot'){
+        const rs = document.createElement('span');
+        rs.className = 'rslot';
+        rs.dataset.bid = id; rs.dataset.si = si;
+        rs.textContent = '?';
+        row.appendChild(rs);
+      }
+    });
+  }
+  return row;
+}
+
+// ═══════════════════════════════════════════════
+//  PLACE BLOCK ON CANVAS (free-floating)
+// ═══════════════════════════════════════════════
+function placeBlock(def, x, y){
+  const id  = uid();
+  BLK[id]   = { id, def: JSON.parse(JSON.stringify(def)), parent:null, children:[], x, y };
+  const el  = buildBlock(def, id);
+  el.classList.add('free');
+  el.style.left = x+'px';
+  el.style.top  = y+'px';
+  document.getElementById('ci').appendChild(el);
+  return id;
+}
+
+// ═══════════════════════════════════════════════
+//  SNAP BLOCK INTO A CBLOCK MOUTH
+// ═══════════════════════════════════════════════
+function snapIntoMouth(parentId, childId, afterId){
+  const pState  = BLK[parentId];
+  const cState  = BLK[childId];
+  const pEl     = getEl(parentId);
+  const cEl     = getEl(childId);
+  const mouth   = pEl ? pEl.querySelector('.zr-mouth') : null;
+  if(!mouth || !pState || !cState || !cEl) return;
+
+  // Remove from canvas if free
+  if(cEl.classList.contains('free')){
+    cEl.classList.remove('free');
+    cEl.style.left = '';
+    cEl.style.top  = '';
+  }
+  // Remove from old parent if nested
+  if(cState.parent){
+    const oldParent = BLK[cState.parent];
+    if(oldParent) oldParent.children = oldParent.children.filter(x=>x!==childId);
+    const oldMouth = getEl(cState.parent)?.querySelector('.zr-mouth');
+    if(oldMouth && oldMouth.contains(cEl)) oldMouth.removeChild(cEl);
+  }
+
+  // Update state
+  cState.parent = parentId;
+  const idx = afterId ? pState.children.indexOf(afterId)+1 : pState.children.length;
+  pState.children.splice(idx, 0, childId);
+
+  // Insert into DOM mouth at correct position
+  if(afterId){
+    const afterEl = getEl(afterId);
+    if(afterEl && mouth.contains(afterEl) && afterEl.nextSibling){
+      mouth.insertBefore(cEl, afterEl.nextSibling);
+    } else {
+      mouth.appendChild(cEl);
+    }
+  } else {
+    // Insert at beginning
+    const first = mouth.querySelector('.zr-block');
+    if(first) mouth.insertBefore(cEl, first);
+    else mouth.appendChild(cEl);
+  }
+}
+
+// ═══════════════════════════════════════════════
+//  DETACH BLOCK (remove from parent/mouth)
+// ═══════════════════════════════════════════════
+function detach(childId){
+  const cState = BLK[childId];
+  if(!cState || !cState.parent) return;
+  const cEl = getEl(childId);
+  const parentState = BLK[cState.parent];
+  if(parentState){
+    parentState.children = parentState.children.filter(x=>x!==childId);
+  }
+  const mouth = getEl(cState.parent)?.querySelector('.zr-mouth');
+  if(mouth && cEl && mouth.contains(cEl)){
+    // Restore position on canvas before removing from mouth
+    const cwEl = document.getElementById('cw');
+    const cwRect = cwEl.getBoundingClientRect();
+    const r = cEl.getBoundingClientRect();
+    const x = r.left - cwRect.left + cwEl.scrollLeft;
+    const y = r.top  - cwRect.top  + cwEl.scrollTop;
+    mouth.removeChild(cEl);
+    cEl.classList.add('free');
+    cEl.style.left = x+'px';
+    cEl.style.top  = y+'px';
+    cState.x = x; cState.y = y;
+    document.getElementById('ci').appendChild(cEl);
+  }
+  cState.parent = null;
+}
+
+// Also detach reporter from rslot
+function detachFromSlot(childId){
+  const cState = BLK[childId];
+  if(!cState) return;
+  const cEl = getEl(childId);
+  // Find the rslot that contains this block
+  const slot = document.querySelector(`.rslot.filled[data-child="${childId}"]`);
+  if(slot){
+    slot.classList.remove('filled');
+    slot.removeAttribute('data-child');
+    slot.textContent = '?';
+    if(cEl){
+      const cwEl = document.getElementById('cw');
+      const cwRect = cwEl.getBoundingClientRect();
+      const r = slot.getBoundingClientRect();
+      const x = r.left - cwRect.left + cwEl.scrollLeft;
+      const y = r.top  - cwRect.top  + cwEl.scrollTop;
+      cEl.classList.add('free');
+      cEl.style.left = x+'px';
+      cEl.style.top  = y+'px';
+      document.getElementById('ci').appendChild(cEl);
+      cState.x = x; cState.y = y;
+    }
+  }
+  cState.parent = null;
+}
+
+function getEl(id){ return document.querySelector(`.zr-block[data-bid="${id}"]`); }
+
+// ═══════════════════════════════════════════════
+//  DRAG ENGINE
+// ═══════════════════════════════════════════════
+let drag = null;
+// { id, el, ghost, offX, offY, snap:null }
+
+const dropPreview = document.createElement('div');
+dropPreview.className = 'drop-preview';
+
+function onBlockMouseDown(e){
+  if(e.button !== 0) return;
+  if(e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+
+  // Find the topmost .zr-block that this mousedown belongs to
+  // (don't drag a child when clicking the parent C-block header)
+  let target = e.target.closest('.zr-block');
+  if(!target) return;
+
+  e.preventDefault();
+  e.stopPropagation();
+
+  const id = target.dataset.bid;
+  if(!id) return;
+
+  const state = BLK[id];
+  if(!state) return;
+
+  // Detach from parent if needed
+  if(state.parent){
+    // check if reporter or body child
+    const inSlot = document.querySelector(`.rslot.filled[data-child="${id}"]`);
+    if(inSlot) detachFromSlot(id);
+    else detach(id);
+  }
+
+  // Ensure it's free on canvas
+  const el = getEl(id);
+  if(!el) return;
+  if(!el.classList.contains('free')){
+    el.classList.add('free');
+    const cwEl = document.getElementById('cw');
+    const cwRect = cwEl.getBoundingClientRect();
+    const r = el.getBoundingClientRect();
+    el.style.left = (r.left - cwRect.left + cwEl.scrollLeft)+'px';
+    el.style.top  = (r.top  - cwRect.top  + cwEl.scrollTop)+'px';
+    document.getElementById('ci').appendChild(el);
+  }
+
+  // Build ghost (visual clone following mouse)
+  const ghost = document.getElementById('dg');
+  ghost.innerHTML = el.outerHTML;
+  ghost.style.display = 'block';
+  ghost.style.transform = `translate(${e.clientX}px,${e.clientY}px)`;
+
+  const elRect = el.getBoundingClientRect();
+  const offX = e.clientX - elRect.left;
+  const offY = e.clientY - elRect.top;
+
+  // Hide original while dragging
+  el.style.opacity = '0.25';
+
+  // Show type badge
+  const badge = document.getElementById('tb');
+  badge.textContent = state.def.type === 'reporter' ? 'Reporter' : state.def.type === 'cblock' ? 'C-block' : 'Command';
+  badge.className = 'type-badge show';
+  badge.style.left = (e.clientX+14)+'px';
+  badge.style.top  = (e.clientY-24)+'px';
+
+  drag = { id, el, ghost, offX, offY, snap:null };
+}
+
+window.addEventListener('mousemove', e => {
+  if(!drag) return;
+
+  // Move ghost
+  drag.ghost.style.transform = `translate(${e.clientX - drag.offX}px,${e.clientY - drag.offY}px)`;
+  document.getElementById('tb').style.left=(e.clientX+14)+'px';
+  document.getElementById('tb').style.top=(e.clientY-24)+'px';
+
+  // Trash highlight
+  const tr = document.getElementById('trash').getBoundingClientRect();
+  document.getElementById('trash').classList.toggle('on',
+    e.clientX>=tr.left&&e.clientX<=tr.right&&e.clientY>=tr.top&&e.clientY<=tr.bottom);
+
+  // Find snap target
+  clearSnapVisuals();
+  drag.snap = findSnap(drag.id, e.clientX, e.clientY);
+  showSnapVisuals(drag.snap, e);
+});
+
+window.addEventListener('mouseup', e => {
+  if(!drag) return;
+  const {id, el, ghost, snap, offX, offY} = drag;
+  drag = null;
+
+  ghost.style.display = 'none';
+  el.style.opacity = '';
+  document.getElementById('tb').classList.remove('show');
+  document.getElementById('trash').classList.remove('on');
+  clearSnapVisuals();
+  dropPreview.remove();
+
+  // Trash?
+  const tr = document.getElementById('trash').getBoundingClientRect();
+  if(e.clientX>=tr.left&&e.clientX<=tr.right&&e.clientY>=tr.top&&e.clientY<=tr.bottom){
+    // Remove block
+    el.remove();
+    const st = BLK[id];
+    if(st && st.children) st.children.forEach(c=>{ const ce=getEl(c); if(ce) ce.remove(); });
+    delete BLK[id];
+    toast('Block deleted','inf');
+    return;
+  }
+
+  if(snap){
+    if(snap.type === 'mouth'){
+      snapIntoMouth(snap.parentId, id, snap.afterId);
+      toast('Block snapped into body','inf');
+    } else if(snap.type === 'rslot'){
+      snapIntoSlot(snap.slotEl, id);
+      toast('Reporter snapped into slot','inf');
+    }
+  } else {
+    // Free drop — place where ghost is
+    const cwEl = document.getElementById('cw');
+    const cwRect = cwEl.getBoundingClientRect();
+    const nx = e.clientX - cwRect.left + cwEl.scrollLeft - offX;
+    const ny = e.clientY - cwRect.top  + cwEl.scrollTop  - offY;
+    el.style.left = nx + 'px';
+    el.style.top  = ny + 'px';
+    BLK[id].x = nx; BLK[id].y = ny;
+  }
+});
+
+// Cancel if mouse leaves window
+window.addEventListener('mouseleave', e => {
+  if(!drag) return;
+  const {id, el, ghost} = drag;
+  drag = null;
+  ghost.style.display = 'none';
+  el.style.opacity = '';
+  document.getElementById('tb').classList.remove('show');
+  clearSnapVisuals();
+  dropPreview.remove();
+});
+
+// ═══════════════════════════════════════════════
+//  SNAP DETECTION
+// ═══════════════════════════════════════════════
+const BODY_DIST = 50;
+const SLOT_DIST = 36;
+
+function findSnap(dragId, mx, my){
+  const state = BLK[dragId];
+  if(!state) return null;
+  const isReporter = state.def.type === 'reporter';
+  const isCommand  = !isReporter;
+
+  if(isCommand){
+    // Use bounding box: is the cursor inside or near any mouth?
+    let best = null;
+    let bestArea = -1;
+    document.querySelectorAll('.zr-mouth').forEach(mouth => {
+      const parentId = mouth.dataset.parentBid;
+      if(!parentId || parentId === dragId) return;
+      if(isDescendant(parentId, dragId)) return;
+
+      const mr = mouth.getBoundingClientRect();
+      // Expand hit zone by 20px on all sides
+      const PAD = 20;
+      if(mx >= mr.left - PAD && mx <= mr.right + PAD &&
+         my >= mr.top  - PAD && my <= mr.bottom + PAD){
+        const area = mr.width * mr.height;
+        if(area > bestArea){
+          bestArea = area;
+          // Insert position
+          let afterId = null;
+          mouth.querySelectorAll(':scope > .zr-block').forEach(child => {
+            const cr = child.getBoundingClientRect();
+            if(my > (cr.top + cr.bottom) / 2) afterId = child.dataset.bid;
+          });
+          best = { type:'mouth', parentId, afterId, mouth };
+        }
+      }
+    });
+    if(best) return best;
+  }
+
+  if(isReporter){
+    let best = null;
+    let bestDist = 40;
+    document.querySelectorAll('.rslot:not(.filled)').forEach(slot => {
+      const ownerBid = slot.dataset.bid;
+      if(ownerBid === dragId) return;
+      const sr = slot.getBoundingClientRect();
+      const d = Math.hypot(mx - (sr.left+sr.right)/2, my - (sr.top+sr.bottom)/2);
+      if(d < bestDist){ bestDist = d; best = { type:'rslot', slotEl:slot }; }
+    });
+    return best;
+  }
+
+  return null;
+}
+
+function isDescendant(candidateId, ancestorId){
+  // Is candidateId inside the body of ancestorId?
+  const aEl = getEl(ancestorId);
+  const cEl = getEl(candidateId);
+  if(!aEl || !cEl) return false;
+  return aEl.contains(cEl);
+}
+
+function clearSnapVisuals(){
+  document.querySelectorAll('.zr-mouth.drop-hi').forEach(m=>m.classList.remove('drop-hi'));
+  document.querySelectorAll('.rslot.hi').forEach(s=>s.classList.remove('hi'));
+  document.getElementById('sg').classList.remove('show');
+  dropPreview.remove();
+}
+
+function showSnapVisuals(snap, e){
+  if(!snap) return;
+  if(snap.type === 'mouth'){
+    snap.mouth.classList.add('drop-hi');
+    // Insert drop preview
+    const children = Array.from(snap.mouth.querySelectorAll(':scope > .zr-block'));
+    if(snap.afterId){
+      const afterEl = getEl(snap.afterId);
+      if(afterEl && snap.mouth.contains(afterEl)){
+        snap.mouth.insertBefore(dropPreview, afterEl.nextSibling);
+      } else {
+        snap.mouth.appendChild(dropPreview);
+      }
+    } else {
+      snap.mouth.insertBefore(dropPreview, children[0]||null);
+    }
+  } else if(snap.type === 'rslot'){
+    snap.slotEl.classList.add('hi');
+    const sr = snap.slotEl.getBoundingClientRect();
+    const sg = document.getElementById('sg');
+    sg.style.cssText = `left:${sr.left-3}px;top:${sr.top-3}px;width:${sr.width+6}px;height:${sr.height+6}px;border-radius:14px;`;
+    sg.classList.add('show');
+  }
+}
+
+// ═══════════════════════════════════════════════
+//  SNAP REPORTER INTO SLOT
+// ═══════════════════════════════════════════════
+function snapIntoSlot(slotEl, childId){
+  const cState = BLK[childId];
+  const cEl    = getEl(childId);
+  if(!cEl || !slotEl) return;
+
+  // Remove from canvas
+  if(cEl.classList.contains('free')){
+    cEl.classList.remove('free');
+    cEl.style.left = '';
+    cEl.style.top  = '';
+    cEl.remove();
+  }
+
+  slotEl.classList.add('filled');
+  slotEl.dataset.child = childId;
+  slotEl.textContent = '';
+  // Scale reporter down slightly inside slot
+  cEl.style.transform = 'scale(0.88)';
+  cEl.style.transformOrigin = 'left center';
+  slotEl.appendChild(cEl);
+  cState.parent = slotEl.dataset.bid || 'slot';
+}
+
+// ═══════════════════════════════════════════════
+//  PALETTE
+// ═══════════════════════════════════════════════
+function buildPalPreview(def){
+  const isCmd      = def.type === 'command';
+  const isCblock   = def.type === 'cblock';
+  const isReporter = def.type === 'reporter';
+  const col        = def.color;
+  const root = document.createElement('div');
+  root.className = 'zr-block';
+  root.style.pointerEvents = 'none';
+
+  if(isCmd || isCblock){
+    if(!def.hat){
+      const notch = document.createElement('div');
+      notch.className = 'zr-notch';
+      notch.style.background = getComputedColor(col);
+      root.appendChild(notch);
+    }
+    const face = document.createElement('div');
+    face.className = 'zr-face ' + col;
+    face.appendChild(buildRow(def, null));
+    root.appendChild(face);
+    if(isCblock){
+      const mouth = document.createElement('div');
+      mouth.className = 'zr-mouth';
+      mouth.style.minHeight = '18px';
+      root.appendChild(mouth);
+      const cap = document.createElement('div');
+      cap.className = 'zr-cap ' + col;
+      root.appendChild(cap);
+    } else {
+      const nub = document.createElement('div');
+      nub.className = 'zr-nub';
+      nub.style.background = getComputedColor(col);
+      root.appendChild(nub);
+    }
+  } else {
+    const face = document.createElement('div');
+    face.className = 'zr-face reporter-face ' + col;
+    face.appendChild(buildRow(def, null));
+    root.appendChild(face);
+  }
+  return root;
+}
+
 function renderPal(cat){
   const pb = document.getElementById('pal-blocks');
   pb.innerHTML = '';
-  (PALETTE_DEFS[cat]||[]).forEach(def => {
-    const wrap = document.createElement('div');
-    wrap.className = 'pal-item';
-    wrap.appendChild(buildBlockDOM(def, null, true)); // palette preview, no id
-    // Make palette item draggable
-    wrap.addEventListener('mousedown', e => {
+  (DEFS[cat]||[]).forEach(def => {
+    const item = document.createElement('div');
+    item.className = 'pal-item';
+    item.title = def.type==='reporter' ? 'Reporter — drag into an input slot' : 'Command — drag into a block body';
+    item.appendChild(buildPalPreview(def));
+    item.addEventListener('mousedown', e => {
       if(e.button!==0) return;
       e.preventDefault();
-      startPaletteDrag(e, def);
+      startPalDrag(e, def);
     });
-    pb.appendChild(wrap);
+    pb.appendChild(item);
   });
 }
 renderPal('spheres');
 function selCat(el, cat){ document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active')); el.classList.add('active'); renderPal(cat); }
 
-// ── Build a block DOM element ──
-// def: palette definition
-// bid: block id (null for palette preview)
-// Returns the top-level .block-wrap element
-function buildBlockDOM(def, bid, isPalette=false){
-  const wrap = document.createElement('div');
-  wrap.className = 'block-wrap';
-  if(bid) wrap.dataset.bid = bid;
-  if(def.type === 'reporter') wrap.dataset.blockType = 'reporter';
-  else if(def.type === 'c-block') wrap.dataset.blockType = 'c-block';
-  else wrap.dataset.blockType = 'command';
-
-  if(def.type === 'c-block'){
-    // Top part (header)
-    const topBlock = document.createElement('div');
-    topBlock.className = 'block ' + def.color + (def.hat ? ' no-top' : '');
-    if(!def.hat){ const nt = document.createElement('div'); nt.className='notch-top'; topBlock.appendChild(nt); }
-    const brow = document.createElement('div'); brow.className='brow';
-    brow.appendChild(buildLabelWithSlots(def, bid, isPalette));
-    topBlock.appendChild(brow);
-    // No bottom nub on top part of C-block (the mouth fills that role)
-    wrap.appendChild(topBlock);
-
-    // Mouth (body slot)
-    const mouth = document.createElement('div');
-    mouth.className = 'block-cslot';
-    mouth.dataset.slotType = 'body';
-    if(bid) mouth.dataset.parentBid = bid;
-    wrap.appendChild(mouth);
-
-    // Bottom cap
-    const cap = document.createElement('div');
-    cap.className = 'block-cap ' + def.color;
-    const nt2 = document.createElement('div'); nt2.className='notch-top'; cap.appendChild(nt2);
-    const nb2 = document.createElement('div'); nb2.className='nub-bottom'; cap.appendChild(nb2);
-    wrap.appendChild(cap);
-
-  } else {
-    const blk = document.createElement('div');
-    let cls = 'block ' + def.color;
-    if(def.type==='reporter') cls += ' reporter';
-    if(def.pill && def.type!=='reporter') cls += ' no-top no-bot'; // pill commands have no connectors? Actually they do
-    blk.className = cls;
-    if(def.type==='command'){
-      if(!def.hat){ const nt=document.createElement('div'); nt.className='notch-top'; blk.appendChild(nt); }
-      const nb=document.createElement('div'); nb.className='nub-bottom'; blk.appendChild(nb);
-    }
-    const brow=document.createElement('div'); brow.className='brow';
-    brow.appendChild(buildLabelWithSlots(def, bid, isPalette));
-    blk.appendChild(brow);
-    wrap.appendChild(blk);
-  }
-  return wrap;
-}
-
-function buildLabelWithSlots(def, bid, isPalette){
-  const frag = document.createDocumentFragment();
-  if(!def.slots || def.slots.length===0){
-    frag.appendChild(document.createTextNode(def.label));
-    return frag;
-  }
-  // Mix label text and slots
-  // Simple approach: label text first, then each slot after a space
-  frag.appendChild(document.createTextNode(def.label + ' '));
-  def.slots.forEach((slot, si) => {
-    if(slot.kind === 'input'){
-      const inp = document.createElement('input');
-      inp.className = 'bi';
-      inp.value = slot.value||'0';
-      inp.style.width = Math.max(28, (slot.value||'0').length*8+14)+'px';
-      if(bid) inp.dataset.bid=bid, inp.dataset.slotIdx=si;
-      inp.addEventListener('mousedown', e=>e.stopPropagation());
-      inp.addEventListener('input', e=>{ inp.style.width=Math.max(28,(e.target.value||'').length*8+14)+'px'; });
-      frag.appendChild(inp);
-    } else if(slot.kind === 'select'){
-      const sel = document.createElement('select');
-      sel.className='bsel';
-      (slot.options||[]).forEach(o=>{ const opt=document.createElement('option'); opt.value=o; opt.textContent=o; sel.appendChild(opt); });
-      sel.value=slot.value||'';
-      sel.addEventListener('mousedown',e=>e.stopPropagation());
-      if(bid) sel.dataset.bid=bid, sel.dataset.slotIdx=si;
-      frag.appendChild(sel);
-    } else if(slot.kind === 'reporter-slot'){
-      const rslot = document.createElement('span');
-      rslot.className='reporter-slot';
-      rslot.dataset.slotType='reporter';
-      if(bid) rslot.dataset.bid=bid, rslot.dataset.slotIdx=si;
-      rslot.textContent='?';
-      frag.appendChild(rslot);
-    }
-    if(si < def.slots.length-1) frag.appendChild(document.createTextNode(' , '));
-  });
-  return frag;
-}
-
-// ════════════════════════════════════════════════════════
-//  CANVAS BLOCK CREATION
-// ════════════════════════════════════════════════════════
-function createCanvasBlock(def, x, y){
-  const bid = uid();
-  const state = {
-    id: bid,
-    def: JSON.parse(JSON.stringify(def)), // deep copy so slots are independent
-    parent: null,          // id of c-block body we're in
-    parentSlotEl: null,    // the .block-cslot element
-    reporterSlot: null,    // {blockId, slotIdx} if this reporter is filling a slot
-    pos: {x,y},
-    children: [],          // ordered list of child block ids (for c-block body)
-  };
-  blocks[bid] = state;
-
-  const wrap = buildBlockDOM(def, bid);
-  wrap.classList.add('canvas-block');
-  wrap.style.left = x+'px';
-  wrap.style.top  = y+'px';
-  wrap.dataset.bid = bid;
-
-  document.getElementById('ci').appendChild(wrap);
-  attachDrag(wrap);
-  return bid;
-}
-
-// ── Initialise starter blocks ──
-function initStarterBlocks(){
-  // Create loop C-block
-  const loopId = createCanvasBlock(PALETTE_DEFS.loops[0], 65, 60);
-  // Create setPos inside loop
-  const setPosId = createCanvasBlock(PALETTE_DEFS.spheres[0], 0, 0);
-  // Create activate scanner inside loop
-  const scanId = createCanvasBlock(PALETTE_DEFS.spheres[4], 0, 0);
-  // Snap both into loop body
-  snapIntoBody(loopId, setPosId, null);
-  snapIntoBody(loopId, scanId, null);
-}
-
-// ════════════════════════════════════════════════════════
-//  SNAP ENGINE
-// ════════════════════════════════════════════════════════
-const SNAP_DIST = 36;       // pixels for body snap
-const REPORTER_SNAP = 32;   // pixels for reporter slot snap
-
-// Main snap check called during drag
-// dragBid: block being dragged
-// Returns snap target or null:
-//   { type:'body', parentBid, afterBid, ghostRect }  — snap into a c-block body
-//   { type:'stack', targetBid, where:'below', ghostRect } — stack below another block
-//   { type:'reporter', ownerBid, slotIdx, ghostRect }  — fill a reporter slot
-function findSnap(dragBid, dragEl){
-  const dragState = blocks[dragBid];
-  const isDragReporter = dragState.def.type === 'reporter';
-  const isDragCommand  = !isDragReporter;
-  const dragRect = dragEl.getBoundingClientRect();
-  const cwRect   = document.getElementById('cw').getBoundingClientRect();
-  // Convert drag center to canvas coordinates
-  const cx = dragRect.left + dragRect.width/2  - cwRect.left + document.getElementById('cw').scrollLeft;
-  const cy = dragRect.top  + dragRect.height/2 - cwRect.top  + document.getElementById('cw').scrollTop;
-
-  if(isDragCommand){
-    // 1. Check snap into C-block bodies
-    let bestDist = SNAP_DIST;
-    let bestSnap = null;
-    Object.values(blocks).forEach(bst => {
-      if(bst.id === dragBid) return;
-      if(bst.def.type !== 'c-block') return;
-      const mouthEl = getMouthEl(bst.id);
-      if(!mouthEl) return;
-      const mr = mouthEl.getBoundingClientRect();
-      const mCX = mr.left + mr.width/2 - cwRect.left + document.getElementById('cw').scrollLeft;
-      const mCY = mr.top  + mr.height/2 - cwRect.top  + document.getElementById('cw').scrollTop;
-      const dist = Math.hypot(cx-mCX, cy-mCY);
-      if(dist < bestDist){
-        bestDist = dist;
-        // Find insert position (which child to go after)
-        const insertInfo = getBodyInsertPosition(bst.id, cy);
-        bestSnap = { type:'body', parentBid:bst.id, afterBid:insertInfo.afterBid, ghostRect:getBodyGhostRect(bst.id, insertInfo) };
-      }
-    });
-    if(bestSnap) return bestSnap;
-
-    // 2. Check snap below another command block (stack)
-    let bestStackDist = SNAP_DIST;
-    let bestStack = null;
-    Object.values(blocks).forEach(bst => {
-      if(bst.id === dragBid) return;
-      if(bst.def.type === 'reporter') return;
-      if(bst.parent) return; // only snap to top-level for now — body snapping handles nested
-      const el = getBlockEl(bst.id);
-      if(!el) return;
-      const br = el.getBoundingClientRect();
-      // Snap point = bottom center of target block
-      const bx = br.left + br.width/2  - cwRect.left + document.getElementById('cw').scrollLeft;
-      const by = br.bottom - cwRect.top + document.getElementById('cw').scrollTop;
-      const dist = Math.hypot(cx-bx, cy-by);
-      if(dist < bestStackDist){
-        bestStackDist = dist;
-        bestStack = { type:'stack', targetBid:bst.id, where:'below',
-          ghostRect:{ x: bst.pos.x, y: bst.pos.y + br.height + 5, w: dragRect.width } };
-      }
-    });
-    if(bestStack) return bestStack;
-
-  } else {
-    // Reporter block — look for reporter slots
-    let bestDist = REPORTER_SNAP;
-    let bestSnap = null;
-    document.querySelectorAll('.reporter-slot[data-bid]').forEach(slot => {
-      const ownerBid = slot.dataset.bid;
-      if(ownerBid === dragBid) return;
-      if(slot.classList.contains('slot-filled')) return;
-      const sr = slot.getBoundingClientRect();
-      const sx = sr.left+sr.width/2  - cwRect.left + document.getElementById('cw').scrollLeft;
-      const sy = sr.top+sr.height/2  - cwRect.top  + document.getElementById('cw').scrollTop;
-      const dist = Math.hypot(cx-sx, cy-sy);
-      if(dist < bestDist){
-        bestDist = dist;
-        bestSnap = { type:'reporter', ownerBid, slotIdx:parseInt(slot.dataset.slotIdx)||0,
-          ghostRect:{ x:sx-12, y:sy-9, w:sr.width, h:sr.height } };
-      }
-    });
-    if(bestSnap) return bestSnap;
-  }
-  return null;
-}
-
-function getMouthEl(bid){
-  const el = getBlockEl(bid);
-  if(!el) return null;
-  return el.querySelector('.block-cslot');
-}
-function getBlockEl(bid){
-  return document.querySelector(`.canvas-block[data-bid="${bid}"]`);
-}
-
-function getBodyInsertPosition(parentBid, dragCY){
-  const pstate = blocks[parentBid];
-  const children = pstate.children;
-  if(!children.length) return { afterBid: null, index:0 };
+function startPalDrag(e, def){
+  // Place block near cursor, then start drag immediately
   const cwEl = document.getElementById('cw');
   const cwRect = cwEl.getBoundingClientRect();
-  for(let i=children.length-1; i>=0; i--){
-    const cel = document.querySelector(`[data-bid="${children[i]}"]`);
-    if(!cel) continue;
-    const cr = cel.getBoundingClientRect();
-    const cmid = cr.top + cr.height/2 - cwRect.top + cwEl.scrollTop;
-    if(dragCY > cmid) return { afterBid: children[i], index:i+1 };
-  }
-  return { afterBid:null, index:0 };
+  const x = e.clientX - cwRect.left + cwEl.scrollLeft - 20;
+  const y = e.clientY - cwRect.top  + cwEl.scrollTop  - 10;
+  const id = placeBlock(def, x, y);
+  const el = getEl(id);
+  if(!el) return;
+
+  // Build ghost
+  const ghost = document.getElementById('dg');
+  ghost.innerHTML = el.outerHTML;
+  ghost.style.display = 'block';
+  ghost.style.transform = `translate(${e.clientX - 20}px,${e.clientY - 10}px)`;
+
+  el.style.opacity = '0.25';
+
+  const badge = document.getElementById('tb');
+  badge.textContent = def.type==='reporter'?'Reporter':def.type==='cblock'?'C-block':'Command';
+  badge.className = 'type-badge show';
+  badge.style.left=(e.clientX+14)+'px'; badge.style.top=(e.clientY-24)+'px';
+
+  drag = { id, el, ghost, offX:20, offY:10, snap:null };
 }
 
-function getBodyGhostRect(parentBid, insertInfo){
-  const mouthEl = getMouthEl(parentBid);
-  if(!mouthEl) return null;
-  const cw = document.getElementById('cw');
-  const cwRect = cw.getBoundingClientRect();
-  const mr = mouthEl.getBoundingClientRect();
-  const mx = mr.left - cwRect.left + cw.scrollLeft;
-  let my = mr.top - cwRect.top + cw.scrollTop + 3;
-  if(insertInfo.afterBid){
-    const aEl = document.querySelector(`[data-bid="${insertInfo.afterBid}"]`);
-    if(aEl){
-      const ar = aEl.getBoundingClientRect();
-      my = ar.bottom - cwRect.top + cw.scrollTop + 3;
-    }
-  }
-  return { x:mx, y:my, w:mr.width-8, h:24 };
+// ═══════════════════════════════════════════════
+//  INIT STARTER BLOCKS
+// ═══════════════════════════════════════════════
+function init(){
+  const loopId   = placeBlock(DEFS.loops[0], 70, 60);
+  const setPosId = placeBlock(DEFS.spheres[0], 0, 0);
+  const scanId   = placeBlock(DEFS.spheres[4], 0, 0);
+  snapIntoMouth(loopId, setPosId, null);
+  snapIntoMouth(loopId, scanId, null);
 }
+init();
 
-// ── Actually perform snap ──
-function doSnap(dragBid, snap){
-  const dragState = blocks[dragBid];
-  const dragEl = getBlockEl(dragBid);
-
-  if(snap.type === 'body'){
-    const parentState = blocks[snap.parentBid];
-    const mouthEl = getMouthEl(snap.parentBid);
-    if(!mouthEl) return;
-
-    // Detach from previous parent if needed
-    detachBlock(dragBid);
-
-    // Insert into children array
-    const insertIdx = snap.afterBid
-      ? parentState.children.indexOf(snap.afterBid)+1
-      : 0;
-    parentState.children.splice(insertIdx, 0, dragBid);
-    dragState.parent = snap.parentBid;
-
-    // Move DOM element into mouth
-    dragEl.classList.remove('canvas-block');
-    dragEl.style.position = 'relative';
-    dragEl.style.left = '';
-    dragEl.style.top  = '';
-    dragEl.style.zIndex = '';
-    dragEl.style.filter = '';
-
-    // Insert at correct position in mouth
-    const allChildEls = Array.from(mouthEl.children).filter(c=>!c.classList.contains('drop-preview'));
-    if(snap.afterBid){
-      const afterEl = document.querySelector(`[data-bid="${snap.afterBid}"]`);
-      if(afterEl && afterEl.nextSibling) mouthEl.insertBefore(dragEl, afterEl.nextSibling);
-      else mouthEl.appendChild(dragEl);
-    } else {
-      if(allChildEls.length) mouthEl.insertBefore(dragEl, allChildEls[0]);
-      else mouthEl.appendChild(dragEl);
-    }
-    toast('Block snapped into loop body','inf');
-
-  } else if(snap.type === 'stack'){
-    // Stack below another block
-    detachBlock(dragBid);
-    const targetState = blocks[snap.targetBid];
-    const targetEl = getBlockEl(snap.targetBid);
-    const tr = targetEl.getBoundingClientRect();
-    const cw = document.getElementById('cw');
-    const cwRect = cw.getBoundingClientRect();
-    const nx = targetState.pos.x;
-    const ny = targetState.pos.y + tr.height + 6;
-    dragState.pos = {x:nx, y:ny};
-    dragEl.style.left = nx+'px';
-    dragEl.style.top  = ny+'px';
-
-  } else if(snap.type === 'reporter'){
-    const slotEl = document.querySelector(`.reporter-slot[data-bid="${snap.ownerBid}"][data-slot-idx="${snap.slotIdx}"]`)
-                || document.querySelector(`.reporter-slot[data-bid="${snap.ownerBid}"]`);
-    if(!slotEl) return;
-    detachBlock(dragBid);
-
-    // Remove from canvas
-    dragEl.classList.remove('canvas-block');
-    dragEl.style.position = '';
-    dragEl.style.left=''; dragEl.style.top=''; dragEl.style.zIndex=''; dragEl.style.filter='';
-
-    dragState.reporterSlot = { ownerBid: snap.ownerBid, slotIdx: snap.slotIdx, slotEl };
-    dragState.parent = snap.ownerBid;
-
-    // Replace the slot content with the block
-    slotEl.classList.add('slot-filled');
-    slotEl.innerHTML = '';
-    slotEl.appendChild(dragEl);
-    slotEl.style.minWidth = '';
-    toast('Reporter snapped into slot','inf');
-  }
-}
-
-// ── Detach a block from its parent ──
-function detachBlock(bid){
-  const state = blocks[bid];
-  if(!state.parent) return;
-  const el = document.querySelector(`[data-bid="${bid}"]`);
-
-  if(state.reporterSlot){
-    // Remove from reporter slot
-    const slotEl = state.reporterSlot.slotEl;
-    if(slotEl){
-      slotEl.classList.remove('slot-filled');
-      slotEl.textContent = '?';
-    }
-    // Move block back to canvas
-    if(el){
-      el.classList.add('canvas-block');
-      el.style.position = 'absolute';
-      const cw=document.getElementById('cw'), cwRect=cw.getBoundingClientRect();
-      const sr = slotEl ? slotEl.getBoundingClientRect() : {left:200,top:200};
-      const nx=sr.left-cwRect.left+cw.scrollLeft, ny=sr.top-cwRect.top+cw.scrollTop;
-      el.style.left=nx+'px'; el.style.top=ny+'px';
-      document.getElementById('ci').appendChild(el);
-    }
-    state.reporterSlot = null;
-  } else {
-    // Remove from parent body
-    const parentState = blocks[state.parent];
-    if(parentState){
-      const idx = parentState.children.indexOf(bid);
-      if(idx!==-1) parentState.children.splice(idx,1);
-    }
-    // Move back to canvas
-    if(el){
-      el.classList.add('canvas-block');
-      el.style.position = 'absolute';
-      const cw=document.getElementById('cw'), cwRect=cw.getBoundingClientRect();
-      const rect=el.getBoundingClientRect();
-      const nx=rect.left-cwRect.left+cw.scrollLeft, ny=rect.top-cwRect.top+cw.scrollTop;
-      el.style.left=nx+'px'; el.style.top=ny+'px';
-      document.getElementById('ci').appendChild(el);
-    }
-  }
-  state.parent = null;
-}
-
-// ════════════════════════════════════════════════════════
-//  DRAG ENGINE
-// ════════════════════════════════════════════════════════
-let activeDrag = null;
-// { bid, el, startX, startY, offsetX, offsetY, currentSnap, ghostEl }
-
-const ghostEl = document.createElement('div');
-ghostEl.className = 'snap-ghost';
-document.body.appendChild(ghostEl);
-
-const dropPreviewEl = document.createElement('div');
-dropPreviewEl.className = 'drop-preview';
-
-function attachDrag(wrap){
-  wrap.addEventListener('mousedown', e=>{
-    if(e.button!==0) return;
-    if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT') return;
-    e.preventDefault();
-    e.stopPropagation();
-    startDrag(e, wrap);
-  });
-}
-
-function startDrag(e, el){
-  const bid = el.dataset.bid;
-  if(!bid) return;
-  const cw = document.getElementById('cw');
-  const cwRect = cw.getBoundingClientRect();
-  const rect = el.getBoundingClientRect();
-
-  // If inside a parent, detach first
-  detachBlock(bid);
-
-  el.classList.add('canvas-block','dragging');
-  el.style.position='absolute';
-
-  // Position on canvas
-  const cx = rect.left - cwRect.left + cw.scrollLeft;
-  const cy = rect.top  - cwRect.top  + cw.scrollTop;
-  el.style.left = cx+'px';
-  el.style.top  = cy+'px';
-  document.getElementById('ci').appendChild(el);
-
-  blocks[bid].pos = {x:cx, y:cy};
-
-  activeDrag = {
-    bid, el,
-    startX: e.clientX, startY: e.clientY,
-    startCanvasX: cx, startCanvasY: cy,
-    offsetX: e.clientX - rect.left,
-    offsetY: e.clientY - rect.top,
-    currentSnap: null,
-  };
-
-  // Show type badge
-  const dtb = document.getElementById('dtb');
-  const bType = blocks[bid].def.type;
-  dtb.textContent = bType === 'reporter' ? 'Reporter block' : bType === 'c-block' ? 'C-block' : 'Command block';
-  dtb.className = 'drag-type-badge show';
-  dtb.style.left = (e.clientX+14)+'px';
-  dtb.style.top  = (e.clientY-24)+'px';
-}
-
-document.addEventListener('mousemove', e=>{
-  if(!activeDrag) return;
-  const {bid, el, offsetX, offsetY} = activeDrag;
-  const cw = document.getElementById('cw');
-  const cwRect = cw.getBoundingClientRect();
-  const nx = e.clientX - cwRect.left - offsetX + cw.scrollLeft;
-  const ny = e.clientY - cwRect.top  - offsetY + cw.scrollTop;
-  el.style.left = nx+'px';
-  el.style.top  = ny+'px';
-  blocks[bid].pos = {x:nx, y:ny};
-
-  // Update badge position
-  const dtb = document.getElementById('dtb');
-  dtb.style.left=(e.clientX+14)+'px'; dtb.style.top=(e.clientY-24)+'px';
-
-  // Trash highlight
-  const trashEl = document.getElementById('trash');
-  const tr = trashEl.getBoundingClientRect();
-  const overTrash = e.clientX>=tr.left && e.clientX<=tr.right && e.clientY>=tr.top && e.clientY<=tr.bottom;
-  trashEl.classList.toggle('trash-active', overTrash);
-
-  // Find snap
-  const snap = findSnap(bid, el);
-  activeDrag.currentSnap = snap;
-
-  // Clear previous highlights
-  document.querySelectorAll('.body-highlight').forEach(m=>m.classList.remove('body-highlight'));
-  document.querySelectorAll('.reporter-slot.slot-highlight').forEach(s=>s.classList.remove('slot-highlight'));
-  ghostEl.classList.remove('visible');
-  dropPreviewEl.remove();
-
-  if(snap){
-    if(snap.type === 'body'){
-      // Highlight mouth
-      const mouthEl = getMouthEl(snap.parentBid);
-      if(mouthEl) mouthEl.classList.add('body-highlight');
-      // Show drop preview inside mouth
-      if(mouthEl){
-        const mouthChildren = Array.from(mouthEl.children).filter(c=>!c.classList.contains('drop-preview'));
-        if(snap.afterBid){
-          const afterEl=document.querySelector(`[data-bid="${snap.afterBid}"]`);
-          if(afterEl && afterEl.nextSibling) mouthEl.insertBefore(dropPreviewEl, afterEl.nextSibling);
-          else mouthEl.appendChild(dropPreviewEl);
-        } else {
-          mouthEl.insertBefore(dropPreviewEl, mouthChildren[0]||null);
-        }
-      }
-    } else if(snap.type === 'reporter'){
-      // Highlight reporter slot
-      const slotEl = document.querySelector(`.reporter-slot[data-bid="${snap.ownerBid}"]`);
-      if(slotEl) slotEl.classList.add('slot-highlight');
-      // Show ghost near slot
-      if(snap.ghostRect){
-        const cw=document.getElementById('cw'), cwRect=cw.getBoundingClientRect();
-        const slotElR = slotEl ? slotEl.getBoundingClientRect() : null;
-        if(slotElR){
-          ghostEl.style.cssText=`left:${slotElR.left-4}px;top:${slotElR.top-3}px;width:${slotElR.width+8}px;height:${slotElR.height+6}px;border-radius:12px;`;
-          ghostEl.classList.add('visible');
-        }
-      }
-    } else if(snap.type === 'stack'){
-      // Show ghost below target
-      const tEl = getBlockEl(snap.targetBid);
-      if(tEl){
-        const tr2=tEl.getBoundingClientRect();
-        ghostEl.style.cssText=`left:${tr2.left-2}px;top:${tr2.bottom+2}px;width:${tr2.width+4}px;height:26px;`;
-        ghostEl.classList.add('visible');
-      }
-    }
-  }
-});
-
-document.addEventListener('mouseup', e=>{
-  if(!activeDrag) return;
-  const {bid, el} = activeDrag;
-
-  el.classList.remove('dragging');
-  ghostEl.classList.remove('visible');
-  dropPreviewEl.remove();
-  document.querySelectorAll('.body-highlight').forEach(m=>m.classList.remove('body-highlight'));
-  document.querySelectorAll('.reporter-slot.slot-highlight').forEach(s=>s.classList.remove('slot-highlight'));
-  document.getElementById('dtb').classList.remove('show');
-  document.getElementById('trash').classList.remove('trash-active');
-
-  // Check trash
-  const trashEl = document.getElementById('trash');
-  const tr = trashEl.getBoundingClientRect();
-  if(e.clientX>=tr.left && e.clientX<=tr.right && e.clientY>=tr.top && e.clientY<=tr.bottom){
-    // Delete block
-    el.remove();
-    delete blocks[bid];
-    toast('Block deleted','inf');
-    activeDrag = null;
-    return;
-  }
-
-  // Perform snap
-  if(activeDrag.currentSnap){
-    doSnap(bid, activeDrag.currentSnap);
-  }
-
-  activeDrag = null;
-});
-
-// ── Palette drag: create a new block on the canvas ──
-function startPaletteDrag(e, def){
-  e.preventDefault();
-  const cw = document.getElementById('cw');
-  const cwRect = cw.getBoundingClientRect();
-  const nx = e.clientX - cwRect.left + cw.scrollLeft - 30;
-  const ny = e.clientY - cwRect.top  + cw.scrollTop  - 14;
-  const bid = createCanvasBlock(def, nx, ny);
-  const el  = getBlockEl(bid);
-
-  const rect = el.getBoundingClientRect();
-  activeDrag = {
-    bid, el,
-    startX: e.clientX, startY: e.clientY,
-    startCanvasX: nx, startCanvasY: ny,
-    offsetX: e.clientX - rect.left,
-    offsetY: e.clientY - rect.top,
-    currentSnap: null,
-  };
-  el.classList.add('dragging');
-
-  const dtb = document.getElementById('dtb');
-  const bType = blocks[bid].def.type;
-  dtb.textContent = bType==='reporter'?'Reporter block':bType==='c-block'?'C-block':'Command block';
-  dtb.className='drag-type-badge show';
-  dtb.style.left=(e.clientX+14)+'px'; dtb.style.top=(e.clientY-24)+'px';
-}
-
-// ════════════════════════════════════════════════════════
-//  RUN + SIMULATION
-// ════════════════════════════════════════════════════════
-let _running=false;
-
+// ═══════════════════════════════════════════════
+//  SIMULATION + UI
+// ═══════════════════════════════════════════════
+let _running = false;
 function runCode(){
   if(_running) return;
-  // Find setPos block, get coords
   let tx=0,ty=0,tz=0;
-  Object.values(blocks).forEach(bst=>{
-    if(bst.def.label==='setPos'){
-      const el=getBlockEl(bst.id);
-      if(!el) return;
-      const inputs=el.querySelectorAll('.bi');
+  document.querySelectorAll('.zr-block[data-type="command"]').forEach(el=>{
+    const row = el.querySelector('.zr-row');
+    if(row && row.textContent.startsWith('setPos')){
+      const inputs = el.querySelectorAll('.bi');
       if(inputs.length>=3){ tx=parseFloat(inputs[0].value)||0; ty=parseFloat(inputs[1].value)||0; tz=parseFloat(inputs[2].value)||0; }
     }
   });
   const btn=document.getElementById('run-btn');
-  btn.classList.add('running'); btn.textContent='Running...';
+  btn.classList.add('running'); btn.innerHTML='<svg viewBox="0 0 10 12" style="width:10px;height:10px;fill:currentColor"><path d="M1 1l8 5-8 5V1z"/></svg> Running...';
   clearSC();
   if(tx===0&&ty===0&&tz===0) runA(); else runB(tx,ty,tz);
 }
-
 function runA(){
   _running=true; setHUD('run');
   scLog('info','[ZR] Compiling blocks...');
-  tt(300,()=>scLog('dim','[ZR] Generating C code...'));
-  tt(700,()=>{
-    scLog('warn','[WARN] setPos(0,0,0) — Astrobee already at origin, no movement');
-    scLog('warn','[WARN] Simulation complete. Score: 0 / 100');
-    setHUD('idle'); finRun();
-    document.getElementById('eb').classList.add('show');
-    addLog('fail','Score: 0');
-    toast('Simulation finished — no movement occurred','err');
-    _running=false;
-  });
+  tt(400,()=>scLog('warn','[WARN] setPos(0,0,0) — no movement'));
+  tt(800,()=>{ scLog('warn','[WARN] Score: 0 / 100'); setHUD('idle'); finRun(); document.getElementById('eb').classList.add('show'); addLog('fail','Score: 0'); toast('No movement — change the setPos coordinates','err'); _running=false; });
 }
-
 function runB(tx,ty,tz){
   _running=true; setHUD('run');
   document.getElementById('eb').classList.remove('show');
-  const ab=document.getElementById('ab');
-  const vp=document.getElementById('svp');
+  const ab=document.getElementById('ab'), vp=document.getElementById('svp');
   const W=vp.clientWidth||300, H=vp.clientHeight||240;
-  const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
-  const nx=clamp(tx/3,-1,1), ny=clamp(ty/3,-1,1);
+  const nx=Math.min(1,Math.max(-1,tx/3)), ny=Math.min(1,Math.max(-1,ty/3));
   const tl=Math.round(W/2+nx*(W*.38)-17), tt2=Math.round(H/2-ny*(H*.38)-17);
   const tm=document.getElementById('tm'); tm.style.left=(tl+8)+'px'; tm.style.top=(tt2+8)+'px'; tm.classList.add('show');
   scLog('info','[ZR] Compiling...'); tt(300,()=>scLog('dim','[ZR] OK'));
-  tt(600,()=>scLog('dim','[ZR] Simulation starting...'));
-  tt(800,()=>{
-    scLog('info','[SIM] Astrobee at (0.000, 0.000, 0.000)');
-    ab.classList.add('moving'); ab.style.left=tl+'px'; ab.style.top=tt2+'px';
-    animHUD(0,tx,0,ty,0,tz,1500);
-    spawnTrails(W/2-17,H/2-17,tl,tt2,vp);
-  });
-  tt(1000,()=>scLog('ok','[SIM] Moving to ('+tx.toFixed(2)+','+ty.toFixed(2)+','+tz.toFixed(2)+')...'));
-  tt(2500,()=>{
-    ab.classList.remove('moving'); scLog('ok','[SIM] Target reached');
-    setHUD('ok');
-    const sr1=document.getElementById('sr1'), sr2=document.getElementById('sr2');
-    sr1.style.left=(tl+17)+'px'; sr1.style.top=(tt2+17)+'px';
-    sr2.style.left=(tl+17)+'px'; sr2.style.top=(tt2+17)+'px';
-    sr1.classList.add('go'); setTimeout(()=>{ sr2.classList.add('go'); },300);
-    setTimeout(()=>{ sr1.classList.remove('go'); sr2.classList.remove('go'); },1400);
-    scLog('ok','[SIM] Scanner activated');
-  });
-  tt(3200,()=>{
-    scLog('info',''); scLog('info','Simulation complete!  Score: 47 / 100');
-    document.getElementById('hscore').textContent='Score: 47';
-    setHUD('idle'); finRun(); addLog('ok','Score: 47');
-    toast('Simulation complete — Score: 47 / 100','ok');
-    _running=false;
-  });
+  tt(700,()=>{ scLog('info','[SIM] Moving Astrobee...'); ab.classList.add('moving'); ab.style.left=tl+'px'; ab.style.top=tt2+'px'; animHUD(0,tx,0,ty,0,tz,1500); spawnTrails(W/2-17,H/2-17,tl,tt2,vp); });
+  tt(2400,()=>{ ab.classList.remove('moving'); scLog('ok','[SIM] Target reached'); setHUD('ok'); fireScanner(tl,tt2); });
+  tt(3100,()=>{ scLog('info','Score: 47 / 100'); document.getElementById('hscore').textContent='Score: 47'; setHUD('idle'); finRun(); addLog('ok','Score: 47'); toast('Simulation complete — Score: 47','ok'); _running=false; });
 }
-
-function finRun(){ const btn=document.getElementById('run-btn'); btn.classList.remove('running'); btn.textContent='Run'; }
+function fireScanner(tl,tt2){ const s1=document.getElementById('sr1'),s2=document.getElementById('sr2'); s1.style.left=(tl+17)+'px'; s1.style.top=(tt2+17)+'px'; s2.style.left=(tl+17)+'px'; s2.style.top=(tt2+17)+'px'; s1.classList.add('go'); setTimeout(()=>s2.classList.add('go'),300); setTimeout(()=>{s1.classList.remove('go');s2.classList.remove('go');},1400); scLog('ok','[SIM] Scanner activated'); }
+function finRun(){ const btn=document.getElementById('run-btn'); btn.classList.remove('running'); btn.innerHTML='<svg viewBox="0 0 10 12" style="width:10px;height:10px;fill:currentColor"><path d="M1 1l8 5-8 5V1z"/></svg> Run'; }
 function spawnTrails(x0,y0,x1,y1,vp){ for(let i=1;i<8;i++){ const p=i/8,d=document.createElement('div'); d.className='trail-dot'; d.style.cssText=`left:${x0+(x1-x0)*p}px;top:${y0+(y1-y0)*p}px`; vp.appendChild(d); setTimeout(()=>d.remove(),3500); } }
-function animHUD(x0,x1,y0,y1,z0,z1,dur){ const st=Date.now(); function fr(){ const p=Math.min(1,(Date.now()-st)/dur); const e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2; document.getElementById('hc').innerHTML=`X: ${(x0+(x1-x0)*e).toFixed(3)}<br>Y: ${(y0+(y1-y0)*e).toFixed(3)}<br>Z: ${(z0+(z1-z0)*e).toFixed(3)}`; if(p<1) requestAnimationFrame(fr); } requestAnimationFrame(fr); }
+function animHUD(x0,x1,y0,y1,z0,z1,dur){ const st=Date.now(); function fr(){ const p=Math.min(1,(Date.now()-st)/dur); const e2=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2; document.getElementById('hc').innerHTML=`X: ${(x0+(x1-x0)*e2).toFixed(3)}<br>Y: ${(y0+(y1-y0)*e2).toFixed(3)}<br>Z: ${(z0+(z1-z0)*e2).toFixed(3)}`; if(p<1) requestAnimationFrame(fr); } requestAnimationFrame(fr); }
 function setHUD(st){ const d=document.getElementById('hd'),l=document.getElementById('hs'); d.className='hud-dot '+({run:'run',ok:'ok',idle:'idle',err:'err'}[st]||'idle'); l.textContent={run:'Running',ok:'Complete',idle:'Idle',err:'Error'}[st]; }
-function resetSim(){ const ab=document.getElementById('ab'),vp=document.getElementById('svp'); const W=vp.clientWidth||300,H=vp.clientHeight||240; ab.classList.remove('moving'); ab.style.left=(W/2-17)+'px'; ab.style.top=(H/2-17)+'px'; document.getElementById('hc').innerHTML='X: 0.000<br>Y: 0.000<br>Z: 0.000'; document.getElementById('hscore').textContent=''; document.getElementById('tm').classList.remove('show'); vp.querySelectorAll('.trail-dot').forEach(d=>d.remove()); setHUD('idle'); clearSC(); scLog('dim','[SIM] Reset. Press Run to start.'); }
-
-// Error bar
-let _xo=false;
-function toggleExplain(){ _xo=!_xo; document.getElementById('ebx').classList.toggle('show',_xo); }
-function jumpToBlock(){ 
-  const el=document.querySelector('.canvas-block[data-bid]');
-  if(el){ el.scrollIntoView({behavior:'smooth',block:'center'}); el.style.outline='2px solid #f5c518'; setTimeout(()=>el.style.outline='',2500); }
-  toast('Jumped to setPos block','inf');
-}
+function resetSim(){ const ab=document.getElementById('ab'),vp=document.getElementById('svp'); const W=vp.clientWidth||300,H=vp.clientHeight||240; ab.classList.remove('moving'); ab.style.left=(W/2-17)+'px'; ab.style.top=(H/2-17)+'px'; document.getElementById('hc').innerHTML='X: 0.000<br>Y: 0.000<br>Z: 0.000'; document.getElementById('hscore').textContent=''; document.getElementById('tm').classList.remove('show'); vp.querySelectorAll('.trail-dot').forEach(d=>d.remove()); setHUD('idle'); clearSC(); scLog('dim','[SIM] Reset.'); }
+function scLog(type,txt){ const c=document.getElementById('scon'),d=document.createElement('div'); d.className='sc '+type; d.textContent=txt; c.appendChild(d); c.scrollTop=c.scrollHeight; }
+function clearSC(){ document.getElementById('scon').innerHTML=''; }
+function addLog(st,msg){ const el=document.getElementById('log-empty'); if(el) el.remove(); const ll=document.getElementById('log-list'),d=document.createElement('div'); d.className='log-entry'; d.innerHTML=`<div class="le-name">Nicole Zhang</div><div class="le-date">${new Date().toLocaleString()}</div><div class="le-st"><span class="le-dot ${st}"></span>${st==='ok'?'Simulation successful.':'Simulation failed.'}</div><div class="le-msg">${msg}</div>`; ll.insertBefore(d,ll.firstChild); }
+function tt(ms,fn){ setTimeout(fn,ms); }
+let _txo=false; function toggleExplain(){ _txo=!_txo; document.getElementById('ebx').classList.toggle('show',_txo); }
+function jumpToBlock(){ const el=document.querySelector('.zr-block[data-type="command"]'); if(el){ el.scrollIntoView({behavior:'smooth',block:'center'}); el.style.outline='2px solid #f5c518'; setTimeout(()=>el.style.outline='',2500); } }
 function showFix(){ document.getElementById('fd').classList.add('show'); document.getElementById('apl').style.display='inline-block'; }
-function applyFix(){
-  // Find setPos and update inputs
-  Object.values(blocks).forEach(bst=>{ if(bst.def.label==='setPos'){ const el=getBlockEl(bst.id); if(!el) return; const inp=el.querySelectorAll('.bi'); if(inp.length>=3){inp[0].value='1.5';inp[1].value='0.3';inp[2].value='-0.8';} } });
-  document.getElementById('fd').classList.remove('show'); document.getElementById('apl').style.display='none'; document.getElementById('eb').classList.remove('show');
-  toast('Fix applied — press Run to simulate','ok');
-}
-
-// C code
-function showCCode(){
-  let x=0,y=0,z=0;
-  Object.values(blocks).forEach(bst=>{ if(bst.def.label==='setPos'){ const el=getBlockEl(bst.id); if(!el) return; const inp=el.querySelectorAll('.bi'); if(inp.length>=3){x=inp[0].value;y=inp[1].value;z=inp[2].value;} } });
-  document.getElementById('ccm-pre').textContent=`// Generated from Graphical Editor\n// Zero Robotics\n\n#include "zr.h"\n\nvoid ZR_Main() {\n    float target[3] = {${x}f, ${y}f, ${z}f};\n    while (1) {\n        setPositionTarget(target);\n        activateScanner(1);\n    }\n}`;
-  document.getElementById('ccm').classList.add('show');
-}
-
-// Comments
+function applyFix(){ document.querySelectorAll('.zr-block[data-type="command"]').forEach(el=>{ if(el.querySelector('.zr-row')?.textContent.startsWith('setPos')){ const inp=el.querySelectorAll('.bi'); if(inp.length>=3){inp[0].value='1.5';inp[1].value='0.3';inp[2].value='-0.8';} } }); document.getElementById('fd').classList.remove('show'); document.getElementById('apl').style.display='none'; document.getElementById('eb').classList.remove('show'); toast('Fix applied — press Run','ok'); }
+function showCCode(){ let x=0,y=0,z=0; document.querySelectorAll('.zr-block[data-type="command"]').forEach(el=>{ if(el.querySelector('.zr-row')?.textContent.startsWith('setPos')){ const inp=el.querySelectorAll('.bi'); if(inp.length>=3){x=inp[0].value;y=inp[1].value;z=inp[2].value;} } }); document.getElementById('ccm-pre').textContent=`// Generated from Graphical Editor\n// Zero Robotics\n\n#include "zr.h"\n\nvoid ZR_Main() {\n    float target[3] = {${x}f, ${y}f, ${z}f};\n    while (1) {\n        setPositionTarget(target);\n        activateScanner(1);\n    }\n}`; document.getElementById('ccm').classList.add('show'); }
 let _cso=false,_pm=false,_tc=0;
 function toggleCS(f){ const cs=document.getElementById('cs'); if(f===true||!_cso){cs.classList.add('open');_cso=true;}else{cs.classList.remove('open');_cso=false;} }
 function togglePinMode(){ _pm=!_pm; document.getElementById('pm-btn').classList.toggle('on',_pm); }
-function openThread(bid){ document.getElementById('cse').style.display='none'; _tc++; const tid='t'+_tc; const d=document.createElement('div'); d.style.marginBottom='12px'; d.innerHTML=`<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;padding-bottom:5px;border-bottom:1px solid #eee">Thread</div><div class="cc"><div class="cc-meta"><div class="cc-av" style="background:linear-gradient(135deg,#1a6bc1,#1559a8)">YO</div><div class="cc-auth">You</div><div class="cc-time">now</div></div><div class="cc-body">Pinned a comment on this block.</div></div><div id="rep-${tid}"></div><div class="ri-row"><textarea class="ri-ta" id="ri-${tid}" rows="2" placeholder="Ask a question..."></textarea><button class="ri-send" onclick="sendReply('${tid}')">&#9658;</button></div>`; document.getElementById('csb').appendChild(d); setTimeout(()=>{ const r=document.getElementById('rep-'+tid); if(!r) return; const m=document.createElement('div'); m.className='cc'; m.style.borderLeft='3px solid #b03a2a'; m.innerHTML=`<div class="cc-meta"><div class="cc-av" style="background:linear-gradient(135deg,#b03a2a,#8a2c1e)">AX</div><div class="cc-auth" style="color:#b03a2a">Mentor: Alex</div><div class="cc-time">now</div></div><div class="cc-body">Make sure coordinates are non-zero!</div>`; r.appendChild(m); document.getElementById('av-alex').style.opacity='1'; toast('Mentor Alex replied','inf'); },2200); }
-function sendReply(tid){ const ta=document.getElementById('ri-'+tid); const txt=ta.value.trim(); if(!txt) return; const r=document.getElementById('rep-'+tid); const d=document.createElement('div'); d.className='cc'; d.innerHTML=`<div class="cc-meta"><div class="cc-av" style="background:linear-gradient(135deg,#1a6bc1,#1559a8)">YO</div><div class="cc-auth">You</div><div class="cc-time">now</div></div><div class="cc-body">${txt}</div>`; r.appendChild(d); ta.value=''; }
-function askHelp(){ toggleCS(true); const d=document.createElement('div'); d.style.marginBottom='12px'; d.innerHTML=`<div style="font-size:10px;font-weight:700;color:#b03a2a;text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;padding-bottom:5px;border-bottom:1px solid #fde">Help Request</div><div class="cc" style="border-left:3px solid #b03a2a"><div class="cc-meta"><div class="cc-av" style="background:linear-gradient(135deg,#1a6bc1,#1559a8)">YO</div><div class="cc-auth">You</div><div class="cc-time">now</div></div><div class="cc-body">I need help with my block setup.</div></div><div id="hr"></div>`; document.getElementById('csb').insertBefore(d,document.getElementById('csb').firstChild); toast('Help request sent','inf'); setTimeout(()=>{ const r=document.getElementById('hr'); if(!r) return; const m=document.createElement('div'); m.className='cc'; m.style.borderLeft='3px solid #b03a2a'; m.innerHTML=`<div class="cc-meta"><div class="cc-av" style="background:linear-gradient(135deg,#b03a2a,#8a2c1e)">AX</div><div class="cc-auth" style="color:#b03a2a">Mentor: Alex</div><div class="cc-time">now</div></div><div class="cc-body">Hey! Make sure setPos has non-zero coords — use Suggest Fix in the error bar!</div>`; r.appendChild(m); document.getElementById('av-alex').style.opacity='1'; toast('Mentor Alex replied','inf'); },2000); }
-
-// Sim console
-function scLog(type,txt){ const c=document.getElementById('scon'),d=document.createElement('div'); d.className='sc '+type; d.textContent=txt; c.appendChild(d); c.scrollTop=c.scrollHeight; }
-function clearSC(){ document.getElementById('scon').innerHTML=''; }
-
-// Log panel
-function addLog(st,msg){ const el=document.getElementById('log-empty'); if(el) el.remove(); const ll=document.getElementById('log-list'),d=document.createElement('div'); d.className='log-entry'; d.innerHTML=`<div class="le-name">Nicole Zhang</div><div class="le-date">${new Date().toLocaleString()}</div><div class="le-st"><span class="le-dot ${st}"></span>${st==='ok'?'Simulation successful.':'Simulation failed.'}</div><div class="le-msg">${msg}</div>`; ll.insertBefore(d,ll.firstChild); }
-
-// Page select
+function openThread(bid){ document.getElementById('cse').style.display='none'; _tc++; const tid='t'+_tc; const d=document.createElement('div'); d.style.marginBottom='12px'; d.innerHTML=`<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;padding-bottom:5px;border-bottom:1px solid #eee">Thread</div><div class="cc"><div class="cc-meta"><div class="cc-av" style="background:linear-gradient(135deg,#1a6bc1,#1559a8)">YO</div><div class="cc-auth">You</div><div class="cc-time">now</div></div><div class="cc-body">Pinned a comment on this block.</div></div><div id="rep-${tid}"></div><div class="ri-row"><textarea class="ri-ta" id="ri-${tid}" rows="2" placeholder="Ask a question..."></textarea><button class="ri-send" onclick="sendReply('${tid}')">&#9658;</button></div>`; document.getElementById('csb').appendChild(d); toggleCS(true); setTimeout(()=>{ const r=document.getElementById('rep-'+tid); if(!r) return; const m=document.createElement('div'); m.className='cc'; m.style.borderLeft='3px solid #b03a2a'; m.innerHTML=`<div class="cc-meta"><div class="cc-av" style="background:#b03a2a">AX</div><div class="cc-auth" style="color:#b03a2a">Mentor: Alex</div><div class="cc-time">now</div></div><div class="cc-body">Make sure coordinates are non-zero!</div>`; r.appendChild(m); document.getElementById('av-alex').style.opacity='1'; toast('Mentor Alex replied','inf'); },2200); }
+function sendReply(tid){ const ta=document.getElementById('ri-'+tid); const txt=ta.value.trim(); if(!txt) return; const r=document.getElementById('rep-'+tid); const d=document.createElement('div'); d.className='cc'; d.innerHTML=`<div class="cc-meta"><div class="cc-av" style="background:#1a6bc1">YO</div><div class="cc-auth">You</div><div class="cc-time">now</div></div><div class="cc-body">${txt}</div>`; r.appendChild(d); ta.value=''; }
+function askHelp(){ toggleCS(true); document.getElementById('cse').style.display='none'; const d=document.createElement('div'); d.style.marginBottom='12px'; d.innerHTML=`<div style="font-size:10px;font-weight:700;color:#b03a2a;text-transform:uppercase;margin-bottom:7px;padding-bottom:5px;border-bottom:1px solid #fde">Help Request</div><div class="cc" style="border-left:3px solid #b03a2a"><div class="cc-meta"><div class="cc-av" style="background:#1a6bc1">YO</div><div class="cc-auth">You</div><div class="cc-time">now</div></div><div class="cc-body">I need help with my block setup.</div></div><div id="hr"></div>`; document.getElementById('csb').insertBefore(d,document.getElementById('csb').firstChild); toast('Help request sent','inf'); setTimeout(()=>{ const r=document.getElementById('hr'); if(!r) return; const m=document.createElement('div'); m.className='cc'; m.style.borderLeft='3px solid #b03a2a'; m.innerHTML=`<div class="cc-meta"><div class="cc-av" style="background:#b03a2a">AX</div><div class="cc-auth" style="color:#b03a2a">Mentor: Alex</div><div class="cc-time">now</div></div><div class="cc-body">Hey! Make sure setPos has non-zero coords — use Suggest Fix!</div>`; r.appendChild(m); document.getElementById('av-alex').style.opacity='1'; toast('Mentor Alex replied','inf'); },2000); }
 function selPage(el){ document.querySelectorAll('.page-item').forEach(p=>p.classList.remove('active')); el.classList.add('active'); }
+let _ttimer; function toast(msg,type){ const el=document.getElementById('toast'); clearTimeout(_ttimer); el.className='toast t-'+type+' show'; document.getElementById('tmsg').textContent=msg; _ttimer=setTimeout(()=>el.classList.remove('show'),3000); }
 
-// Toast
-let _ttimer;
-function toast(msg,type){ const el=document.getElementById('toast'); clearTimeout(_ttimer); el.className='toast t-'+type+' show'; document.getElementById('tmsg').textContent=msg; _ttimer=setTimeout(()=>el.classList.remove('show'),3000); }
-function tt(ms,fn){ setTimeout(fn,ms); }
-
-// ── Init ──
-// ── Onboarding ──
-let _obStep = 1;
-function goStep(n) {
-  document.getElementById('ob-s' + _obStep).style.display = 'none';
-  _obStep = n;
-  document.getElementById('ob-s' + n).style.display = 'block';
-}
-function startCoding() {
-  const ov = document.getElementById('ov');
-  ov.style.transition = 'opacity .4s';
-  ov.style.opacity = '0';
-  setTimeout(() => { ov.style.display = 'none'; document.getElementById('hfab').classList.add('show'); }, 400);
-}
-function reopenGuide() {
-  _obStep = 1;
-  ['ob-s1','ob-s2','ob-s3','ob-s4'].forEach(id => { document.getElementById(id).style.display = 'none'; });
-  document.getElementById('ob-s1').style.display = 'block';
-  const ov = document.getElementById('ov');
-  ov.style.opacity = '1'; ov.style.display = 'flex';
-}
-
-initStarterBlocks();
+// Onboarding
+let _step=1;
+function goStep(n){ document.getElementById('ob'+_step).style.display='none'; _step=n; document.getElementById('ob'+n).style.display='block'; }
+function startCoding(){ const o=document.getElementById('ov'); o.style.transition='opacity .4s'; o.style.opacity='0'; setTimeout(()=>{ o.style.display='none'; document.getElementById('hfab').classList.add('show'); },400); }
+function reopenGuide(){ _step=1; [1,2,3,4].forEach(n=>{ const e=document.getElementById('ob'+n); if(e) e.style.display='none'; }); document.getElementById('ob1').style.display='block'; const o=document.getElementById('ov'); o.style.opacity='1'; o.style.display='flex'; }
 </script>
 </body>
 </html>
