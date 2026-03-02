@@ -817,16 +817,22 @@ function onBlockMouseDown(e){
   if(e.button !== 0) return;
   if(e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
 
-  // Find the topmost .zr-block that this mousedown belongs to
-  // (don't drag a child when clicking the parent C-block header)
   let target = e.target.closest('.zr-block');
   if(!target) return;
 
-  e.preventDefault();
-  e.stopPropagation();
-
   const id = target.dataset.bid;
   if(!id) return;
+
+  // Pin mode: click opens a comment thread instead of dragging
+  if(_pm){
+    e.preventDefault();
+    e.stopPropagation();
+    openThread(id);
+    return;
+  }
+
+  e.preventDefault();
+  e.stopPropagation();
 
   const state = BLK[id];
   if(!state) return;
@@ -853,14 +859,14 @@ function onBlockMouseDown(e){
   }
 
   // Build ghost (visual clone following mouse)
-  const ghost = document.getElementById('dg');
-  ghost.innerHTML = el.outerHTML;
-  ghost.style.display = 'block';
-  ghost.style.transform = `translate(${e.clientX}px,${e.clientY}px)`;
-
   const elRect = el.getBoundingClientRect();
   const offX = e.clientX - elRect.left;
   const offY = e.clientY - elRect.top;
+
+  const ghost = document.getElementById('dg');
+  ghost.innerHTML = el.outerHTML;
+  ghost.style.display = 'block';
+  ghost.style.transform = `translate(${e.clientX - offX}px,${e.clientY - offY}px)`;
 
   // Hide original while dragging
   el.style.opacity = '0.25';
