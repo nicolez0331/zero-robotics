@@ -340,74 +340,410 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 #ccm-head span{font-weight:700;font-size:13px;}
 #ccm-close{background:none;border:none;font-size:17px;cursor:pointer;color:#999;}
 #ccm-pre{padding:18px;font-family:'Source Code Pro',monospace;font-size:12px;line-height:1.7;overflow:auto;max-height:60vh;background:#f8f9fb;color:#1c2733;margin:0;}
+
+/* ══════════════════════════════════════════
+   NEW ONBOARDING — Story / Chat Style
+══════════════════════════════════════════ */
+#ov{
+  position:fixed;inset:0;z-index:2000;
+  background:rgba(6,12,22,.92);
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);
+}
+
+/* Each step is a full-screen centered card */
+.ob-screen{
+  width:100%;display:flex;align-items:center;justify-content:center;
+  animation:obIn .35s cubic-bezier(.175,.885,.32,1.275);
+}
+@keyframes obIn{from{opacity:0;transform:scale(.94) translateY(14px)}to{opacity:1;transform:none}}
+
+/* ── Step 1: Cinematic intro ── */
+.ob-cinema{
+  position:relative;
+  width:520px;
+  background:linear-gradient(160deg,#060d18 0%,#0d1f38 60%,#091422 100%);
+  border-radius:20px;
+  border:1px solid rgba(100,160,220,.15);
+  box-shadow:0 40px 100px rgba(0,0,0,.7);
+  padding:36px 30px 0;
+  overflow:hidden;
+  min-height:340px;
+}
+.ob-stars{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%,rgba(255,255,255,.8) 0%,transparent 100%),
+    radial-gradient(1px 1px at 35% 8%,rgba(255,255,255,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 68% 22%,rgba(255,255,255,.7) 0%,transparent 100%),
+    radial-gradient(1px 1px at 82% 10%,rgba(255,255,255,.5) 0%,transparent 100%),
+    radial-gradient(1px 1px at 90% 45%,rgba(255,255,255,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 50% 30%,rgba(255,255,255,.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 20% 55%,rgba(255,255,255,.5) 0%,transparent 100%);
+}
+.ob-iss-label{
+  position:absolute;top:14px;left:50%;transform:translateX(-50%);
+  font-size:10px;color:rgba(100,160,220,.7);font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;
+  background:rgba(0,0,0,.3);border:1px solid rgba(100,160,220,.2);
+  border-radius:20px;padding:3px 12px;
+}
+/* Big Astrobee robot */
+.ob-astrobee-big{
+  width:70px;height:70px;position:absolute;top:28px;right:38px;
+  animation:abFloat 3s ease-in-out infinite;
+}
+@keyframes abFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.ob-ab-glow{
+  position:absolute;inset:-8px;border-radius:50%;
+  background:rgba(26,107,193,.18);
+  animation:abGlow 2s ease-in-out infinite alternate;
+}
+@keyframes abGlow{from{background:rgba(26,107,193,.1)}to{background:rgba(80,160,255,.3)}}
+.ob-ab-body{
+  width:70px;height:70px;
+  background:linear-gradient(135deg,#dde4ea,#a8b8c4);
+  border-radius:10px;border:2px solid #8a9aa8;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  box-shadow:0 8px 24px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.3);
+  position:relative;
+}
+.ob-ab-eye{width:18px;height:11px;background:#1a6bc1;border-radius:4px;box-shadow:0 0 10px rgba(26,107,193,.9);}
+.ob-ab-mouth{width:22px;height:3px;background:#7a8898;border-radius:2px;}
+.ob-ab-arm{position:absolute;width:10px;height:26px;background:rgba(80,130,180,.35);border-radius:3px;border:1px solid rgba(80,130,180,.5);}
+.ob-ab-arm-l{left:-12px;top:18px;}.ob-ab-arm-r{right:-12px;top:18px;}
+
+/* Chat bubbles in cinema */
+.ob-bubble{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;}
+.ob-bubble-ab{animation:bubbleIn .5s .3s both;}
+.ob-bubble-you{flex-direction:row-reverse;}
+@keyframes bubbleIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ob-bubble-av{
+  width:32px;height:32px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;border:2px solid rgba(255,255,255,.15);
+}
+.ob-bubble-txt{max-width:320px;}
+.ob-bubble-name{font-size:10px;font-weight:700;color:rgba(140,180,220,.7);margin-bottom:4px;letter-spacing:.04em;}
+.ob-bubble-you .ob-bubble-name{text-align:right;}
+.ob-bubble-msg{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;padding:9px 13px;
+  font-size:13px;color:#e8eef6;line-height:1.5;
+}
+.ob-bubble-you .ob-bubble-msg{background:rgba(26,107,193,.25);border-color:rgba(26,107,193,.4);}
+
+.ob-cin-foot{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 0 18px;
+}
+.ob-cin-dots{display:flex;gap:6px;}
+.obd{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2);transition:all .25s;}
+.obd.on{background:#1a6bc1;transform:scale(1.3);}
+.obd.done{background:#5a8a3c;}
+
+/* ── Card style (steps 2-5) ── */
+.ob-card{
+  width:500px;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 40px 100px rgba(0,0,0,.5);
+  overflow:hidden;
+  animation:obIn .35s cubic-bezier(.175,.885,.32,1.275);
+  max-height:90vh;overflow-y:auto;
+}
+.ob-card::-webkit-scrollbar{display:none;}
+.ob-card-top{
+  padding:24px 26px 18px;
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;
+}
+.ob-card-icon{font-size:40px;margin-bottom:8px;}
+.ob-card-title{font-size:18px;font-weight:800;color:#fff;}
+.ob-card-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:3px;font-weight:500;}
+.ob-card-body{padding:18px 22px 10px;}
+.ob-card-foot{
+  padding:12px 22px 18px;
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid #f0f2f5;
+}
+
+/* Mission lines */
+.ob-mission-line{display:flex;gap:12px;margin-bottom:13px;align-items:flex-start;}
+.ob-mission-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+.ob-mission-line div{font-size:13px;line-height:1.55;color:#2a3a4a;}
+
+/* Inline bubble (Astrobee quote) */
+.ob-inline-bubble{
+  display:flex;gap:10px;align-items:flex-start;
+  background:#f0f6ff;border:1px solid #c8daf8;border-radius:12px;
+  padding:11px 13px;margin-top:10px;
+}
+.ob-inline-av{font-size:20px;flex-shrink:0;margin-top:1px;}
+.ob-inline-msg{font-size:12px;color:#2a3a4a;line-height:1.55;font-style:italic;}
+
+/* Chat flow (step 3 & 4) */
+.ob-chat-flow{display:flex;flex-direction:column;gap:10px;}
+.ob-cf-bubble{display:flex;gap:9px;align-items:flex-end;animation:bubbleIn2 .4s both;}
+@keyframes bubbleIn2{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.ob-cf-bubble.right{flex-direction:row-reverse;}
+.ob-cf-av{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;border:1.5px solid rgba(0,0,0,.1);
+}
+.ob-cf-msg{
+  background:#f4f6fa;border:1px solid #e4e8f0;
+  border-radius:12px;padding:8px 12px;
+  font-size:12.5px;line-height:1.5;color:#1c2733;
+  max-width:340px;
+}
+.ob-cf-bubble.left .ob-cf-msg{border-radius:4px 12px 12px 12px;}
+.ob-cf-bubble.right .ob-cf-msg{border-radius:12px 4px 12px 12px;}
+.ob-cf-demo{
+  background:#f8f9fc;border:1px solid #e4e8f0;border-radius:10px;
+  padding:10px 12px;margin-left:37px;
+}
+
+/* Checklist (step 5) */
+.ob-checklist{display:flex;flex-direction:column;gap:9px;}
+.ob-cl-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;background:#f4f9f4;border:1px solid #c8e0c8;border-radius:9px;}
+.ob-cl-check{width:20px;height:20px;border-radius:50%;background:#2e7d32;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px;}
+.ob-cl-item div{font-size:12.5px;color:#1c2733;font-weight:600;line-height:1.4;}
+.ob-cl-sub{font-weight:400;color:#5a7a5a;}
+
+/* Buttons */
+.ob-btn-next{
+  background:#1a6bc1;color:#fff;border:none;border-radius:9px;
+  padding:9px 20px;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;cursor:pointer;
+  transition:background .15s,transform .1s;
+}
+.ob-btn-next:hover{background:#155fa8;transform:scale(1.03);}
+.ob-btn-back{
+  background:#f0f2f5;color:#6b7a8d;border:none;border-radius:9px;
+  padding:9px 14px;font-family:'Inter',sans-serif;font-weight:600;font-size:13px;cursor:pointer;
+}
+.ob-btn-back:hover{background:#e4e8f0;}
+.ob-btn-launch{
+  background:linear-gradient(135deg,#1a6bc1,#7a4aab);color:#fff;border:none;border-radius:9px;
+  padding:10px 22px;font-family:'Inter',sans-serif;font-weight:700;font-size:14px;cursor:pointer;
+  box-shadow:0 4px 18px rgba(26,107,193,.4);
+  transition:transform .15s,box-shadow .15s;
+}
+.ob-btn-launch:hover{transform:scale(1.04);box-shadow:0 6px 24px rgba(26,107,193,.55);}
+
+@keyframes popIn{from{opacity:0;transform:scale(.7) translateY(6px)}to{opacity:1;transform:none}}
+
+.help-fab{
+  position:fixed;bottom:18px;left:18px;z-index:50;
+  background:#1a6bc1;color:#fff;border:none;border-radius:20px;
+  padding:8px 16px;font-family:'Inter',sans-serif;font-weight:700;font-size:12px;
+  cursor:pointer;display:none;box-shadow:0 3px 14px rgba(26,107,193,.4);
+  transition:transform .15s;
+}
+.help-fab.show{display:block;}
+.help-fab:hover{transform:scale(1.05);}
 </style>
 </head>
 <body>
 
-<!-- ONBOARDING -->
+<!-- ONBOARDING OVERLAY -->
 <div id="ov">
-<div class="modal">
-  <div class="m-stripe"></div>
-  <div id="ob1">
-    <div class="m-hd"><h2>Welcome to Zero Robotics</h2><p>Build your Astrobee program by snapping blocks together — just like Scratch. Watch it fly in the simulation panel on the right.</p></div>
-    <div class="m-bd">
-      <div class="sdots"><div class="sd on"></div><div class="sd"></div><div class="sd"></div><div class="sd"></div></div>
-      <div class="pbar"><div class="pfill" style="width:25%"></div></div>
-      <div class="ob-bull"><div class="ob-num">1</div><div><div class="ob-label">Drag blocks from the palette</div><div class="ob-sub">Command blocks snap vertically inside a loop body. Reporters snap into oval slots.</div></div></div>
-      <div class="ob-bull"><div class="ob-num">2</div><div><div class="ob-label">Fill the starter loop block</div><div class="ob-sub">A loop is waiting on the canvas — add setPos and activate scanner into it.</div></div></div>
-      <div class="ob-bull"><div class="ob-num">3</div><div><div class="ob-label">Press Run to simulate</div><div class="ob-sub">Watch Astrobee fly to your coordinates in the live 3D panel on the right.</div></div></div>
-    </div>
-    <div class="m-ft"><span class="s-ctr">Step 1 of 4</span><button class="btn-p" onclick="goStep(2)">Next &rarr;</button></div>
-  </div>
-  <div id="ob2" style="display:none">
-    <div class="m-hd"><h2>Two Kinds of Blocks</h2><p>Knowing the difference makes snapping intuitive.</p></div>
-    <div class="m-bd">
-      <div class="sdots"><div class="sd done"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div>
-      <div class="pbar"><div class="pfill" style="width:50%"></div></div>
-      <div class="ob-chk on"><div class="ob-chkbox">C</div><div><div class="ob-label">Command blocks (green, blue, teal)</div><div class="ob-sub">Stack vertically inside a C-block body — they run top to bottom.</div></div></div>
-      <div class="ob-chk"><div class="ob-chkbox">R</div><div><div class="ob-label">Reporter blocks (orange, purple)</div><div class="ob-sub">Fill oval input slots inside command blocks — they return a value.</div></div></div>
-      <div class="ob-chk"><div class="ob-chkbox" style="font-size:13px">✕</div><div><div class="ob-label">Invalid snaps are blocked</div><div class="ob-sub">Reporters can't go into body areas. Commands can't fill value slots.</div></div></div>
-    </div>
-    <div class="m-ft"><button class="btn-g" onclick="goStep(1)">&larr; Back</button><button class="btn-p" onclick="goStep(3)">Next &rarr;</button></div>
-  </div>
-  <div id="ob3" style="display:none">
-    <div class="m-hd"><h2>Starter Template</h2><p>A loop block is already on the canvas. Drag blocks from the palette into its body.</p></div>
-    <div class="m-bd">
-      <div class="sdots"><div class="sd done"></div><div class="sd done"></div><div class="sd on"></div><div class="sd"></div></div>
-      <div class="pbar"><div class="pfill" style="width:75%"></div></div>
-      <div class="ob-bprev">
-        <div class="ob-blk cblk c-green">
-          <div class="r">loop</div>
-          <div class="ob-mouth">
-            <div class="ob-ring-w">
-              <div class="ob-blk c-blue"><div class="r">setPos &nbsp;<span class="ob-s">0</span><span class="ob-s">0</span><span class="ob-s">0</span></div></div>
-              <div class="ob-ring"></div>
-            </div>
-            <div class="ob-blk pill c-teal"><div class="r">activate scanner</div></div>
-          </div>
-          <div class="ob-cap c-green"></div>
+  <!-- Step screens -->
+  <div class="ob-screen" id="ob1">
+    <!-- Cinematic intro -->
+    <div class="ob-cinema">
+      <div class="ob-stars"></div>
+      <div class="ob-iss-label">International Space Station · 408 km above Earth</div>
+      <div class="ob-astrobee-big" id="ob-ab-anim">
+        <div class="ob-ab-glow"></div>
+        <div class="ob-ab-body">
+          <div class="ob-ab-eye"></div>
+          <div class="ob-ab-mouth"></div>
         </div>
-        <div class="ob-tip">The setPos inputs are 0,0,0 — Astrobee won't move. Change them to a real target like 1.5, 0.3, -0.8.</div>
+        <div class="ob-ab-arm ob-ab-arm-l"></div>
+        <div class="ob-ab-arm ob-ab-arm-r"></div>
+      </div>
+      <!-- Chat bubble from Astrobee -->
+      <div class="ob-bubble ob-bubble-ab" id="ob-bubble1">
+        <div class="ob-bubble-av" style="background:#1a6bc1">🤖</div>
+        <div class="ob-bubble-txt">
+          <div class="ob-bubble-name">Astrobee</div>
+          <div class="ob-bubble-msg">Hey! I'm Astrobee — a real robot floating aboard the ISS right now. I need YOUR code to move. 🚀</div>
+        </div>
+      </div>
+      <div class="ob-bubble ob-bubble-you" id="ob-bubble2" style="opacity:0;transform:translateY(10px)">
+        <div class="ob-bubble-txt" style="text-align:right">
+          <div class="ob-bubble-name" style="text-align:right">You</div>
+          <div class="ob-bubble-msg">Wait… I'm actually programming a robot in space? 😮</div>
+        </div>
+        <div class="ob-bubble-av" style="background:linear-gradient(135deg,#1a6bc1,#1559a8)">YO</div>
+      </div>
+      <div class="ob-bubble ob-bubble-ab" id="ob-bubble3" style="opacity:0;transform:translateY(10px)">
+        <div class="ob-bubble-av" style="background:#1a6bc1">🤖</div>
+        <div class="ob-bubble-txt">
+          <div class="ob-bubble-name">Astrobee</div>
+          <div class="ob-bubble-msg">Exactly! Snap some blocks together and tell me where to go. It's easier than you think. Ready? 👾</div>
+        </div>
       </div>
     </div>
-    <div class="m-ft"><button class="btn-g" onclick="goStep(2)">&larr; Back</button><button class="btn-p" onclick="goStep(4)">Next &rarr;</button></div>
-  </div>
-  <div id="ob4" style="display:none">
-    <div class="m-hd"><h2>Team Collaboration</h2><p>Drop comment pins on blocks and get real-time mentor replies.</p></div>
-    <div class="m-bd">
-      <div class="sdots"><div class="sd done"></div><div class="sd done"></div><div class="sd done"></div><div class="sd on"></div></div>
-      <div class="pbar"><div class="pfill" style="width:100%"></div></div>
-      <div class="ob-cdemo" style="display:flex;flex-direction:column;gap:8px">
-        <div style="display:flex;align-items:center;gap:8px"><div class="ob-cpin">+</div><div class="ob-blk c-blue"><div class="r">setPos &nbsp;<span class="ob-s">1.5</span><span class="ob-s">0.3</span><span class="ob-s">-0.8</span></div></div></div>
-        <div style="display:flex;align-items:center;gap:8px"><div style="width:17px"></div><div class="ob-blk pill c-teal"><div class="r">activate scanner</div></div></div>
-      </div>
-      <div class="ob-hint">Enable Pin Mode in the toolbar, then click a block to open a comment thread.</div>
+    <div class="ob-cin-foot">
+      <div class="ob-cin-dots"><div class="obd on"></div><div class="obd"></div><div class="obd"></div><div class="obd"></div><div class="obd"></div></div>
+      <button class="ob-btn-next" onclick="goStep(2)">Let's go! &rarr;</button>
     </div>
-    <div class="m-ft"><button class="btn-g" onclick="goStep(3)">&larr; Back</button><button class="btn-p" onclick="startCoding()">Start Coding &rarr;</button></div>
+  </div>
+
+  <div class="ob-screen" id="ob2" style="display:none">
+    <div class="ob-card">
+      <div class="ob-card-top" style="background:linear-gradient(135deg,#0a1628,#1a3050)">
+        <div class="ob-card-icon">🛰️</div>
+        <div class="ob-card-title">Your Mission</div>
+        <div class="ob-card-sub">Zero Robotics · 2026 Tournament</div>
+      </div>
+      <div class="ob-card-body">
+        <div class="ob-mission-line">
+          <div class="ob-mission-icon">📍</div>
+          <div><strong>Navigate Astrobee</strong> to scan hidden debris fields inside the ISS — earn points for accuracy and speed.</div>
+        </div>
+        <div class="ob-mission-line">
+          <div class="ob-mission-icon">🧱</div>
+          <div><strong>Use blocks</strong> to write the code — no syntax errors, no semicolons, just drag and snap.</div>
+        </div>
+        <div class="ob-mission-line">
+          <div class="ob-mission-icon">👥</div>
+          <div><strong>Collaborate</strong> with your team — leave pins, get mentor feedback, race to the best score.</div>
+        </div>
+        <!-- Astrobee speech bubble -->
+        <div class="ob-inline-bubble">
+          <span class="ob-inline-av">🤖</span>
+          <div class="ob-inline-msg">"The team with the highest score gets to watch their actual code run on me… aboard the REAL ISS. No pressure 😅"</div>
+        </div>
+      </div>
+      <div class="ob-card-foot">
+        <div class="ob-cin-dots"><div class="obd done"></div><div class="obd on"></div><div class="obd"></div><div class="obd"></div><div class="obd"></div></div>
+        <div style="display:flex;gap:8px">
+          <button class="ob-btn-back" onclick="goStep(1)">&larr;</button>
+          <button class="ob-btn-next" onclick="goStep(3)">Got it! &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ob-screen" id="ob3" style="display:none">
+    <div class="ob-card">
+      <div class="ob-card-body" style="padding-top:22px">
+        <div class="ob-chat-flow">
+          <div class="ob-cf-bubble left">
+            <span class="ob-cf-av" style="background:#1a6bc1">🤖</span>
+            <div class="ob-cf-msg">OK so — there are two kinds of blocks. First: <strong style="color:#3a6abf">Command blocks</strong>. Blue, green, teal. They DO things.</div>
+          </div>
+          <div class="ob-cf-demo">
+            <div class="ob-blk c-blue"><div class="r">setPos &nbsp;<span class="ob-s">1.5</span><span class="ob-s">0.3</span><span class="ob-s">-0.8</span></div></div>
+            <div class="ob-blk pill c-teal" style="margin-top:5px"><div class="r">activate scanner</div></div>
+          </div>
+          <div class="ob-cf-bubble left" style="animation-delay:.3s">
+            <span class="ob-cf-av" style="background:#1a6bc1">🤖</span>
+            <div class="ob-cf-msg">Then: <strong style="color:#c47a1a">Reporter blocks</strong>. Orange, purple. They RETURN a value — like a sensor reading. Snap them into oval slots 🟠</div>
+          </div>
+          <div class="ob-cf-demo">
+            <div style="display:flex;align-items:center;gap:6px">
+              <div class="ob-blk c-blue"><div class="r">setPos &nbsp;<span class="ob-s ob-s-hi">?</span><span class="ob-s">0</span><span class="ob-s">0</span></div></div>
+              <div style="font-size:11px;color:#c47a1a;font-weight:700">← drop reporter here</div>
+            </div>
+            <div class="ob-blk reporter-face c-orange" style="margin-top:5px;border-radius:12px"><div class="r">get ZRState pos_x</div></div>
+          </div>
+          <div class="ob-cf-bubble right">
+            <div class="ob-cf-msg" style="background:#eef3fb;color:#1c2733">Oh! So reporters are like variables I can plug in?</div>
+            <span class="ob-cf-av" style="background:linear-gradient(135deg,#1a6bc1,#1559a8)">YO</span>
+          </div>
+          <div class="ob-cf-bubble left" style="animation-delay:.2s">
+            <span class="ob-cf-av" style="background:#1a6bc1">🤖</span>
+            <div class="ob-cf-msg">EXACTLY. You're basically a programmer now. 🎉</div>
+          </div>
+        </div>
+      </div>
+      <div class="ob-card-foot">
+        <div class="ob-cin-dots"><div class="obd done"></div><div class="obd done"></div><div class="obd on"></div><div class="obd"></div><div class="obd"></div></div>
+        <div style="display:flex;gap:8px">
+          <button class="ob-btn-back" onclick="goStep(2)">&larr;</button>
+          <button class="ob-btn-next" onclick="goStep(4)">Nice, next &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ob-screen" id="ob4" style="display:none">
+    <div class="ob-card">
+      <div class="ob-card-body" style="padding-top:22px">
+        <div class="ob-chat-flow">
+          <div class="ob-cf-bubble left">
+            <span class="ob-cf-av" style="background:#1a6bc1">🤖</span>
+            <div class="ob-cf-msg">There's a <strong>loop block</strong> waiting for you on the canvas. Drag stuff into it from the left panel. Like this 👇</div>
+          </div>
+          <div class="ob-cf-demo">
+            <div class="ob-blk cblk c-green" style="font-size:11px">
+              <div class="r">loop forever</div>
+              <div class="ob-mouth" style="min-height:44px;gap:5px">
+                <div class="ob-blk c-blue" style="animation:popIn .4s .1s both"><div class="r">setPos &nbsp;<span class="ob-s">1.5</span><span class="ob-s">0.3</span><span class="ob-s">-0.8</span></div></div>
+                <div class="ob-blk pill c-teal" style="animation:popIn .4s .3s both"><div class="r">activate scanner</div></div>
+              </div>
+              <div class="ob-cap c-green"></div>
+            </div>
+          </div>
+          <div class="ob-cf-bubble left" style="animation-delay:.2s">
+            <span class="ob-cf-av" style="background:#1a6bc1">🤖</span>
+            <div class="ob-cf-msg">Change those 0s in setPos to real numbers — like 1.5, 0.3, -0.8 — then hit <strong style="color:#2e7d32">▶ Run</strong>. Watch me fly! ✨</div>
+          </div>
+          <div class="ob-cf-bubble right">
+            <div class="ob-cf-msg" style="background:#eef3fb;color:#1c2733">What if something breaks?</div>
+            <span class="ob-cf-av" style="background:linear-gradient(135deg,#1a6bc1,#1559a8)">YO</span>
+          </div>
+          <div class="ob-cf-bubble left" style="animation-delay:.15s">
+            <span class="ob-cf-av" style="background:#b03a2a">AX</span>
+            <div class="ob-cf-msg"><strong>Mentor Alex here!</strong> Don't worry — if you get an error, there's an "Explain Error" button that tells you exactly what's wrong 🛠️</div>
+          </div>
+        </div>
+      </div>
+      <div class="ob-card-foot">
+        <div class="ob-cin-dots"><div class="obd done"></div><div class="obd done"></div><div class="obd done"></div><div class="obd on"></div><div class="obd"></div></div>
+        <div style="display:flex;gap:8px">
+          <button class="ob-btn-back" onclick="goStep(3)">&larr;</button>
+          <button class="ob-btn-next" onclick="goStep(5)">Almost there &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ob-screen" id="ob5" style="display:none">
+    <div class="ob-card">
+      <div class="ob-card-top" style="background:linear-gradient(135deg,#1a2b40,#243050);padding:28px 26px 20px">
+        <div style="font-size:36px;margin-bottom:8px">🏆</div>
+        <div class="ob-card-title" style="font-size:20px">You're ready, commander.</div>
+        <div class="ob-card-sub" style="color:#8ab4d0;margin-top:4px">Your first mission awaits aboard the ISS.</div>
+      </div>
+      <div class="ob-card-body">
+        <div class="ob-checklist">
+          <div class="ob-cl-item"><div class="ob-cl-check">✓</div><div>Know what Astrobee is <span class="ob-cl-sub">— a real robot 408km up 🛸</span></div></div>
+          <div class="ob-cl-item"><div class="ob-cl-check">✓</div><div>Understand command vs reporter blocks <span class="ob-cl-sub">— snap & stack</span></div></div>
+          <div class="ob-cl-item"><div class="ob-cl-check">✓</div><div>Know how to fill a loop body <span class="ob-cl-sub">— drag in, drop in</span></div></div>
+          <div class="ob-cl-item"><div class="ob-cl-check">✓</div><div>Know where to get help <span class="ob-cl-sub">— error bar + Pin Mode + Ask Mentor</span></div></div>
+        </div>
+        <div class="ob-inline-bubble" style="margin-top:14px">
+          <span class="ob-inline-av">🤖</span>
+          <div class="ob-inline-msg">"I'll be waiting in the simulation panel. Don't leave me hanging! 🤞"</div>
+        </div>
+      </div>
+      <div class="ob-card-foot">
+        <div class="ob-cin-dots"><div class="obd done"></div><div class="obd done"></div><div class="obd done"></div><div class="obd done"></div><div class="obd on"></div></div>
+        <div style="display:flex;gap:8px">
+          <button class="ob-btn-back" onclick="goStep(4)">&larr;</button>
+          <button class="ob-btn-launch" onclick="startCoding()">🚀 Launch IDE</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-</div>
-<button class="help-fab" id="hfab" onclick="reopenGuide()">Need Help?</button>
+<button class="help-fab" id="hfab" onclick="reopenGuide()">🤖 Need Help?</button>
 
 <!-- IDE -->
 <div id="ide">
@@ -1247,9 +1583,39 @@ let _ttimer; function toast(msg,type){ const el=document.getElementById('toast')
 
 // Onboarding
 let _step=1;
-function goStep(n){ document.getElementById('ob'+_step).style.display='none'; _step=n; document.getElementById('ob'+n).style.display='block'; }
-function startCoding(){ const o=document.getElementById('ov'); o.style.transition='opacity .4s'; o.style.opacity='0'; setTimeout(()=>{ o.style.display='none'; document.getElementById('hfab').classList.add('show'); },400); }
-function reopenGuide(){ _step=1; [1,2,3,4].forEach(n=>{ const e=document.getElementById('ob'+n); if(e) e.style.display='none'; }); document.getElementById('ob1').style.display='block'; const o=document.getElementById('ov'); o.style.opacity='1'; o.style.display='flex'; }
+function goStep(n){
+  const prev=document.getElementById('ob'+_step);
+  prev.style.opacity='0'; prev.style.transform='scale(.96)';
+  setTimeout(()=>{
+    prev.style.display='none';
+    prev.style.opacity=''; prev.style.transform='';
+    _step=n;
+    const next=document.getElementById('ob'+n);
+    next.style.display='flex';
+    // Trigger bubble animations on step 1
+    if(n===1) triggerBubbles();
+  },200);
+}
+function triggerBubbles(){
+  const b2=document.getElementById('ob-bubble2'), b3=document.getElementById('ob-bubble3');
+  if(b2){ b2.style.transition='all .4s'; setTimeout(()=>{ b2.style.opacity='1'; b2.style.transform='none'; },600); }
+  if(b3){ b3.style.transition='all .4s'; setTimeout(()=>{ b3.style.opacity='1'; b3.style.transform='none'; },1300); }
+}
+function startCoding(){
+  const o=document.getElementById('ov');
+  o.style.transition='opacity .45s';
+  o.style.opacity='0';
+  setTimeout(()=>{ o.style.display='none'; document.getElementById('hfab').classList.add('show'); },450);
+}
+function reopenGuide(){
+  _step=1;
+  [1,2,3,4,5].forEach(n=>{ const e=document.getElementById('ob'+n); if(e){e.style.display='none';} });
+  document.getElementById('ob1').style.display='flex';
+  const o=document.getElementById('ov'); o.style.opacity='1'; o.style.display='flex';
+  triggerBubbles();
+}
+// Kick off bubble animations on first load
+setTimeout(triggerBubbles, 800);
 </script>
 </body>
 </html>
