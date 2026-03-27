@@ -325,8 +325,12 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 .eb{background:#fff8f7;border-top:2px solid #e8c0ba;padding:7px 13px;display:none;flex-direction:column;gap:6px;flex-shrink:0;}
 .eb.show{display:flex;}.eb-title{font-size:12px;font-weight:700;color:#c0392b;}
 .eb-explain{background:#fff;border:1px solid #e8c0ba;border-radius:6px;padding:8px 11px;font-size:12px;line-height:1.55;display:none;}.eb-explain.show{display:block;}
-.fix-diff{background:#f4fff6;border:1px solid #b8dfc0;border-radius:6px;padding:7px 11px;font-family:'Source Code Pro',monospace;font-size:11px;display:none;}.fix-diff.show{display:block;}
-.fd-del{color:#c0392b;text-decoration:line-through;}.fd-add{color:#2e7d32;}
+.scaff-panel{display:flex;flex-direction:column;gap:0;margin-bottom:6px;}
+.scaff-hint{background:#fffbee;border:1px solid #f0d080;border-radius:7px;padding:9px 13px;animation:hintIn .3s cubic-bezier(.175,.885,.32,1.275);}
+@keyframes hintIn{from{opacity:0;transform:translateY(-6px) scale(.97)}to{opacity:1;transform:none}}
+.scaff-lv{font-size:10px;font-weight:700;color:#c47a1a;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
+.scaff-msg{font-size:12px;line-height:1.6;color:#2a3a4a;}
+.scaff-hint:not(:last-child){margin-bottom:6px;}
 .eb-acts{display:flex;gap:5px;flex-wrap:wrap;}
 .eb-btn{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;padding:4px 11px;border-radius:5px;border:none;cursor:pointer;}.eb-btn:hover{filter:brightness(.92);}
 .eb-xpl{background:#eef3fb;color:#1a6bc1;}.eb-jmp{background:#eefaf2;color:#2e7d32;}.eb-fix{background:#f5f0fc;color:#7a4aab;}.eb-apl{background:#2e7d32;color:#fff;}.eb-men{background:#fff0ee;color:#c0392b;}
@@ -577,7 +581,7 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
           <div class="ob-bubble-name" style="text-align:right">You</div>
           <div class="ob-bubble-msg">Wait… I'm actually programming a robot in space? 😮</div>
         </div>
-        <div class="ob-bubble-av" style="background:linear-gradient(135deg,#1a6bc1,#1559a8)">YO</div>
+        <div class="ob-bubble-av" style="background:linear-gradient(135deg,#1a6bc1,#1559a8);font-size:9px;letter-spacing:0">YOU</div>
       </div>
       <div class="ob-bubble ob-bubble-ab" id="ob-bubble3" style="opacity:0;transform:translateY(10px)">
         <div class="ob-bubble-av" style="background:#1a6bc1">🤖</div>
@@ -823,12 +827,24 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
       <div class="eb" id="eb">
         <div class="eb-title">Block warning: "setPos" has zero coordinates — Astrobee will not move</div>
         <div class="eb-explain" id="ebx">The setPos block is telling Astrobee to move to (0,0,0) — where it already is. Change the X, Y, Z inputs to a real target like 1.5, 0.3, -0.8 and run again.</div>
-        <div class="fix-diff" id="fd"><div class="fd-del">setPos 0 , 0 , 0</div><div class="fd-add">setPos 1.5 , 0.3 , -0.8</div></div>
+        <div class="scaff-panel" id="scaff" style="display:none">
+          <div class="scaff-hint" id="sh1" style="display:none">
+            <div class="scaff-lv">Hint 1 of 3</div>
+            <div class="scaff-msg">🤔 Think about what <strong>setPos</strong> does — it tells Astrobee where to move <em>to</em>. If X, Y, and Z are all zero, where will it go?</div>
+          </div>
+          <div class="scaff-hint" id="sh2" style="display:none">
+            <div class="scaff-lv">Hint 2 of 3</div>
+            <div class="scaff-msg">📍 The ISS workspace goes roughly from <strong>-2 to +2</strong> on each axis. Try changing at least one of your setPos numbers to something non-zero — any value will do!</div>
+          </div>
+          <div class="scaff-hint" id="sh3" style="display:none">
+            <div class="scaff-lv">Hint 3 of 3 · Last hint!</div>
+            <div class="scaff-msg">🧭 Try <strong>X somewhere between 1 and 2</strong>, Y between 0 and 1, and Z between -1 and 0. The exact values are up to you — experiment and see what score you get!</div>
+          </div>
+        </div>
         <div class="eb-acts">
           <button class="eb-btn eb-xpl" onclick="toggleExplain()">Explain Error</button>
           <button class="eb-btn eb-jmp" onclick="jumpToBlock()">Jump to Block</button>
-          <button class="eb-btn eb-fix" onclick="showFix()">Suggest Fix</button>
-          <button class="eb-btn eb-apl" id="apl" onclick="applyFix()" style="display:none">Apply Fix</button>
+          <button class="eb-btn eb-fix" id="hint-btn" onclick="showNextHint()">💡 Hint</button>
           <button class="eb-btn eb-men" onclick="askHelp()">Ask Mentor</button>
         </div>
       </div>
@@ -1542,7 +1558,7 @@ function runA(){
   _running=true; setHUD('run');
   scLog('info','[ZR] Compiling blocks...');
   tt(400,()=>scLog('warn','[WARN] setPos(0,0,0) — no movement'));
-  tt(800,()=>{ scLog('warn','[WARN] Score: 0 / 100'); setHUD('idle'); finRun(); document.getElementById('eb').classList.add('show'); addLog('fail','Score: 0'); toast('No movement — change the setPos coordinates','err'); _running=false; });
+  tt(800,()=>{ scLog('warn','[WARN] Score: 0 / 100'); setHUD('idle'); finRun(); document.getElementById('eb').classList.add('show'); resetHints(); addLog('fail','Score: 0'); toast('No movement — change the setPos coordinates','err'); _running=false; });
 }
 function runB(tx,ty,tz){
   _running=true; setHUD('run');
@@ -1569,8 +1585,30 @@ function addLog(st,msg){ const el=document.getElementById('log-empty'); if(el) e
 function tt(ms,fn){ setTimeout(fn,ms); }
 let _txo=false; function toggleExplain(){ _txo=!_txo; document.getElementById('ebx').classList.toggle('show',_txo); }
 function jumpToBlock(){ const el=document.querySelector('.zr-block[data-type="command"]'); if(el){ el.scrollIntoView({behavior:'smooth',block:'center'}); el.style.outline='2px solid #f5c518'; setTimeout(()=>el.style.outline='',2500); } }
-function showFix(){ document.getElementById('fd').classList.add('show'); document.getElementById('apl').style.display='inline-block'; }
-function applyFix(){ document.querySelectorAll('.zr-block[data-type="command"]').forEach(el=>{ if(el.querySelector('.zr-row')?.textContent.startsWith('setPos')){ const inp=el.querySelectorAll('.bi'); if(inp.length>=3){inp[0].value='1.5';inp[1].value='0.3';inp[2].value='-0.8';} } }); document.getElementById('fd').classList.remove('show'); document.getElementById('apl').style.display='none'; document.getElementById('eb').classList.remove('show'); toast('Fix applied — press Run','ok'); }
+let _hintLevel=0;
+function showNextHint(){
+  const panel=document.getElementById('scaff');
+  panel.style.display='block';
+  _hintLevel++;
+  const h=document.getElementById('sh'+_hintLevel);
+  if(h) h.style.display='block';
+  const btn=document.getElementById('hint-btn');
+  if(_hintLevel>=3){
+    btn.textContent='Ask Mentor →';
+    btn.onclick=askHelp;
+    toast('All hints shown — try it yourself, then ask your mentor!','inf');
+  } else {
+    btn.textContent='💡 Another hint ('+(3-_hintLevel)+' left)';
+    toast('Hint '+_hintLevel+' of 3 revealed','inf');
+  }
+}
+function resetHints(){
+  _hintLevel=0;
+  document.getElementById('scaff').style.display='none';
+  ['sh1','sh2','sh3'].forEach(id=>{ const el=document.getElementById(id); if(el) el.style.display='none'; });
+  const btn=document.getElementById('hint-btn');
+  if(btn){ btn.textContent='💡 Hint'; btn.onclick=showNextHint; }
+}
 function showCCode(){ let x=0,y=0,z=0; document.querySelectorAll('.zr-block[data-type="command"]').forEach(el=>{ if(el.querySelector('.zr-row')?.textContent.startsWith('setPos')){ const inp=el.querySelectorAll('.bi'); if(inp.length>=3){x=inp[0].value;y=inp[1].value;z=inp[2].value;} } }); document.getElementById('ccm-pre').textContent=`// Generated from Graphical Editor\n// Zero Robotics\n\n#include "zr.h"\n\nvoid ZR_Main() {\n    float target[3] = {${x}f, ${y}f, ${z}f};\n    while (1) {\n        setPositionTarget(target);\n        activateScanner(1);\n    }\n}`; document.getElementById('ccm').classList.add('show'); }
 let _cso=false,_pm=false,_tc=0;
 function toggleCS(f){ const cs=document.getElementById('cs'); if(f===true||!_cso){cs.classList.add('open');_cso=true;}else{cs.classList.remove('open');_cso=false;} }
