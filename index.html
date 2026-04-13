@@ -547,207 +547,779 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 }
 .help-fab.show{display:block;}
 .help-fab:hover{transform:scale(1.05);}
+
+/* ══════════════════════════════════
+   ONBOARDING — Game-specific styles
+══════════════════════════════════ */
+
+/* Step 3: Game field diagram */
+.ob-field-wrap{
+  background:#0a1628;border-radius:10px;padding:12px;
+  display:flex;justify-content:center;
+}
+.ob-field{
+  position:relative;
+  width:260px;height:200px;
+  background:rgba(58,106,191,.18);
+  border:2px solid rgba(58,106,191,.5);
+  border-radius:4px;
+}
+.ob-img-zone{
+  position:absolute;
+  top:16%;left:16%;width:68%;height:68%;
+  background:rgba(58,140,90,.35);
+  border:2px solid rgba(58,140,90,.8);
+  border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+}
+.ob-iz-label{
+  font-size:9px;font-weight:700;color:rgba(80,220,130,.9);
+  text-align:center;line-height:1.4;pointer-events:none;
+}
+.ob-debris{
+  position:absolute;
+  background:#111;border:1.5px solid #555;
+  border-radius:2px;display:flex;align-items:center;justify-content:center;
+  font-size:8px;font-weight:700;color:#aaa;
+  cursor:help;transform:translate(-50%,-50%);
+  transition:transform .15s;
+}
+.ob-debris:hover{transform:translate(-50%,-50%) scale(1.4);z-index:10;background:#333;color:#fff;}
+.ob-d-big{width:22px;height:22px;}
+.ob-d-sm{width:11px;height:11px;font-size:7px;}
+.ob-start{
+  position:absolute;
+  background:rgba(196,168,32,.55);border:1px solid rgba(196,168,32,.8);
+  border-radius:3px;padding:3px 4px;font-size:7.5px;font-weight:700;color:#f5e68a;
+  line-height:1.3;text-align:center;
+}
+.ob-start span{font-size:6.5px;font-weight:400;opacity:.8;}
+.ob-home{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-size:14px;text-align:center;line-height:1.2;
+}
+.ob-field-label{
+  position:absolute;font-size:9px;font-weight:600;color:rgba(140,180,220,.7);
+  white-space:nowrap;
+}
+.ob-leg{display:flex;align-items:center;gap:5px;font-size:10px;color:#5a6b7d;font-weight:500;}
+.ob-leg-box{width:12px;height:12px;border-radius:2px;flex-shrink:0;}
+
+/* Step 4: API blocks */
+.ob-api-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:8px 0;
+}
+.ob-api-card{
+  background:#f7f8fc;border:1px solid #e4e8f0;border-radius:8px;
+  padding:8px 10px;
+}
+.ob-api-block{
+  display:inline-flex;align-items:center;gap:4px;
+  color:#fff;border-radius:5px;padding:4px 8px;
+  font-size:10.5px;font-weight:700;margin-bottom:5px;
+  box-shadow:0 2px 5px rgba(0,0,0,.2);
+}
+.ob-api-slot{
+  background:rgba(255,255,255,.85);color:#1c2733;
+  border-radius:3px;padding:1px 5px;font-size:9.5px;font-weight:700;
+}
+.ob-api-desc{font-size:11px;color:#3a4a5a;line-height:1.45;}
+
+/* Step 5: Scoring */
+.ob-score-formula{
+  background:#f0f6ff;border:2px solid #c8daf8;border-radius:9px;
+  padding:10px 14px;font-size:12.5px;font-weight:700;
+  text-align:center;margin-bottom:12px;color:#1c2733;
+}
+.ob-sf-t{color:#2e7d32;}.ob-sf-b{color:#1a6bc1;}.ob-sf-q{color:#7a4aab;}
+.ob-score-rows{display:flex;flex-direction:column;gap:7px;}
+.ob-score-row{display:flex;gap:10px;align-items:flex-start;}
+.ob-sr-badge{
+  flex-shrink:0;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:700;
+  color:#fff;white-space:nowrap;
+}
+.ob-sf-t.ob-sr-badge{background:#2e7d32;}
+.ob-sf-b.ob-sr-badge{background:#1a6bc1;}
+.ob-sf-q.ob-sr-badge{background:#7a4aab;}
+.ob-sr-txt{font-size:11.5px;color:#2a3a4a;line-height:1.5;}
+
+/* Step 6: IDE tour */
+.ob-ide-tour{display:flex;flex-direction:column;gap:8px;}
+.ob-ide-item{
+  display:flex;gap:10px;align-items:flex-start;
+  background:#f7f8fc;border:1px solid #e4e8f0;border-radius:8px;padding:9px 11px;
+}
+.ob-ide-num{
+  min-width:22px;height:22px;border-radius:50%;
+  background:#1a6bc1;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px;
+}
+.ob-ide-label{font-size:12px;font-weight:700;color:#1c2733;margin-bottom:2px;}
+.ob-ide-sub{font-size:11px;color:#4a5a6a;line-height:1.5;}
+
+/* ══ Interactive Onboarding v3 ══ */
+.ob-step-header{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.ob-step-pill{background:#eef3fb;color:#1a6bc1;border:1px solid #c8daf0;border-radius:20px;padding:3px 10px;font-size:10px;font-weight:700;}
+.ob-step-title{font-size:13.5px;font-weight:700;color:#1c2733;}
+.ob-step-sub{font-size:11.5px;color:#5a6b7d;margin-bottom:10px;}
+.ob-progress-hint{font-size:11px;color:#8a9aaa;text-align:center;margin-top:8px;font-style:italic;}
+
+/* ── Step 2: Interactive field ── */
+.ob-ifield-wrap{display:flex;gap:10px;align-items:stretch;}
+.ob-ifield{
+  position:relative;flex-shrink:0;
+  width:240px;height:190px;
+  background:rgba(58,106,191,.15);border:2px solid rgba(58,106,191,.4);
+  border-radius:4px;
+}
+.ob-ifield-img{
+  position:absolute;top:15%;left:15%;width:70%;height:70%;
+  background:rgba(58,140,90,.25);border:2px solid rgba(58,140,90,.7);border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+}
+.ob-ifield-label{font-size:8.5px;font-weight:700;color:rgba(80,220,130,.85);text-align:center;line-height:1.4;pointer-events:none;}
+.ob-ifield-label span{font-weight:400;font-size:7.5px;}
+.ob-idebris{
+  position:absolute;transform:translate(-50%,-50%);
+  background:#1a1a1a;border:1.5px solid #666;border-radius:2px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:8px;font-weight:700;color:#bbb;
+  cursor:pointer;transition:all .15s;z-index:5;
+}
+.ob-idebris:hover,.ob-idebris.sel{background:#3a6abf;border-color:#58a0e0;color:#fff;transform:translate(-50%,-50%) scale(1.25);box-shadow:0 0 0 3px rgba(26,107,193,.3);}
+.ob-id-big{width:24px;height:24px;}
+.ob-id-sm{width:12px;height:12px;font-size:7px;}
+.ob-icorner{position:absolute;background:rgba(196,168,32,.45);border:1px solid rgba(196,168,32,.7);border-radius:3px;padding:2px 4px;font-size:7px;font-weight:700;color:#f5e68a;line-height:1.3;text-align:center;}
+.ob-icorner small{font-size:6px;font-weight:400;opacity:.8;display:block;}
+.ob-iab{position:absolute;bottom:2%;right:2%;font-size:16px;animation:abFloat 3s ease-in-out infinite;}
+.ob-ihome{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:14px;text-align:center;line-height:1.2;}
+.ob-dinfo{flex:1;background:#f7f8fc;border:1px solid #e4e8f0;border-radius:9px;padding:12px;display:flex;flex-direction:column;justify-content:center;min-height:130px;}
+.ob-dinfo-empty{color:#8a9aaa;font-size:12px;text-align:center;line-height:1.6;}
+.ob-dinfo-id{font-size:18px;font-weight:800;color:#1a6bc1;margin-bottom:8px;}
+.ob-dinfo-row{display:flex;justify-content:space-between;font-size:11.5px;border-bottom:1px solid #eee;padding:4px 0;}
+.ob-dinfo-row span:first-child{color:#5a6b7d;font-weight:600;}
+.ob-pts-good{color:#2e7d32;font-weight:700;}
+.ob-pts-bad{color:#c0392b;font-weight:700;}
+.ob-dinfo-tip{background:#fff8ee;border:1px solid #f0d080;border-radius:6px;padding:6px 9px;font-size:11px;color:#5a3a00;margin-top:8px;line-height:1.5;}
+
+/* ── Step 3: Command try ── */
+.ob-api-tryout{display:flex;gap:10px;align-items:stretch;}
+.ob-minisim{width:200px;flex-shrink:0;background:#0a1220;border-radius:8px;overflow:hidden;display:flex;flex-direction:column;}
+.ob-ms-boundary{position:relative;flex:1;background:rgba(58,106,191,.12);margin:6px;border:1px solid rgba(58,106,191,.3);border-radius:3px;}
+.ob-ms-imgzone{position:absolute;top:15%;left:15%;width:70%;height:70%;background:rgba(58,140,90,.2);border:1px solid rgba(58,140,90,.6);border-radius:2px;}
+.ob-ms-deb{position:absolute;transform:translate(-50%,-50%);width:18px;height:18px;background:#1a1a1a;border:1px solid #666;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:700;color:#bbb;transition:all .4s;}
+.ob-ms-deb.ms-sm{width:10px;height:10px;font-size:6.5px;}
+.ob-ms-deb.grabbed{border-color:#f5c518;background:#3a3000;color:#f5c518;}
+.ob-ms-deb.cleared{opacity:.3;filter:grayscale(1);}
+.ob-ms-home{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:12px;}
+.ob-ms-ab{position:absolute;font-size:16px;transition:all .6s cubic-bezier(.4,0,.2,1);bottom:2%;right:2%;}
+.ob-ms-target{position:absolute;width:10px;height:10px;background:rgba(245,197,24,.6);border:2px solid #f5c518;border-radius:50%;transform:translate(-50%,-50%);}
+.ob-ms-log{background:#060d18;color:#58a0e0;font-size:10px;font-family:'Source Code Pro',monospace;padding:5px 8px;min-height:32px;line-height:1.5;}
+.ob-cmd-list{flex:1;display:flex;flex-direction:column;gap:6px;}
+.ob-cmd-block{background:#f7f8fc;border:1.5px solid #e4e8f0;border-radius:8px;padding:7px 10px;cursor:pointer;transition:all .15s;}
+.ob-cmd-block:hover,.ob-cmd-block.tried{border-color:#1a6bc1;background:#eef3fb;}
+.ob-cmd-block.tried .ob-cmd-blk{opacity:.7;}
+.ob-cmd-blk{display:inline-flex;align-items:center;gap:4px;color:#fff;border-radius:5px;padding:3px 8px;font-size:10px;font-weight:700;margin-bottom:3px;box-shadow:0 2px 5px rgba(0,0,0,.2);}
+.ob-cmd-desc{font-size:10.5px;color:#4a5a6a;}
+
+/* ── Step 4: Reveal scoring ── */
+.ob-reveal-list{display:flex;flex-direction:column;gap:6px;}
+.ob-reveal-item{background:#f7f8fc;border:1.5px solid #e4e8f0;border-radius:9px;padding:9px 12px;cursor:pointer;transition:all .15s;}
+.ob-reveal-item:hover{border-color:#c8daf0;background:#f0f5ff;}
+.ob-reveal-item.open{border-color:#1a6bc1;background:#f0f6ff;}
+.ob-reveal-q{font-size:12.5px;font-weight:700;color:#1c2733;display:flex;align-items:center;gap:6px;}
+.ob-reveal-q::after{content:"▸";margin-left:auto;color:#8a9aaa;font-size:11px;}
+.ob-reveal-item.open .ob-reveal-q::after{content:"▾";}
+.ob-reveal-a{font-size:11.5px;color:#2a3a4a;line-height:1.55;margin-top:6px;border-top:1px solid #e4e8f0;padding-top:7px;}
+
+/* ── Step 5: IDE mock ── */
+.ob-ide-mock{background:#1a2332;border-radius:8px;overflow:hidden;margin-bottom:10px;}
+.ob-ide-topbar{background:#141e2c;padding:5px 12px;display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#8ab4d0;}
+.ob-run-mini{background:#2e7d32;color:#fff;border-radius:4px;padding:2px 8px;font-weight:700;}
+.ob-ide-body{display:flex;gap:0;height:120px;}
+.ob-ide-palette,.ob-ide-canvas,.ob-ide-sim{padding:8px;cursor:pointer;position:relative;transition:background .15s;}
+.ob-ide-palette{width:90px;background:#1e2d3e;border-right:1px solid #1a2b3c;}
+.ob-ide-canvas{flex:1;background:#fff;}
+.ob-ide-sim{width:90px;background:#0d1520;border-left:1px solid #1e2d3e;}
+.ob-ide-palette:hover,.ob-ide-canvas:hover,.ob-ide-sim:hover{filter:brightness(1.15);}
+.ob-hs{
+  width:20px;height:20px;border-radius:50%;
+  background:#1a6bc1;color:#fff;font-size:10px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid #fff;box-shadow:0 0 0 2px #1a6bc1;
+  position:absolute;top:5px;right:5px;z-index:10;
+  animation:hsPulse 1.5s ease-in-out infinite;
+}
+@keyframes hsPulse{0%,100%{box-shadow:0 0 0 2px #1a6bc1}50%{box-shadow:0 0 0 5px rgba(26,107,193,0)}}
+.ob-pal-mini-blk{background:#c47a1a;color:#fff;border-radius:3px;padding:2px 5px;font-size:8px;font-weight:700;margin-bottom:3px;white-space:nowrap;}
+.ob-canvas-loop{background:#f4f6f8;border:1px solid #e0e4ea;border-radius:4px;padding:5px;margin-top:16px;}
+.ob-sim-mini{height:50px;background:#060d18;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.ob-idespot-info{background:#f0f5ff;border:1px solid #c8daf0;border-radius:8px;padding:10px 13px;font-size:12px;color:#1c2733;line-height:1.55;min-height:46px;}
+
+/* ── Step 6: First task ── */
+.ob-first-task{display:flex;flex-direction:column;gap:7px;}
+.ob-ft-step{display:flex;gap:10px;align-items:flex-start;background:#f7f8fc;border:1px solid #e4e8f0;border-radius:8px;padding:8px 11px;}
+.ob-ft-num{min-width:22px;height:22px;border-radius:50%;background:#1a6bc1;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+.ob-ft-step div{font-size:12px;color:#1c2733;line-height:1.5;}
+
+/* ── In-IDE guided tooltip overlay ── */
+#guide-overlay{
+  position:fixed;inset:0;pointer-events:none;z-index:1000;
+}
+.guide-tooltip{
+  position:fixed;pointer-events:all;
+  background:#1c2733;color:#fff;border-radius:12px;
+  padding:13px 16px;width:270px;
+  box-shadow:0 8px 32px rgba(0,0,0,.4);
+  font-size:12.5px;line-height:1.55;
+  border:1.5px solid rgba(26,107,193,.6);
+  animation:tooltipIn .3s cubic-bezier(.175,.885,.32,1.275);
+  z-index:1001;
+}
+@keyframes tooltipIn{from{opacity:0;transform:scale(.9) translateY(6px)}to{opacity:1;transform:none}}
+.guide-tooltip::before{
+  content:'';position:absolute;
+  border:7px solid transparent;
+}
+.guide-tooltip.tip-left::before{right:-14px;top:50%;transform:translateY(-50%);border-left-color:#1c2733;}
+.guide-tooltip.tip-bottom::before{top:-14px;left:22px;border-bottom-color:#1c2733;}
+.gt-step{font-size:9.5px;font-weight:700;color:#58a0e0;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px;}
+.gt-title{font-size:14px;font-weight:700;margin-bottom:5px;}
+.gt-body{color:#c8d8e8;font-size:12px;}
+.gt-foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;}
+.gt-skip{background:transparent;border:none;color:#6a8aaa;font-size:11px;cursor:pointer;font-family:inherit;padding:0;}
+.gt-skip:hover{color:#8aaac8;}
+.gt-next{background:#1a6bc1;color:#fff;border:none;border-radius:7px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;}
+.gt-next:hover{background:#155fa8;}
+.guide-pulse{
+  position:fixed;pointer-events:none;
+  border:2px solid #f5c518;border-radius:8px;
+  box-shadow:0 0 0 3px rgba(245,197,24,.25);
+  animation:guidePulse 1.2s ease-in-out infinite;
+  z-index:999;
+}
+@keyframes guidePulse{0%,100%{box-shadow:0 0 0 3px rgba(245,197,24,.25)}50%{box-shadow:0 0 0 8px rgba(245,197,24,0)}}
+
+/* ── Guided task highlight pulse ── */
+.gt-highlight{
+  outline:3px solid #1a6bc1 !important;
+  outline-offset:3px !important;
+  box-shadow:0 0 0 6px rgba(26,107,193,.2) !important;
+  transition:outline .3s,box-shadow .3s;
+  position:relative;z-index:800 !important;
+}
+
+/* ── Competition task list ── */
+.ob-task-list{display:flex;flex-direction:column;gap:8px;}
+.ob-task{display:flex;gap:11px;align-items:flex-start;background:#f7f8fc;border:1px solid #e4e8f0;border-radius:9px;padding:10px 12px;}
+.ob-task-num{min-width:24px;height:24px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px;}
+.ob-task-title{font-size:12.5px;font-weight:700;color:#1c2733;margin-bottom:3px;}
+.ob-task-sub{font-size:11px;color:#4a5a6a;line-height:1.5;}
+.ob-task-sub code{background:#e8eaf0;border-radius:3px;padding:1px 4px;font-family:'Source Code Pro',monospace;font-size:10.5px;color:#1a6bc1;}
+
+/* ── Sim game field overlays ── */
+.gf-boundary{
+  position:absolute;
+  /* 1×1m boundary = 76% of viewport (leaves some margin) */
+  width:76%; height:76%;
+  left:12%; top:12%;
+  border:1.5px dashed rgba(58,106,191,.5);
+  border-radius:3px;
+  pointer-events:none;
+}
+.gf-imgzone{
+  position:absolute;
+  /* 0.7×0.7m = 70% of boundary = ~53% of viewport */
+  width:53%; height:53%;
+  left:23.5%; top:23.5%;
+  background:rgba(58,140,90,.12);
+  border:1.5px solid rgba(58,200,100,.5);
+  border-radius:2px;
+  pointer-events:none;
+  display:flex;align-items:flex-end;justify-content:center;
+}
+.gf-iz-label{
+  font-size:8px;color:rgba(80,200,120,.7);font-weight:600;
+  padding:2px 0 3px;letter-spacing:.04em;text-transform:uppercase;
+}
+/* Debris blocks */
+.gf-debris{
+  position:absolute;
+  background:#222;
+  border:1.5px solid #888;
+  border-radius:2px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:8px;color:#bbb;font-weight:700;
+  transition:left .4s cubic-bezier(.4,0,.2,1), top .4s cubic-bezier(.4,0,.2,1), opacity .3s;
+  cursor:help;
+  z-index:8;
+}
+.gf-big{ width:18px; height:18px; }
+.gf-sm{  width:8px;  height:8px;  font-size:6px; }
+.gf-debris.cleared{ opacity:0; pointer-events:none; }
+.gf-debris.grabbed{ border-color:#f5c518; box-shadow:0 0 6px rgba(245,197,24,.6); }
+
+/* ── Resizable sim panel ── */
+.sim-panel{
+  position:relative;
+}
+.sim-resize-handle{
+  position:absolute;
+  left:-4px; top:0; bottom:0;
+  width:8px;
+  cursor:col-resize;
+  z-index:100;
+  background:transparent;
+  transition:background .15s;
+}
+.sim-resize-handle:hover,
+.sim-resize-handle.dragging{
+  background:rgba(26,107,193,.5);
+}
+.sim-resize-handle::after{
+  content:'';
+  position:absolute;
+  left:3px; top:50%; transform:translateY(-50%);
+  width:2px; height:32px;
+  background:rgba(100,160,220,.4);
+  border-radius:1px;
+}
+
+/* ── Safe drop zones ── */
+.gf-dropzone{
+  position:absolute;
+  background:rgba(46,125,50,.18);
+  border:1px dashed rgba(46,200,80,.4);
+  pointer-events:none;
+  z-index:2;
+}
+/* Each corner = from boundary edge to imaging field edge
+   Boundary: 12%–88% of viewport (76% wide)
+   Imaging:  23.5%–76.5% of viewport (53% wide)
+   So corners go: 12% → 23.5% and 76.5% → 88% */
+#gf-dz-tl{ left:12%;  top:12%;    width:11.5%; height:11.5%; border-radius:2px 0 0 0; }
+#gf-dz-tr{ right:12%; top:12%;    width:11.5%; height:11.5%; border-radius:0 2px 0 0; }
+#gf-dz-bl{ left:12%;  bottom:12%; width:11.5%; height:11.5%; border-radius:0 0 0 2px; }
+#gf-dz-br{ right:12%; bottom:12%; width:11.5%; height:11.5%; border-radius:0 0 2px 0; }
+
+/* Drop zone label that appears on hover */
+.gf-dropzone::after{
+  content:'✓ drop here';
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  font-size:7px;
+  color:rgba(80,200,100,.8);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  white-space:nowrap;
+  pointer-events:none;
+}
+
+/* Highlight drop zones when carrying an object */
+.carrying .gf-dropzone{
+  background:rgba(46,125,50,.3);
+  border-color:rgba(80,220,100,.7);
+  animation:dzPulse 1.2s ease-in-out infinite;
+}
+@keyframes dzPulse{
+  0%,100%{border-color:rgba(80,220,100,.4);}
+  50%{border-color:rgba(80,220,100,1); background:rgba(46,125,50,.4);}
+}
+
+/* Imaging field danger label */
+.gf-imgzone .gf-iz-danger{
+  display:none;
+  font-size:7.5px;
+  color:rgba(220,80,80,.9);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+.carrying .gf-imgzone .gf-iz-danger{ display:block; }
+.carrying .gf-imgzone .gf-iz-label{ display:none; }
 </style>
 </head>
 <body>
 
 <!-- ONBOARDING OVERLAY -->
 <div id="ov">
-  <!-- Step screens -->
+
+  <!-- ══ STEP 1: Cinematic intro ══ -->
   <div class="ob-screen" id="ob1">
-    <!-- Cinematic intro -->
     <div class="ob-cinema">
       <div class="ob-stars"></div>
       <div class="ob-iss-label">International Space Station · 408 km above Earth</div>
-      <div class="ob-astrobee-big" id="ob-ab-anim">
+      <div class="ob-astrobee-big">
         <div class="ob-ab-glow"></div>
-        <div class="ob-ab-body">
-          <div class="ob-ab-eye"></div>
-          <div class="ob-ab-mouth"></div>
-        </div>
-        <div class="ob-ab-arm ob-ab-arm-l"></div>
-        <div class="ob-ab-arm ob-ab-arm-r"></div>
+        <div class="ob-ab-body"><div class="ob-ab-eye"></div><div class="ob-ab-mouth"></div></div>
+        <div class="ob-ab-arm ob-ab-arm-l"></div><div class="ob-ab-arm ob-ab-arm-r"></div>
       </div>
-      <!-- Chat bubble from Astrobee -->
       <div class="ob-bubble ob-bubble-ab" id="ob-bubble1">
         <div class="ob-bubble-av" style="background:#1a6bc1">🤖</div>
         <div class="ob-bubble-txt">
-          <div class="ob-bubble-name">Astrobee</div>
-          <div class="ob-bubble-msg">Hey! I'm Astrobee — a real robot floating aboard the ISS right now. I need YOUR code to move. 🚀</div>
+          <div class="ob-bubble-name">Astrobee · Honey</div>
+          <div class="ob-bubble-msg">MAYDAY! The ISS was hit by space debris. An astronaut is trapped — I need YOUR code to rescue them. 🚨</div>
         </div>
       </div>
       <div class="ob-bubble ob-bubble-you" id="ob-bubble2" style="opacity:0;transform:translateY(10px)">
         <div class="ob-bubble-txt" style="text-align:right">
           <div class="ob-bubble-name" style="text-align:right">You</div>
-          <div class="ob-bubble-msg">Wait… I'm actually programming a robot in space? 😮</div>
+          <div class="ob-bubble-msg">Wait — I'm actually programming a REAL robot on the ISS?! 😮</div>
         </div>
-        <div class="ob-bubble-av" style="background:linear-gradient(135deg,#1a6bc1,#1559a8);font-size:9px;letter-spacing:0">YOU</div>
+        <div class="ob-bubble-av" style="background:#1a6bc1;font-size:9px">YOU</div>
       </div>
       <div class="ob-bubble ob-bubble-ab" id="ob-bubble3" style="opacity:0;transform:translateY(10px)">
         <div class="ob-bubble-av" style="background:#1a6bc1">🤖</div>
         <div class="ob-bubble-txt">
-          <div class="ob-bubble-name">Astrobee</div>
-          <div class="ob-bubble-msg">Exactly! Snap some blocks together and tell me where to go. It's easier than you think. Ready? 👾</div>
+          <div class="ob-bubble-name">Astrobee · Honey</div>
+          <div class="ob-bubble-msg">Yes! Snap some blocks together and I'll fly. Let me show you how — click through and try stuff! 👾</div>
+        </div>
+      </div>
+      <div class="ob-cin-foot">
+        <div class="ob-cin-dots"><div class="obd on"></div><div class="obd"></div><div class="obd"></div><div class="obd"></div><div class="obd"></div><div class="obd"></div></div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <button style="background:transparent;border:none;color:rgba(140,180,220,.55);font-family:Inter,sans-serif;font-size:12px;cursor:pointer;padding:4px 8px;border-radius:5px" data-oc="startCoding()">Skip tutorial</button>
+          <button class="ob-btn-next" data-oc="goStep(2)">Let's go! →</button>
         </div>
       </div>
     </div>
-    <div class="ob-cin-foot">
-      <div class="ob-cin-dots"><div class="obd on"></div><div class="obd"></div><div class="obd"></div><div class="obd"></div><div class="obd"></div></div>
-      <button class="ob-btn-next" onclick="goStep(2)">Let's go! &rarr;</button>
-    </div>
   </div>
 
+  <!-- ══ STEP 2: Interactive mission field — click a debris to "select" it ══ -->
   <div class="ob-screen" id="ob2" style="display:none">
-    <div class="ob-card">
-      <div class="ob-card-top" style="background:linear-gradient(135deg,#0a1628,#1a3050)">
-        <div class="ob-card-icon">🛰️</div>
-        <div class="ob-card-title">Your Mission</div>
-        <div class="ob-card-sub">Zero Robotics · 2026 Tournament</div>
-      </div>
-      <div class="ob-card-body">
-        <div class="ob-mission-line">
-          <div class="ob-mission-icon">📍</div>
-          <div><strong>Navigate Astrobee</strong> to scan hidden debris fields inside the ISS — earn points for accuracy and speed.</div>
+    <div class="ob-card" style="width:580px">
+      <div class="ob-card-body" style="padding-top:16px">
+        <div class="ob-step-header">
+          <span class="ob-step-pill">👆 Try it</span>
+          <span class="ob-step-title">Your Mission Field — click a debris block!</span>
         </div>
-        <div class="ob-mission-line">
-          <div class="ob-mission-icon">🧱</div>
-          <div><strong>Use blocks</strong> to write the code — no syntax errors, no semicolons, just drag and snap.</div>
-        </div>
-        <div class="ob-mission-line">
-          <div class="ob-mission-icon">👥</div>
-          <div><strong>Collaborate</strong> with your team — leave pins, get mentor feedback, race to the best score.</div>
-        </div>
-        <!-- Astrobee speech bubble -->
-        <div class="ob-inline-bubble">
-          <span class="ob-inline-av">🤖</span>
-          <div class="ob-inline-msg">"The team with the highest score gets to watch their actual code run on me… aboard the REAL ISS. No pressure 😅"</div>
-        </div>
-      </div>
-      <div class="ob-card-foot">
-        <div class="ob-cin-dots"><div class="obd done"></div><div class="obd on"></div><div class="obd"></div><div class="obd"></div><div class="obd"></div></div>
-        <div style="display:flex;gap:8px">
-          <button class="ob-btn-back" onclick="goStep(1)">&larr;</button>
-          <button class="ob-btn-next" onclick="goStep(3)">Got it! &rarr;</button>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="ob-step-sub">There are 6 debris objects blocking my camera. Click any numbered block to learn about it.</div>
 
-  <div class="ob-screen" id="ob3" style="display:none">
-    <div class="ob-card">
-      <div class="ob-card-body" style="padding-top:22px">
-        <div class="ob-chat-flow">
-          <div class="ob-cf-bubble left">
-            <span class="ob-cf-av" style="background:#1a6bc1">🤖</span>
-            <div class="ob-cf-msg">OK so — there are two kinds of blocks. First: <strong style="color:#3a6abf">Command blocks</strong>. Blue, green, teal. They DO things.</div>
-          </div>
-          <div class="ob-cf-demo">
-            <div class="ob-blk c-blue"><div class="r">setPos &nbsp;<span class="ob-s">1.5</span><span class="ob-s">0.3</span><span class="ob-s">-0.8</span></div></div>
-            <div class="ob-blk pill c-teal" style="margin-top:5px"><div class="r">activate scanner</div></div>
-          </div>
-          <div class="ob-cf-bubble left" style="animation-delay:.3s">
-            <span class="ob-cf-av" style="background:#1a6bc1">🤖</span>
-            <div class="ob-cf-msg">Then: <strong style="color:#c47a1a">Reporter blocks</strong>. Orange, purple. They RETURN a value — like a sensor reading. Snap them into oval slots 🟠</div>
-          </div>
-          <div class="ob-cf-demo">
-            <div style="display:flex;align-items:center;gap:6px">
-              <div class="ob-blk c-blue"><div class="r">setPos &nbsp;<span class="ob-s ob-s-hi">?</span><span class="ob-s">0</span><span class="ob-s">0</span></div></div>
-              <div style="font-size:11px;color:#c47a1a;font-weight:700">← drop reporter here</div>
+        <div class="ob-ifield-wrap">
+          <!-- Boundary -->
+          <div class="ob-ifield" id="ob-ifield">
+            <!-- Imaging field (green) -->
+            <div class="ob-ifield-img">
+              <div class="ob-ifield-label">📷 Imaging Field<br><span>clear this area!</span></div>
+              <!-- Debris — clickable -->
+              <div class="ob-idebris ob-id-big" style="top:13%;left:52%" data-id="0" data-oc="selectDebris(0)">0</div>
+              <div class="ob-idebris ob-id-big" style="top:57%;left:60%" data-id="1" data-oc="selectDebris(1)">1</div>
+              <div class="ob-idebris ob-id-big" style="top:46%;left:18%" data-id="2" data-oc="selectDebris(2)">2</div>
+              <div class="ob-idebris ob-id-sm"  style="top:15%;left:28%" data-id="3" data-oc="selectDebris(3)">3</div>
+              <div class="ob-idebris ob-id-sm"  style="top:38%;left:43%" data-id="4" data-oc="selectDebris(4)">4</div>
+              <div class="ob-idebris ob-id-sm"  style="top:63%;left:34%" data-id="5" data-oc="selectDebris(5)">5</div>
             </div>
-            <div class="ob-blk reporter-face c-orange" style="margin-top:5px;border-radius:12px"><div class="r">get ZRState pos_x</div></div>
+            <!-- Start corners -->
+            <div class="ob-icorner" style="top:2%;left:2%">S0<br><small>(-0.5,0.5)</small></div>
+            <div class="ob-icorner" style="top:2%;right:2%">S1<br><small>(0.5,0.5)</small></div>
+            <div class="ob-icorner" style="bottom:2%;left:2%">S3<br><small>(-0.5,-0.5)</small></div>
+            <div class="ob-icorner" style="bottom:2%;right:2%">S2<br><small>(0.5,-0.5)</small></div>
+            <!-- Astrobee (draggable-look) -->
+            <div class="ob-iab" id="ob-iab" title="Astrobee starts at a corner">🤖</div>
+            <!-- Home -->
+            <div class="ob-ihome">🏠<div style="font-size:7px">(0,0)</div></div>
           </div>
-          <div class="ob-cf-bubble right">
-            <div class="ob-cf-msg" style="background:#eef3fb;color:#1c2733">Oh! So reporters are like variables I can plug in?</div>
-            <span class="ob-cf-av" style="background:linear-gradient(135deg,#1a6bc1,#1559a8)">YO</span>
-          </div>
-          <div class="ob-cf-bubble left" style="animation-delay:.2s">
-            <span class="ob-cf-av" style="background:#1a6bc1">🤖</span>
-            <div class="ob-cf-msg">EXACTLY. You're basically a programmer now. 🎉</div>
+          <!-- Info panel -->
+          <div class="ob-dinfo" id="ob-dinfo">
+            <div class="ob-dinfo-empty" id="ob-dinfo-empty">← Click a debris block to learn about it</div>
+            <div class="ob-dinfo-content" id="ob-dinfo-content" style="display:none">
+              <div class="ob-dinfo-id" id="ob-dinfo-id"></div>
+              <div class="ob-dinfo-row"><span>Size:</span><span id="ob-dinfo-size"></span></div>
+              <div class="ob-dinfo-row"><span>Mass:</span><span id="ob-dinfo-mass"></span></div>
+              <div class="ob-dinfo-row"><span>Position:</span><span id="ob-dinfo-pos"></span></div>
+              <div class="ob-dinfo-row"><span>If cleared:</span><span id="ob-dinfo-pts" class="ob-pts-good"></span></div>
+              <div class="ob-dinfo-row"><span>If left in:</span><span id="ob-dinfo-pen" class="ob-pts-bad"></span></div>
+              <div class="ob-dinfo-tip" id="ob-dinfo-tip"></div>
+            </div>
           </div>
         </div>
+        <div class="ob-progress-hint" id="ob-dprogress">Click all 6 blocks: <span id="ob-dcount">0</span>/6 discovered</div>
       </div>
       <div class="ob-card-foot">
-        <div class="ob-cin-dots"><div class="obd done"></div><div class="obd done"></div><div class="obd on"></div><div class="obd"></div><div class="obd"></div></div>
-        <div style="display:flex;gap:8px">
-          <button class="ob-btn-back" onclick="goStep(2)">&larr;</button>
-          <button class="ob-btn-next" onclick="goStep(4)">Nice, next &rarr;</button>
-        </div>
+        <div class="ob-cin-dots"><div class="obd done"></div><div class="obd on"></div><div class="obd"></div><div class="obd"></div><div class="obd"></div><div class="obd"></div></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;width:100%"><button style="background:transparent;border:none;color:#b0b8c8;font-family:Inter,sans-serif;font-size:11px;cursor:pointer;padding:3px 0" data-oc="startCoding()">Skip tutorial</button><div style="display:flex;gap:8px">
+          <button class="ob-btn-back" data-oc="goStep(1)">←</button>
+          <button class="ob-btn-next" data-oc="goStep(3)">Got it →</button>
+        </div></div>
       </div>
     </div>
   </div>
 
+  <!-- ══ STEP 3: Interactive API — click a block to "try" it ══ -->
+  <div class="ob-screen" id="ob3" style="display:none">
+    <div class="ob-card" style="width:580px">
+      <div class="ob-card-body" style="padding-top:16px">
+        <div class="ob-step-header">
+          <span class="ob-step-pill">👆 Try it</span>
+          <span class="ob-step-title">Your 5 Commands — tap each block!</span>
+        </div>
+        <div class="ob-step-sub">These are the only blocks you need. Tap each one to see what it does and watch Astrobee react. </div>
+
+        <div class="ob-api-tryout">
+          <!-- Mini sim viewport -->
+          <div class="ob-minisim" id="ob-minisim">
+            <div class="ob-ms-boundary">
+              <div class="ob-ms-imgzone"></div>
+              <!-- Mini debris -->
+              <div class="ob-ms-deb" id="ms-d0" style="top:22%;left:58%">0</div>
+              <div class="ob-ms-deb" id="ms-d1" style="top:60%;left:64%">1</div>
+              <div class="ob-ms-deb ms-sm" id="ms-d3" style="top:18%;left:30%">3</div>
+              <div class="ob-ms-home" id="ms-home">🏠</div>
+              <div class="ob-ms-ab" id="ob-ms-ab">🤖</div>
+              <div class="ob-ms-target" id="ob-ms-target" style="display:none"></div>
+            </div>
+            <div class="ob-ms-log" id="ob-ms-log">Tap a command block below!</div>
+          </div>
+          <!-- Command blocks to click -->
+          <div class="ob-cmd-list">
+            <div class="ob-cmd-block" data-oc="tryCmd('moveto')" id="cmd-moveto">
+              <div class="ob-cmd-blk" style="background:#c47a1a">Move To <span class="ob-api-slot">0.5</span><span class="ob-api-slot">0.5</span></div>
+              <div class="ob-cmd-desc">Fly to any (x,y) within boundary</div>
+            </div>
+            <div class="ob-cmd-block" data-oc="tryCmd('grab')" id="cmd-grab">
+              <div class="ob-cmd-blk" style="background:#c47a1a">Grab Object <span class="ob-api-slot">0</span></div>
+              <div class="ob-cmd-desc">Pick up debris — must be within 0.1m</div>
+            </div>
+            <div class="ob-cmd-block" data-oc="tryCmd('drop')" id="cmd-drop">
+              <div class="ob-cmd-blk" style="background:#c47a1a">Drop Object</div>
+              <div class="ob-cmd-desc">Release here — center must leave green zone</div>
+            </div>
+            <div class="ob-cmd-block" data-oc="tryCmd('home')" id="cmd-home">
+              <div class="ob-cmd-blk" style="background:#c47a1a">Move To Home</div>
+              <div class="ob-cmd-desc">Return to (0,0) — do this before EndGame!</div>
+            </div>
+            <div class="ob-cmd-block" data-oc="tryCmd('end')" id="cmd-end">
+              <div class="ob-cmd-blk" style="background:#c47a1a">End Game</div>
+              <div class="ob-cmd-desc">Stop timer + score. Must be at (0,0) first!</div>
+            </div>
+          </div>
+        </div>
+        <div class="ob-progress-hint" id="ob-cprogress">Tap all 5 commands: <span id="ob-ccount">0</span>/5 tried</div>
+      </div>
+      <div class="ob-card-foot">
+        <div class="ob-cin-dots"><div class="obd done"></div><div class="obd done"></div><div class="obd on"></div><div class="obd"></div><div class="obd"></div><div class="obd"></div></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;width:100%"><button style="background:transparent;border:none;color:#b0b8c8;font-family:Inter,sans-serif;font-size:11px;cursor:pointer;padding:3px 0" data-oc="startCoding()">Skip tutorial</button><div style="display:flex;gap:8px">
+          <button class="ob-btn-back" data-oc="goStep(2)">←</button>
+          <button class="ob-btn-next" data-oc="goStep(4)">Scoring →</button>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ STEP 4: Scoring — tap each row to reveal ══ -->
   <div class="ob-screen" id="ob4" style="display:none">
     <div class="ob-card">
-      <div class="ob-card-body" style="padding-top:22px">
-        <div class="ob-chat-flow">
-          <div class="ob-cf-bubble left">
-            <span class="ob-cf-av" style="background:#1a6bc1">🤖</span>
-            <div class="ob-cf-msg">There's a <strong>loop block</strong> waiting for you on the canvas. Drag stuff into it from the left panel. Like this 👇</div>
+      <div class="ob-card-body" style="padding-top:16px">
+        <div class="ob-step-header">
+          <span class="ob-step-pill">👆 Try it</span>
+          <span class="ob-step-title">Scoring — tap each part to reveal it</span>
+        </div>
+        <div class="ob-score-formula">Total = 0.8×<span class="ob-sf-t">Time</span> + 1.0×<span class="ob-sf-b">Battery</span> + 1.2×<span class="ob-sf-q">Image Quality</span> − Penalties</div>
+        <div class="ob-reveal-list">
+          <div class="ob-reveal-item" data-oc="revealScore(this,'t')">
+            <div class="ob-reveal-q">⏱ What is Time Score?</div>
+            <div class="ob-reveal-a" style="display:none"><strong>T = 180 − seconds used.</strong> Call EndGame() early = higher score. Every second counts! The multiplier is 0.8×.</div>
           </div>
-          <div class="ob-cf-demo">
-            <div class="ob-blk cblk c-green" style="font-size:11px">
-              <div class="r">loop forever</div>
-              <div class="ob-mouth" style="min-height:44px;gap:5px">
-                <div class="ob-blk c-blue" style="animation:popIn .4s .1s both"><div class="r">setPos &nbsp;<span class="ob-s">1.5</span><span class="ob-s">0.3</span><span class="ob-s">-0.8</span></div></div>
-                <div class="ob-blk pill c-teal" style="animation:popIn .4s .3s both"><div class="r">activate scanner</div></div>
-              </div>
-              <div class="ob-cap c-green"></div>
+          <div class="ob-reveal-item" data-oc="revealScore(this,'b')">
+            <div class="ob-reveal-q">🔋 What is Battery Score?</div>
+            <div class="ob-reveal-a" style="display:none"><strong>B = 100 − battery used.</strong> Carrying heavy objects (mass 20) drains 32 units/meter. Light ones (mass 10) drain 22. Plan short paths! Multiplier 1.0×.</div>
+          </div>
+          <div class="ob-reveal-item" data-oc="revealScore(this,'q')">
+            <div class="ob-reveal-q">📷 What is Image Quality?</div>
+            <div class="ob-reveal-a" style="display:none"><strong>+50 per big object (0,1,2) cleared, +30 per small (3,4,5) cleared.</strong> Left inside? −20 or −10 each. This has the highest multiplier: 1.2×. Prioritize clearing!</div>
+          </div>
+          <div class="ob-reveal-item" data-oc="revealScore(this,'p')">
+            <div class="ob-reveal-q">⚠️ What are the Penalties?</div>
+            <div class="ob-reveal-a" style="display:none">
+              Over time 10–60s: <strong>−20 pts</strong> &nbsp;|&nbsp; Over 1 min: <strong>−100 pts</strong><br>
+              Battery &lt; 30%: <strong>−10 pts</strong> &nbsp;|&nbsp; Not at home when game ends: <strong>−10 pts</strong>
             </div>
           </div>
-          <div class="ob-cf-bubble left" style="animation-delay:.2s">
-            <span class="ob-cf-av" style="background:#1a6bc1">🤖</span>
-            <div class="ob-cf-msg">Change those 0s in setPos to real numbers — like 1.5, 0.3, -0.8 — then hit <strong style="color:#2e7d32">▶ Run</strong>. Watch me fly! ✨</div>
+        </div>
+        <div class="ob-progress-hint" id="ob-rprogress">Tap to reveal: <span id="ob-rcount">0</span>/4 uncovered</div>
+      </div>
+      <div class="ob-card-foot">
+        <div class="ob-cin-dots"><div class="obd done"></div><div class="obd done"></div><div class="obd done"></div><div class="obd on"></div><div class="obd"></div><div class="obd"></div></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;width:100%"><button style="background:transparent;border:none;color:#b0b8c8;font-family:Inter,sans-serif;font-size:11px;cursor:pointer;padding:3px 0" data-oc="startCoding()">Skip tutorial</button><div style="display:flex;gap:8px">
+          <button class="ob-btn-back" data-oc="goStep(3)">←</button>
+          <button class="ob-btn-next" data-oc="goStep(5)">Your Tasks →</button>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ STEP 5: Your actual tasks ══ -->
+  <div class="ob-screen" id="ob5" style="display:none">
+    <div class="ob-card" style="width:560px">
+      <div class="ob-card-top" style="background:linear-gradient(135deg,#111c2e,#1a3050);padding:20px 26px 16px">
+        <div class="ob-card-icon">📋</div>
+        <div class="ob-card-title">Your Competition Tasks</div>
+        <div class="ob-card-sub">Zero Robotics 2024 · Lost in Space</div>
+      </div>
+      <div class="ob-card-body">
+        <div class="ob-inline-bubble" style="margin-bottom:12px">
+          <span class="ob-inline-av">🤖</span>
+          <div class="ob-inline-msg">"Here's your exact to-do list for the competition. Each task earns points — plan your order carefully!"</div>
+        </div>
+        <div class="ob-task-list">
+          <div class="ob-task">
+            <div class="ob-task-num" style="background:#c0392b">1</div>
+            <div>
+              <div class="ob-task-title">Navigate to each debris object</div>
+              <div class="ob-task-sub">Use <code>MoveTo(x, y)</code> to fly to the object's coordinates. You must get within 0.1m to grab it.</div>
+            </div>
           </div>
-          <div class="ob-cf-bubble right">
-            <div class="ob-cf-msg" style="background:#eef3fb;color:#1c2733">What if something breaks?</div>
-            <span class="ob-cf-av" style="background:linear-gradient(135deg,#1a6bc1,#1559a8)">YO</span>
+          <div class="ob-task">
+            <div class="ob-task-num" style="background:#e67e22">2</div>
+            <div>
+              <div class="ob-task-title">Grab the debris</div>
+              <div class="ob-task-sub">Use <code>GrabObject(id)</code> — IDs 0–2 are 15cm heavy blocks, IDs 3–5 are 5cm light blocks. One at a time only!</div>
+            </div>
           </div>
-          <div class="ob-cf-bubble left" style="animation-delay:.15s">
-            <span class="ob-cf-av" style="background:#b03a2a">AX</span>
-            <div class="ob-cf-msg"><strong>Mentor Alex here!</strong> Don't worry — if you get an error, there's an "Explain Error" button that tells you exactly what's wrong 🛠️</div>
+          <div class="ob-task">
+            <div class="ob-task-num" style="background:#f1c40f;color:#1c2733">3</div>
+            <div>
+              <div class="ob-task-title">Move it outside the imaging field</div>
+              <div class="ob-task-sub">Fly to any position where |x| > 0.35 or |y| > 0.35 (outside the 0.7×0.7m green zone). Then <code>DropObject()</code>.</div>
+            </div>
           </div>
+          <div class="ob-task">
+            <div class="ob-task-num" style="background:#2e7d32">4</div>
+            <div>
+              <div class="ob-task-title">Repeat for all 6 objects</div>
+              <div class="ob-task-sub">Prioritize big objects (IDs 0,1,2) — they score +50 each. Small ones score +30. Clear all 6 for maximum points.</div>
+            </div>
+          </div>
+          <div class="ob-task">
+            <div class="ob-task-num" style="background:#1a6bc1">5</div>
+            <div>
+              <div class="ob-task-title">Return home &amp; end the game</div>
+              <div class="ob-task-sub">Call <code>MoveToHome()</code> then <code>EndGame()</code> before the 3-minute timer runs out. Not doing this = −10 pts penalty!</div>
+            </div>
+          </div>
+        </div>
+        <div style="background:#f0f6ff;border:1px solid #c8daf8;border-radius:8px;padding:9px 12px;margin-top:10px;font-size:11.5px;color:#1a3a5a;line-height:1.5">
+          💡 <strong>Strategy tip from Mentor Alex:</strong> Start near a corner (start position 0–3), grab the closest big block first, drop it just outside the green zone, repeat. Watch your battery — it starts at 100 and drains fast with heavy objects!
         </div>
       </div>
       <div class="ob-card-foot">
-        <div class="ob-cin-dots"><div class="obd done"></div><div class="obd done"></div><div class="obd done"></div><div class="obd on"></div><div class="obd"></div></div>
+        <div class="ob-cin-dots"><div class="obd done"></div><div class="obd done"></div><div class="obd done"></div><div class="obd done"></div><div class="obd on"></div><div class="obd"></div><div class="obd"></div></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;width:100%"><button style="background:transparent;border:none;color:#b0b8c8;font-family:Inter,sans-serif;font-size:11px;cursor:pointer;padding:3px 0" data-oc="startCoding()">Skip tutorial</button><div style="display:flex;gap:8px">
+          <button class="ob-btn-back" data-oc="goStep(4)">←</button>
+          <button class="ob-btn-next" data-oc="goStep(6)">Tour the IDE →</button>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ STEP 5 (now 6): IDE tour — click hotspots ══ -->
+  <div class="ob-screen" id="ob6" style="display:none">
+    <div class="ob-card" style="width:580px">
+      <div class="ob-card-body" style="padding-top:16px">
+        <div class="ob-step-header">
+          <span class="ob-step-pill">👆 Try it</span>
+          <span class="ob-step-title">IDE Tour — click each hotspot</span>
+        </div>
+        <!-- Fake IDE screenshot with clickable hotspots -->
+        <div class="ob-ide-mock">
+          <!-- Fake IDE chrome -->
+          <div class="ob-ide-topbar">
+            <div class="ob-ide-tb-left">File &nbsp; Edit &nbsp; <span style="color:#fff;font-weight:700">Simulate</span></div>
+            <div class="ob-ide-tb-right"><span class="ob-run-mini">▶ Run</span> &nbsp; C Code</div>
+          </div>
+          <div class="ob-ide-body">
+            <!-- Palette area -->
+            <div class="ob-ide-palette" data-oc="ideSpot('palette')">
+              <div class="ob-hs" id="hs-palette">1</div>
+              <div style="font-size:9px;color:#8ab4d0;margin-top:4px">SPHERES Controls</div>
+              <div class="ob-pal-mini-blk" style="background:#c47a1a">Move To</div>
+              <div class="ob-pal-mini-blk" style="background:#c47a1a">Grab Object</div>
+              <div class="ob-pal-mini-blk" style="background:#c47a1a">End Game</div>
+            </div>
+            <!-- Canvas area -->
+            <div class="ob-ide-canvas" data-oc="ideSpot('canvas')">
+              <div class="ob-hs" id="hs-canvas">2</div>
+              <div class="ob-canvas-loop">
+                <div style="font-size:9px;color:#8ab4d0;margin-bottom:3px">loop</div>
+                <div class="ob-pal-mini-blk" style="background:#c47a1a;margin-left:10px">Move To <span style="background:rgba(255,255,255,.8);color:#111;border-radius:2px;padding:0 3px;font-size:8px">0.5</span></div>
+                <div class="ob-pal-mini-blk" style="background:#c47a1a;margin-left:10px">Grab Object <span style="background:rgba(255,255,255,.8);color:#111;border-radius:2px;padding:0 3px;font-size:8px">0</span></div>
+              </div>
+            </div>
+            <!-- Sim panel area -->
+            <div class="ob-ide-sim" data-oc="ideSpot('sim')">
+              <div class="ob-hs" id="hs-sim">3</div>
+              <div style="font-size:8px;color:#8ab4d0;margin-bottom:4px">SIMULATION</div>
+              <div class="ob-sim-mini">
+                <div class="ob-sim-mini-ab">🤖</div>
+              </div>
+              <div style="font-size:8px;color:#5a7a9a;margin-top:3px">X: 0.000  Score: 0</div>
+            </div>
+          </div>
+        </div>
+        <!-- Hotspot info -->
+        <div class="ob-idespot-info" id="ob-idespot-info">
+          <div id="isi-default" style="color:#8ab4d0;font-size:12px;text-align:center;padding:8px">Click a numbered hotspot above ☝️</div>
+          <div id="isi-palette" style="display:none">
+            <strong>1 — Palette:</strong> Drag blocks from "SPHERES Controls" → find MoveTo, GrabObject, DropObject, MoveToHome, EndGame. Also Loops, Logic, Math.
+          </div>
+          <div id="isi-canvas" style="display:none">
+            <strong>2 — Canvas:</strong> Drop blocks into the loop body. Code runs top-to-bottom, one command at a time. Each must finish before the next starts.
+          </div>
+          <div id="isi-sim" style="display:none">
+            <strong>3 — Simulation:</strong> Press ▶ Run to watch me fly! Check the HUD for X/Y coords, battery %, and score. Hit Reset and try again anytime.
+          </div>
+        </div>
+        <div class="ob-progress-hint" id="ob-iprogress">Click hotspots: <span id="ob-icount">0</span>/3 explored</div>
+      </div>
+      <div class="ob-card-foot">
+        <div class="ob-cin-dots"><div class="obd done"></div><div class="obd done"></div><div class="obd done"></div><div class="obd done"></div><div class="obd on"></div><div class="obd"></div></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;width:100%"><button style="background:transparent;border:none;color:#b0b8c8;font-family:Inter,sans-serif;font-size:11px;cursor:pointer;padding:3px 0" data-oc="startCoding()">Skip tutorial</button><div style="display:flex;gap:8px">
+          <button class="ob-btn-back" data-oc="goStep(4)">←</button>
+          <button class="ob-btn-next" data-oc="goStep(7)">Almost there →</button>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ STEP 6: Launch + first task preview ══ -->
+  <div class="ob-screen" id="ob7" style="display:none">
+    <div class="ob-card">
+      <div class="ob-card-top" style="background:linear-gradient(135deg,#0a1628,#1a3050)">
+        <div style="font-size:36px;margin-bottom:6px">🚀</div>
+        <div class="ob-card-title">Ready, commander!</div>
+        <div class="ob-card-sub" style="color:#8ab4d0">When you launch, I'll guide your FIRST task step by step.</div>
+      </div>
+      <div class="ob-card-body">
+        <div style="font-size:12px;font-weight:700;color:#1c2733;margin-bottom:9px">🎯 Your first guided task inside the IDE:</div>
+        <div class="ob-first-task">
+          <div class="ob-ft-step"><div class="ob-ft-num">1</div><div>Drag a <strong>MoveTo</strong> block into the loop &rarr; set X=0.2, Y=0.2</div></div>
+          <div class="ob-ft-step"><div class="ob-ft-num">2</div><div>Press <strong>▶ Run</strong> — watch me fly to that spot</div></div>
+          <div class="ob-ft-step"><div class="ob-ft-num">3</div><div>Drag <strong>Grab Object</strong> → set id=0, then <strong>Drop Object</strong></div></div>
+          <div class="ob-ft-step"><div class="ob-ft-num">4</div><div>Add <strong>Move To Home</strong> → <strong>End Game</strong> → Run again</div></div>
+        </div>
+        <div class="ob-inline-bubble" style="margin-top:10px">
+          <span class="ob-inline-av">🤖</span>
+          <div class="ob-inline-msg">"A blue tooltip will follow you through each step. You can't mess this up — just try stuff! 💙"</div>
+        </div>
+      </div>
+      <div class="ob-card-foot">
+        <div class="ob-cin-dots"><div class="obd done"></div><div class="obd done"></div><div class="obd done"></div><div class="obd done"></div><div class="obd done"></div><div class="obd done"></div><div class="obd on"></div></div>
         <div style="display:flex;gap:8px">
-          <button class="ob-btn-back" onclick="goStep(3)">&larr;</button>
-          <button class="ob-btn-next" onclick="goStep(5)">Almost there &rarr;</button>
+          <button class="ob-btn-back" data-oc="goStep(6)">←</button>
+          <button class="ob-btn-launch" data-oc="startCoding()">🚀 Launch IDE</button>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="ob-screen" id="ob5" style="display:none">
-    <div class="ob-card">
-      <div class="ob-card-top" style="background:linear-gradient(135deg,#1a2b40,#243050);padding:28px 26px 20px">
-        <div style="font-size:36px;margin-bottom:8px">🏆</div>
-        <div class="ob-card-title" style="font-size:20px">You're ready, commander.</div>
-        <div class="ob-card-sub" style="color:#8ab4d0;margin-top:4px">Your first mission awaits aboard the ISS.</div>
-      </div>
-      <div class="ob-card-body">
-        <div class="ob-checklist">
-          <div class="ob-cl-item"><div class="ob-cl-check">✓</div><div>Know what Astrobee is <span class="ob-cl-sub">— a real robot 408km up 🛸</span></div></div>
-          <div class="ob-cl-item"><div class="ob-cl-check">✓</div><div>Understand command vs reporter blocks <span class="ob-cl-sub">— snap & stack</span></div></div>
-          <div class="ob-cl-item"><div class="ob-cl-check">✓</div><div>Know how to fill a loop body <span class="ob-cl-sub">— drag in, drop in</span></div></div>
-          <div class="ob-cl-item"><div class="ob-cl-check">✓</div><div>Know where to get help <span class="ob-cl-sub">— error bar + Pin Mode + Ask Mentor</span></div></div>
-        </div>
-        <div class="ob-inline-bubble" style="margin-top:14px">
-          <span class="ob-inline-av">🤖</span>
-          <div class="ob-inline-msg">"I'll be waiting in the simulation panel. Don't leave me hanging! 🤞"</div>
-        </div>
-      </div>
-      <div class="ob-card-foot">
-        <div class="ob-cin-dots"><div class="obd done"></div><div class="obd done"></div><div class="obd done"></div><div class="obd done"></div><div class="obd on"></div></div>
-        <div style="display:flex;gap:8px">
-          <button class="ob-btn-back" onclick="goStep(4)">&larr;</button>
-          <button class="ob-btn-launch" onclick="startCoding()">🚀 Launch IDE</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
-<button class="help-fab" id="hfab" onclick="reopenGuide()">🤖 Need Help?</button>
+<button class="help-fab" id="hfab" data-oc="reopenGuide()">📖 Replay Tutorial</button>
+<button class="help-fab" id="taskfab" style="left:170px" data-oc="showTasks()">📋 View Tasks</button>
+
+
 
 <!-- IDE -->
 <div id="ide">
@@ -768,38 +1340,38 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
   <div class="toolbar">
     <button class="tb">File</button><button class="tb">Edit</button><button class="tb">Simulate</button>
     <div class="tb-sep"></div>
-    <button class="run-btn" id="run-btn" onclick="runCode()"><svg viewBox="0 0 10 12"><path d="M1 1l8 5-8 5V1z"/></svg>Run</button>
+    <button class="run-btn" id="run-btn" data-oc="runCode()"><svg viewBox="0 0 10 12"><path d="M1 1l8 5-8 5V1z"/></svg>Run</button>
     <div class="tb-sep"></div>
     <span class="save-st">All changes saved.</span>
     <div class="tb-sep"></div>
-    <button class="pill-btn" id="pm-btn" onclick="togglePinMode()">Pin Mode</button>
-    <button class="pill-btn" onclick="toggleCS()">Comments</button>
+    <button class="pill-btn" id="pm-btn" data-oc="togglePinMode()">Pin Mode</button>
+    <button class="pill-btn" data-oc="toggleCS()">Comments</button>
     <div class="tb-sep"></div>
-    <button class="ask-btn" onclick="askHelp()">Ask for Help</button>
-    <button class="pill-btn" onclick="showCCode()">C Code</button>
+    <button class="ask-btn" data-oc="askHelp()">Ask for Help</button>
+    <button class="pill-btn" data-oc="showCCode()">C Code</button>
     <div class="tb-sep"></div>
     <div class="proj-meta"><div class="proj-name">xxxx</div><div class="proj-sub">Free Mode (C language)</div></div>
   </div>
   <div class="main">
     <div class="pages-panel">
       <div class="pp-head">Pages</div>
-      <div class="page-item" onclick="selPage(this)">init</div>
-      <div class="page-item active" onclick="selPage(this)">main</div>
+      <div class="page-item" data-oc="selPage(this)">init</div>
+      <div class="page-item active" data-oc="selPage(this)">main</div>
       <div class="page-adds"><div class="paddbtn">+</div><div class="paddbtn" style="font-size:17px;line-height:1">−</div></div>
       <div class="log-head">Log</div>
       <div class="log-list" id="log-list"><div style="padding:10px 14px;font-size:11px;color:var(--muted);font-style:italic" id="log-empty">No entries yet.</div></div>
     </div>
     <div class="palette" id="palette">
-      <button class="cat-btn active" onclick="selCat(this,'spheres')"><span class="cat-dot" style="background:#5a8a3c"></span>SPHERES Controls</button>
-      <button class="cat-btn" onclick="selCat(this,'debug')"><span class="cat-dot" style="background:#3a8a7a"></span>Debug</button>
-      <button class="cat-btn" onclick="selCat(this,'vars')"><span class="cat-dot" style="background:#c47a1a"></span>Variables</button>
-      <button class="cat-btn" onclick="selCat(this,'logic')"><span class="cat-dot" style="background:#3a6abf"></span>Logic</button>
-      <button class="cat-btn" onclick="selCat(this,'math')"><span class="cat-dot" style="background:#7a4aab"></span>Math</button>
+      <button class="cat-btn active" data-oc="selCat(this,'spheres')"><span class="cat-dot" style="background:#5a8a3c"></span>SPHERES Controls</button>
+      <button class="cat-btn" data-oc="selCat(this,'debug')"><span class="cat-dot" style="background:#3a8a7a"></span>Debug</button>
+      <button class="cat-btn" data-oc="selCat(this,'vars')"><span class="cat-dot" style="background:#c47a1a"></span>Variables</button>
+      <button class="cat-btn" data-oc="selCat(this,'logic')"><span class="cat-dot" style="background:#3a6abf"></span>Logic</button>
+      <button class="cat-btn" data-oc="selCat(this,'math')"><span class="cat-dot" style="background:#7a4aab"></span>Math</button>
       <div class="cat-sep"></div>
-      <button class="cat-btn" onclick="selCat(this,'loops')">Loops</button>
-      <button class="cat-btn" onclick="selCat(this,'zrms')"><span class="cat-dot" style="background:#7a8a3a"></span>Used for ZR MS</button>
-      <button class="cat-btn" onclick="selCat(this,'advanced')"><span class="cat-dot" style="background:#5a6b7d"></span>Advanced</button>
-      <button class="cat-btn" onclick="selCat(this,'fns')"><span class="cat-dot" style="background:#5a6b7d"></span>Functions</button>
+      <button class="cat-btn" data-oc="selCat(this,'loops')">Loops</button>
+      <button class="cat-btn" data-oc="selCat(this,'zrms')"><span class="cat-dot" style="background:#c47a1a"></span>🎮 Game Commands</button>
+      <button class="cat-btn" data-oc="selCat(this,'advanced')"><span class="cat-dot" style="background:#5a6b7d"></span>Advanced</button>
+      <button class="cat-btn" data-oc="selCat(this,'fns')"><span class="cat-dot" style="background:#5a6b7d"></span>Functions</button>
       <div class="pal-blocks" id="pal-blocks"></div>
     </div>
     <div class="work-area">
@@ -809,24 +1381,43 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
           <div class="trash" id="trash"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 18 18"><path d="M3 5h12M7 5V3h4v2M5 5l1 10h6l1-10"/></svg></div>
         </div>
         <div class="sim-panel" id="sim-panel">
-          <div class="sim-hdr"><span class="sim-title">Simulation</span><div style="display:flex;gap:5px"><button class="sim-hbtn" onclick="resetSim()">Reset</button><button class="sim-hbtn" onclick="document.getElementById('sim-panel').classList.toggle('collapsed')">Hide</button></div></div>
+          <div class="sim-resize-handle" id="sim-resize-handle"></div>
+          <div class="sim-hdr"><span class="sim-title">Simulation</span><div style="display:flex;gap:5px"><button class="sim-hbtn" data-oc="resetSim()">Reset</button><button class="sim-hbtn" data-oc="document.getElementById('sim-panel').classList.toggle('collapsed')">Hide</button></div></div>
           <div class="sim-vp" id="svp">
             <div class="iss-room"><div class="iss-grid"></div><div class="axis-x"></div><div class="axis-y"></div></div>
+            <!-- Game field overlays -->
+            <div class="gf-boundary" id="gf-boundary"></div>
+            <!-- Safe drop zone corners (outside imaging field, inside boundary) -->
+            <div class="gf-dropzone" id="gf-dz-tl" title="Safe drop zone"></div>
+            <div class="gf-dropzone" id="gf-dz-tr" title="Safe drop zone"></div>
+            <div class="gf-dropzone" id="gf-dz-bl" title="Safe drop zone"></div>
+            <div class="gf-dropzone" id="gf-dz-br" title="Safe drop zone"></div>
+            <div class="gf-imgzone" id="gf-imgzone"><div class="gf-iz-label">📷 imaging field — clear this!</div><div class="gf-iz-danger">⚠️ don't drop here!</div></div>
+            <!-- Debris objects: id, x, y in ZR coords -->
+            <div class="gf-debris gf-big" id="gfd-0" data-zx="0.20"  data-zy="0.20"  title="Object 0 · grab me!"></div>
+            <div class="gf-debris gf-big" id="gfd-1" data-zx="0.25"  data-zy="-0.25" title="Object 1 · grab me!"></div>
+            <div class="gf-debris gf-big" id="gfd-2" data-zx="-0.25" data-zy="-0.10" title="Object 2 · grab me!"></div>
+            <div class="gf-debris gf-sm"  id="gfd-3" data-zx="-0.20" data-zy="0.20"  title="Object 3 · grab me!"></div>
+            <div class="gf-debris gf-sm"  id="gfd-4" data-zx="0.15"  data-zy="0.00"  title="Object 4 · grab me!"></div>
+            <div class="gf-debris gf-sm"  id="gfd-5" data-zx="0.00"  data-zy="-0.15" title="Object 5 · grab me!"></div>
             <div class="target-m" id="tm"><div class="tm-ring"></div><div class="tm-dot"></div></div>
             <div class="astrobee" id="ab" style="left:calc(50% - 17px);top:calc(50% - 17px)"><div class="thglow"></div><div class="ab-body"><div class="ab-eye"></div><div class="ab-mouth-px"></div></div></div>
             <div class="scan-ring" id="sr1"></div><div class="scan-ring" id="sr2"></div>
             <div class="hud"><div class="hud-coord" id="hc">X: 0.000<br>Y: 0.000<br>Z: 0.000</div><div class="hud-status"><div><span class="hud-dot idle" id="hd"></span><span id="hs">Idle</span></div><div class="hud-score" id="hscore"></div></div></div>
           </div>
-          <div class="sim-console" id="scon"><div class="sc dim">[SIM] Ready. Press Run to start.</div></div>
+          <div id="drop-hint" style="display:none;background:#1a2e1a;border-top:1px solid rgba(46,200,80,.3);padding:5px 12px;font-size:10.5px;color:rgba(80,220,100,.9);font-weight:600;flex-shrink:0;">
+  ✓ DROP ZONE: fly to a corner — e.g. MoveTo(0.45, 0.45) or MoveTo(-0.45, -0.45) — then DropObject()
+</div>
+<div class="sim-console" id="scon"><div class="sc dim">[SIM] Ready. Press Run to start.</div></div>
         </div>
         <div class="cs" id="cs">
-          <div class="cs-head"><h3>Comments</h3><button class="cs-close" onclick="toggleCS()">×</button></div>
+          <div class="cs-head"><h3>Comments</h3><button class="cs-close" data-oc="toggleCS()">×</button></div>
           <div class="cs-body" id="csb"><div class="cs-empty" id="cse">No comments yet.</div></div>
         </div>
       </div>
       <div class="eb" id="eb">
-        <div class="eb-title">Block warning: "setPos" has zero coordinates — Astrobee will not move</div>
-        <div class="eb-explain" id="ebx">The setPos block is telling Astrobee to move to (0,0,0) — where it already is. Change the X, Y, Z inputs to a real target like 1.5, 0.3, -0.8 and run again.</div>
+        <div class="eb-title">Block warning: "setPos" has zero coordinates — Astrobee won't move!</div>
+        <div class="eb-explain" id="ebx">The setPos block is telling Astrobee to move to (0,0,0) — where it already is. Change the X, Y, Z inputs to a real target like 0.3, 0.2, 0 and run again.</div>
         <div class="scaff-panel" id="scaff" style="display:none">
           <div class="scaff-hint" id="sh1" style="display:none">
             <div class="scaff-lv">Hint 1 of 3</div>
@@ -834,18 +1425,18 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
           </div>
           <div class="scaff-hint" id="sh2" style="display:none">
             <div class="scaff-lv">Hint 2 of 3</div>
-            <div class="scaff-msg">📍 The ISS workspace goes roughly from <strong>-2 to +2</strong> on each axis. Try changing at least one of your setPos numbers to something non-zero — any value will do!</div>
+            <div class="scaff-msg">📍 The ISS workspace goes from <strong>-0.5 to +0.5</strong> on each axis. Try changing at least one of your setPos numbers to something non-zero — any value will do!</div>
           </div>
           <div class="scaff-hint" id="sh3" style="display:none">
             <div class="scaff-lv">Hint 3 of 3 · Last hint!</div>
-            <div class="scaff-msg">🧭 Try <strong>X somewhere between 1 and 2</strong>, Y between 0 and 1, and Z between -1 and 0. The exact values are up to you — experiment and see what score you get!</div>
+            <div class="scaff-msg">🧭 Try <strong>X between 0.1 and 0.4</strong>, Y between 0.1 and 0.4, Z can stay 0. The exact values are up to you — experiment and see what score you get!</div>
           </div>
         </div>
         <div class="eb-acts">
-          <button class="eb-btn eb-xpl" onclick="toggleExplain()">Explain Error</button>
-          <button class="eb-btn eb-jmp" onclick="jumpToBlock()">Jump to Block</button>
-          <button class="eb-btn eb-fix" id="hint-btn" onclick="showNextHint()">💡 Hint</button>
-          <button class="eb-btn eb-men" onclick="askHelp()">Ask Mentor</button>
+          <button class="eb-btn eb-xpl" data-oc="toggleExplain()">Explain Error</button>
+          <button class="eb-btn eb-jmp" data-oc="jumpToBlock()">Jump to Block</button>
+          <button class="eb-btn eb-fix" id="hint-btn" data-oc="showNextHint()">💡 Hint</button>
+          <button class="eb-btn eb-men" data-oc="askHelp()">Ask Mentor</button>
         </div>
       </div>
     </div>
@@ -857,10 +1448,9 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 <div class="snap-ghost" id="sg"></div>
 <div class="type-badge" id="tb"></div>
 <div class="toast" id="toast"><span id="tmsg"></span></div>
-<div id="ccm"><div id="ccm-inner"><div id="ccm-head"><span>Generated C Code</span><button id="ccm-close" onclick="document.getElementById('ccm').classList.remove('show')">×</button></div><pre id="ccm-pre"></pre></div></div>
+<div id="ccm"><div id="ccm-inner"><div id="ccm-head"><span>Generated C Code</span><button id="ccm-close" data-oc="document.getElementById('ccm').classList.remove('show')">×</button></div><pre id="ccm-pre"></pre></div></div>
 
 <script>
-'use strict';
 // ═══════════════════════════════════════════════
 //  PALETTE DEFINITIONS
 // ═══════════════════════════════════════════════
@@ -904,7 +1494,19 @@ const DEFS = {
     {type:'cblock',  color:'c-green',  label:'while',            slots:[{k:'rslot'}]},
   ],
   zrms:[
-    {type:'command', color:'c-olive',  label:'setPos row',       slots:[{k:'input',v:'0'},{k:'input',v:'0'},{k:'input',v:'0'}]},
+    {type:'command', color:'c-orange', label:'Move To',          slots:[{k:'input',v:'0'},{k:'input',v:'0'}]},
+    {type:'command', color:'c-orange', label:'Move To Home',     slots:[]},
+    {type:'command', color:'c-orange', label:'Grab Object',      slots:[{k:'input',v:'0'}]},
+    {type:'command', color:'c-orange', label:'Drop Object',      slots:[]},
+    {type:'command', color:'c-orange', label:'End Game',         slots:[]},
+    {type:'reporter',color:'c-orange', label:'Get Time',         slots:[]},
+    {type:'reporter',color:'c-orange', label:'Get Battery',      slots:[]},
+    {type:'reporter',color:'c-orange', label:'Get Score',        slots:[]},
+    {type:'reporter',color:'c-orange', label:'Get Object Being Carried', slots:[]},
+    {type:'reporter',color:'c-orange', label:'Get Object Loc X', slots:[{k:'input',v:'0'}]},
+    {type:'reporter',color:'c-orange', label:'Get Object Loc Y', slots:[{k:'input',v:'0'}]},
+    {type:'reporter',color:'c-orange', label:'Get Robot Pos X',  slots:[]},
+    {type:'reporter',color:'c-orange', label:'Get Robot Pos Y',  slots:[]},
   ],
   advanced:[
     {type:'command', color:'c-gray',   label:'#define',          slots:[{k:'input',v:'NAME'},{k:'input',v:'val'}]},
@@ -1542,43 +2144,225 @@ let _running = false;
 function runCode(){
   if(_running) return;
   let tx=0,ty=0,tz=0;
-  document.querySelectorAll('.zr-block[data-type="command"]').forEach(el=>{
-    const row = el.querySelector('.zr-row');
-    if(row && row.textContent.startsWith('setPos')){
-      const inputs = el.querySelectorAll('.bi');
-      if(inputs.length>=3){ tx=parseFloat(inputs[0].value)||0; ty=parseFloat(inputs[1].value)||0; tz=parseFloat(inputs[2].value)||0; }
+  // Search ONLY inside #ci (the canvas) — not the palette which has dummy inputs
+  let found=false;
+  const canvas = document.getElementById('ci');
+  if(canvas) canvas.querySelectorAll('input.bi').forEach(inp=>{
+    if(found) return;
+    const row = inp.closest('.zr-row');
+    if(!row) return;
+    let rowText = '';
+    row.childNodes.forEach(n=>{ if(n.nodeType===3) rowText += n.textContent; });
+    if(rowText.trim().startsWith('setPos')){
+      const all = Array.from(row.querySelectorAll('input.bi'));
+      if(all.length >= 3){
+        const parseVal = v => { const f = parseFloat(v); return isNaN(f) ? 0 : f; };
+        tx = parseVal(all[0].value);
+        ty = parseVal(all[1].value);
+        tz = parseVal(all[2].value);
+        found = true;
+      }
     }
   });
   const btn=document.getElementById('run-btn');
   btn.classList.add('running'); btn.innerHTML='<svg viewBox="0 0 10 12" style="width:10px;height:10px;fill:currentColor"><path d="M1 1l8 5-8 5V1z"/></svg> Running...';
   clearSC();
-  if(tx===0&&ty===0&&tz===0) runA(); else runB(tx,ty,tz);
+  const allZero = (Math.abs(tx)<0.001 && Math.abs(ty)<0.001 && Math.abs(tz)<0.001);
+  // Show what values were read (helps students see if inputs are working)
+  scLog('dim', `[ZR] setPos read: X=${tx}, Y=${ty}, Z=${tz}`);
+  if(allZero) runA(); else runB(tx,ty,tz);
 }
 function runA(){
   _running=true; setHUD('run');
   scLog('info','[ZR] Compiling blocks...');
-  tt(400,()=>scLog('warn','[WARN] setPos(0,0,0) — no movement'));
-  tt(800,()=>{ scLog('warn','[WARN] Score: 0 / 100'); setHUD('idle'); finRun(); document.getElementById('eb').classList.add('show'); resetHints(); addLog('fail','Score: 0'); toast('No movement — change the setPos coordinates','err'); _running=false; });
+  tt(400,()=>scLog('warn','[WARN] setPos(0,0,0) — Astrobee is already here!'));
+  tt(800,()=>{ scLog('warn','[WARN] Score: 0 / 100'); setHUD('idle'); finRun(); document.getElementById('eb').classList.add('show'); resetHints(); addLog('fail','Score: 0'); toast('setPos is (0,0,0) — try 0.3, 0.2, 0','err'); _running=false; });
 }
 function runB(tx,ty,tz){
   _running=true; setHUD('run');
   document.getElementById('eb').classList.remove('show');
-  const ab=document.getElementById('ab'), vp=document.getElementById('svp');
-  const W=vp.clientWidth||300, H=vp.clientHeight||240;
-  const nx=Math.min(1,Math.max(-1,tx/3)), ny=Math.min(1,Math.max(-1,ty/3));
-  const tl=Math.round(W/2+nx*(W*.38)-17), tt2=Math.round(H/2-ny*(H*.38)-17);
-  const tm=document.getElementById('tm'); tm.style.left=(tl+8)+'px'; tm.style.top=(tt2+8)+'px'; tm.classList.add('show');
-  scLog('info','[ZR] Compiling...'); tt(300,()=>scLog('dim','[ZR] OK'));
-  tt(700,()=>{ scLog('info','[SIM] Moving Astrobee...'); ab.classList.add('moving'); ab.style.left=tl+'px'; ab.style.top=tt2+'px'; animHUD(0,tx,0,ty,0,tz,1500); spawnTrails(W/2-17,H/2-17,tl,tt2,vp); });
-  tt(2400,()=>{ ab.classList.remove('moving'); scLog('ok','[SIM] Target reached'); setHUD('ok'); fireScanner(tl,tt2); });
-  tt(3100,()=>{ scLog('info','Score: 47 / 100'); document.getElementById('hscore').textContent='Score: 47'; setHUD('idle'); finRun(); addLog('ok','Score: 47'); toast('Simulation complete — Score: 47','ok'); _running=false; });
+
+  // Read ALL blocks from canvas in DOM order → build command sequence
+  const cmds = [];
+  const canvas = document.getElementById('ci');
+  canvas.querySelectorAll('.zr-row').forEach(row => {
+    let txt = '';
+    row.childNodes.forEach(n=>{ if(n.nodeType===3) txt+=n.textContent; });
+    txt = txt.trim();
+    const inputs = Array.from(row.querySelectorAll('input.bi'));
+    const pv = v => { const f=parseFloat(v); return isNaN(f)?0:f; };
+    if(txt.startsWith('Move To Home'))      cmds.push({type:'home'});
+    else if(txt.startsWith('Move To'))      cmds.push({type:'moveto', x:pv(inputs[0]?.value), y:pv(inputs[1]?.value)});
+    else if(txt.startsWith('setPos'))       cmds.push({type:'moveto', x:pv(inputs[0]?.value), y:pv(inputs[1]?.value)});
+    else if(txt.startsWith('Grab Object'))  cmds.push({type:'grab',   id:Math.round(pv(inputs[0]?.value))});
+    else if(txt.startsWith('Drop Object'))  cmds.push({type:'drop'});
+    else if(txt.startsWith('End Game'))     cmds.push({type:'end'});
+  });
+  if(!cmds.length) cmds.push({type:'moveto', x:tx, y:ty});
+
+  scLog('info', `[ZR] Compiled ${cmds.length} command(s)...`);
+  tt(300, ()=>scLog('dim','[ZR] OK'));
+  tt(600, ()=>executeCommands(cmds));
 }
+
+function executeCommands(cmds){
+  const vp = document.getElementById('svp');
+  const ab = document.getElementById('ab');
+  let delay = 0;
+  let curX=0, curY=0;
+  let carrying=-1;
+  const dp = window._debrisPos || [];
+
+  cmds.forEach(cmd => {
+    const t = delay;
+    delay += 1800;
+
+    if(cmd.type==='moveto' || cmd.type==='home'){
+      const tx2 = cmd.type==='home'?0:cmd.x;
+      const ty2 = cmd.type==='home'?0:cmd.y;
+      tt(t, ()=>{
+        const W=vp.clientWidth||300, H=vp.clientHeight||240;
+        const px=Math.round(W/2+tx2*(W*0.76)-17);
+        const py=Math.round(H/2-ty2*(H*0.76)-17);
+        ab.classList.add('moving');
+        ab.style.left=px+'px'; ab.style.top=py+'px';
+        animHUD(curX,tx2,curY,ty2,0,0,1500);
+        spawnTrails(Math.round(W/2+curX*(W*0.76)-17),Math.round(H/2-curY*(H*0.76)-17),px,py,vp);
+        scLog('info',`[SIM] MoveTo(${tx2}, ${ty2})...`);
+        // Move carried object with Astrobee
+        if(carrying>=0){
+          const d=dp.find(d=>d.id===carrying);
+          if(d){ d.zx=tx2; d.zy=ty2;
+            const el=document.getElementById('gfd-'+carrying);
+            if(el){ const half=d.big?9:4;
+              el.style.left=(Math.round(W/2+tx2*(W*0.76))-half)+'px';
+              el.style.top=(Math.round(H/2-ty2*(H*0.76))-half)+'px'; } }
+        }
+        curX=tx2; curY=ty2;
+      });
+      tt(t+1500,()=>{ ab.classList.remove('moving'); scLog('ok',`[SIM] Arrived (${tx2}, ${ty2})`); });
+    }
+
+    else if(cmd.type==='grab'){
+      tt(t, ()=>{
+        const d=dp.find(d=>d.id===cmd.id);
+        if(!d){ scLog('warn',`[SIM] GrabObject(${cmd.id}) — ID not found!`); return; }
+        const dist=Math.hypot(curX-d.zx, curY-d.zy);
+        if(dist>0.1){ scLog('warn',`[SIM] GrabObject(${cmd.id}) FAILED — ${dist.toFixed(3)}m away (need ≤0.1m). Move closer first!`); return; }
+        if(carrying>=0){ scLog('warn',`[SIM] GrabObject(${cmd.id}) FAILED — already carrying object ${carrying}!`); return; }
+        carrying=cmd.id;
+        const el=document.getElementById('gfd-'+cmd.id);
+        if(el) el.classList.add('grabbed');
+        document.getElementById('svp')?.classList.add('carrying');
+        const dh=document.getElementById('drop-hint'); if(dh) dh.style.display='block';
+        scLog('ok',`[SIM] GrabObject(${cmd.id}) ✓ picked up — now fly to a GREEN corner zone and DropObject()`);
+      });
+      delay -= 1200; // grab is fast
+    }
+
+    else if(cmd.type==='drop'){
+      tt(t, ()=>{
+        if(carrying<0){ scLog('warn','[SIM] DropObject() — not carrying anything!'); return; }
+        const d=dp.find(d=>d.id===carrying);
+        const el=document.getElementById('gfd-'+carrying);
+        if(d){ d.zx=curX; d.zy=curY; }
+        if(el){
+          el.classList.remove('grabbed');
+          const inField=Math.abs(curX)<0.35&&Math.abs(curY)<0.35;
+          if(!inField) el.classList.add('cleared');
+          const W=vp.clientWidth||300, H=vp.clientHeight||240;
+          const half=d?.big?9:4;
+          el.style.left=(Math.round(W/2+curX*(W*0.76))-half)+'px';
+          el.style.top=(Math.round(H/2-curY*(H*0.76))-half)+'px';
+          const inField2=Math.abs(curX)<0.35&&Math.abs(curY)<0.35;
+          scLog(inField2?'warn':'ok',
+            `[SIM] DropObject() — obj ${carrying} at (${curX.toFixed(2)},${curY.toFixed(2)}) ` +
+            (inField2?'⚠️ still inside field (no points)':'✓ outside field (+points)'));
+        }
+        carrying=-1;
+        document.getElementById('svp')?.classList.remove('carrying'); const _dhr=document.getElementById('drop-hint'); if(_dhr) _dhr.style.display='none';
+        const dh2=document.getElementById('drop-hint'); if(dh2) dh2.style.display='none';
+      });
+      delay -= 1200; // drop is fast
+    }
+
+    else if(cmd.type==='end'){
+      tt(t, ()=>{
+        let imq=0,cleared=0;
+        dp.forEach(d=>{
+          const out=Math.abs(d.zx)>=0.35||Math.abs(d.zy)>=0.35;
+          if(out){imq+=d.big?50:30;cleared++;}else{imq-=d.big?20:10;}
+        });
+        const atHome=Math.hypot(curX,curY)<0.05;
+        const pen=atHome?0:-10;
+        const T=Math.max(0,180-Math.round(t/1000));
+        const B=Math.max(0,100-Math.round(t/200));
+        const total=Math.round(0.8*T+B+1.2*imq+pen);
+        scLog('ok','[ZR] ── GAME OVER ──');
+        scLog('info',`[ZR] Time: 0.8×${T}=${Math.round(0.8*T)}  Battery: ${B}  ImageQ: 1.2×${imq}=${Math.round(1.2*imq)}${pen?' Penalty:'+pen:''}`);
+        scLog(total>0?'ok':'warn',`[ZR] TOTAL: ${total}  (${cleared}/6 objects cleared)`);
+        document.getElementById('hscore').textContent='Score: '+total;
+        setHUD('idle'); finRun();
+        addLog(total>0?'ok':'fail','Score: '+total);
+        toast(`Game over — ${cleared}/6 cleared  Score: ${total}`,total>50?'ok':'inf');
+        _running=false;
+      });
+      return;
+    }
+  });
+
+  tt(delay, ()=>{
+    if(!_running) return;
+    let imq=0,cleared=0;
+    dp.forEach(d=>{const out=Math.abs(d.zx)>=0.35||Math.abs(d.zy)>=0.35;if(out){imq+=d.big?50:30;cleared++;}else{imq-=d.big?20:10;}});
+    const total=Math.max(0,Math.round(imq*1.2+60));
+    scLog('warn','[ZR] No EndGame() — add it for full score! Auto-scoring...');
+    scLog('info',`[ZR] Score: ${total} (${cleared}/6 cleared)`);
+    document.getElementById('hscore').textContent='Score: '+total;
+    setHUD('idle'); finRun();
+    addLog(total>0?'ok':'fail','Score: '+total);
+    _running=false;
+  });
+}
+
 function fireScanner(tl,tt2){ const s1=document.getElementById('sr1'),s2=document.getElementById('sr2'); s1.style.left=(tl+17)+'px'; s1.style.top=(tt2+17)+'px'; s2.style.left=(tl+17)+'px'; s2.style.top=(tt2+17)+'px'; s1.classList.add('go'); setTimeout(()=>s2.classList.add('go'),300); setTimeout(()=>{s1.classList.remove('go');s2.classList.remove('go');},1400); scLog('ok','[SIM] Scanner activated'); }
 function finRun(){ const btn=document.getElementById('run-btn'); btn.classList.remove('running'); btn.innerHTML='<svg viewBox="0 0 10 12" style="width:10px;height:10px;fill:currentColor"><path d="M1 1l8 5-8 5V1z"/></svg> Run'; }
 function spawnTrails(x0,y0,x1,y1,vp){ for(let i=1;i<8;i++){ const p=i/8,d=document.createElement('div'); d.className='trail-dot'; d.style.cssText=`left:${x0+(x1-x0)*p}px;top:${y0+(y1-y0)*p}px`; vp.appendChild(d); setTimeout(()=>d.remove(),3500); } }
 function animHUD(x0,x1,y0,y1,z0,z1,dur){ const st=Date.now(); function fr(){ const p=Math.min(1,(Date.now()-st)/dur); const e2=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2; document.getElementById('hc').innerHTML=`X: ${(x0+(x1-x0)*e2).toFixed(3)}<br>Y: ${(y0+(y1-y0)*e2).toFixed(3)}<br>Z: ${(z0+(z1-z0)*e2).toFixed(3)}`; if(p<1) requestAnimationFrame(fr); } requestAnimationFrame(fr); }
 function setHUD(st){ const d=document.getElementById('hd'),l=document.getElementById('hs'); d.className='hud-dot '+({run:'run',ok:'ok',idle:'idle',err:'err'}[st]||'idle'); l.textContent={run:'Running',ok:'Complete',idle:'Idle',err:'Error'}[st]; }
-function resetSim(){ const ab=document.getElementById('ab'),vp=document.getElementById('svp'); const W=vp.clientWidth||300,H=vp.clientHeight||240; ab.classList.remove('moving'); ab.style.left=(W/2-17)+'px'; ab.style.top=(H/2-17)+'px'; document.getElementById('hc').innerHTML='X: 0.000<br>Y: 0.000<br>Z: 0.000'; document.getElementById('hscore').textContent=''; document.getElementById('tm').classList.remove('show'); vp.querySelectorAll('.trail-dot').forEach(d=>d.remove()); setHUD('idle'); clearSC(); scLog('dim','[SIM] Reset.'); }
+function resetSim(){
+  const ab=document.getElementById('ab'),vp=document.getElementById('svp');
+  const W=vp.clientWidth||300,H=vp.clientHeight||240;
+  ab.classList.remove('moving');
+  ab.style.left=(W/2-17)+'px'; ab.style.top=(H/2-17)+'px';
+  document.getElementById('hc').innerHTML='X: 0.000<br>Y: 0.000<br>Z: 0.000';
+  document.getElementById('hscore').textContent='';
+  document.getElementById('tm').classList.remove('show');
+  vp.querySelectorAll('.trail-dot').forEach(d=>d.remove());
+  setHUD('idle'); clearSC(); scLog('dim','[SIM] Reset.');
+  // Reset all debris to original positions
+  const origPos = [
+    {id:0,zx:0.20, zy:0.20, big:true},
+    {id:1,zx:0.25, zy:-0.25,big:true},
+    {id:2,zx:-0.25,zy:-0.10,big:true},
+    {id:3,zx:-0.20,zy:0.20, big:false},
+    {id:4,zx:0.15, zy:0.00, big:false},
+    {id:5,zx:0.00, zy:-0.15,big:false},
+  ];
+  if(window._debrisPos){
+    origPos.forEach((o,i)=>{ window._debrisPos[i].zx=o.zx; window._debrisPos[i].zy=o.zy; });
+  }
+  origPos.forEach(d=>{
+    const el=document.getElementById('gfd-'+d.id);
+    if(!el) return;
+    el.classList.remove('cleared','grabbed');
+    const {px,py}=zrToSim(d.zx,d.zy);
+    const half=d.big?9:4;
+    el.style.left=(px-half)+'px'; el.style.top=(py-half)+'px';
+    el.style.opacity='';
+  });
+  document.getElementById('svp')?.classList.remove('carrying');
+}
 function scLog(type,txt){ const c=document.getElementById('scon'),d=document.createElement('div'); d.className='sc '+type; d.textContent=txt; c.appendChild(d); c.scrollTop=c.scrollHeight; }
 function clearSC(){ document.getElementById('scon').innerHTML=''; }
 function addLog(st,msg){ const el=document.getElementById('log-empty'); if(el) el.remove(); const ll=document.getElementById('log-list'),d=document.createElement('div'); d.className='log-entry'; d.innerHTML=`<div class="le-name">Nicole Zhang</div><div class="le-date">${new Date().toLocaleString()}</div><div class="le-st"><span class="le-dot ${st}"></span>${st==='ok'?'Simulation successful.':'Simulation failed.'}</div><div class="le-msg">${msg}</div>`; ll.insertBefore(d,ll.firstChild); }
@@ -1609,28 +2393,149 @@ function resetHints(){
   const btn=document.getElementById('hint-btn');
   if(btn){ btn.textContent='💡 Hint'; btn.onclick=showNextHint; }
 }
-function showCCode(){ let x=0,y=0,z=0; document.querySelectorAll('.zr-block[data-type="command"]').forEach(el=>{ if(el.querySelector('.zr-row')?.textContent.startsWith('setPos')){ const inp=el.querySelectorAll('.bi'); if(inp.length>=3){x=inp[0].value;y=inp[1].value;z=inp[2].value;} } }); document.getElementById('ccm-pre').textContent=`// Generated from Graphical Editor\n// Zero Robotics\n\n#include "zr.h"\n\nvoid ZR_Main() {\n    float target[3] = {${x}f, ${y}f, ${z}f};\n    while (1) {\n        setPositionTarget(target);\n        activateScanner(1);\n    }\n}`; document.getElementById('ccm').classList.add('show'); }
+function showCCode(){
+  let x=0,y=0,z=0;
+  const canvas=document.getElementById('ci');
+  if(!canvas) return;
+  canvas.querySelectorAll('input.bi').forEach(inp=>{
+    const row=inp.closest('.zr-row'); if(!row) return;
+    let t=''; row.childNodes.forEach(n=>{if(n.nodeType===3)t+=n.textContent;});
+    if(t.trim().startsWith('setPos')){
+      const all=Array.from(row.querySelectorAll('input.bi'));
+      const pv=v=>{const f=parseFloat(v);return isNaN(f)?0:f;};
+      if(all.length>=3){x=pv(all[0].value);y=pv(all[1].value);z=pv(all[2].value);}
+    }
+  });
+  document.getElementById('ccm-pre').textContent=`// Generated from Graphical Editor\n// Zero Robotics\n\n#include "zr.h"\n\nvoid ZR_Main() {\n    float target[3] = {${x}f, ${y}f, ${z}f};\n    while (1) {\n        setPositionTarget(target);\n        activateScanner(1);\n    }\n}`;
+  document.getElementById('ccm').classList.add('show');
+}
 let _cso=false,_pm=false,_tc=0;
 function toggleCS(f){ const cs=document.getElementById('cs'); if(f===true||!_cso){cs.classList.add('open');_cso=true;}else{cs.classList.remove('open');_cso=false;} }
 function togglePinMode(){ _pm=!_pm; document.getElementById('pm-btn').classList.toggle('on',_pm); }
-function openThread(bid){ document.getElementById('cse').style.display='none'; _tc++; const tid='t'+_tc; const d=document.createElement('div'); d.style.marginBottom='12px'; d.innerHTML=`<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;padding-bottom:5px;border-bottom:1px solid #eee">Thread</div><div class="cc"><div class="cc-meta"><div class="cc-av" style="background:linear-gradient(135deg,#1a6bc1,#1559a8)">YO</div><div class="cc-auth">You</div><div class="cc-time">now</div></div><div class="cc-body">Pinned a comment on this block.</div></div><div id="rep-${tid}"></div><div class="ri-row"><textarea class="ri-ta" id="ri-${tid}" rows="2" placeholder="Ask a question..."></textarea><button class="ri-send" onclick="sendReply('${tid}')">&#9658;</button></div>`; document.getElementById('csb').appendChild(d); toggleCS(true); setTimeout(()=>{ const r=document.getElementById('rep-'+tid); if(!r) return; const m=document.createElement('div'); m.className='cc'; m.style.borderLeft='3px solid #b03a2a'; m.innerHTML=`<div class="cc-meta"><div class="cc-av" style="background:#b03a2a">AX</div><div class="cc-auth" style="color:#b03a2a">Mentor: Alex</div><div class="cc-time">now</div></div><div class="cc-body">Make sure coordinates are non-zero!</div>`; r.appendChild(m); document.getElementById('av-alex').style.opacity='1'; toast('Mentor Alex replied','inf'); },2200); }
+function openThread(bid){ document.getElementById('cse').style.display='none'; _tc++; const tid='t'+_tc; const d=document.createElement('div'); d.style.marginBottom='12px'; d.innerHTML=`<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;padding-bottom:5px;border-bottom:1px solid #eee">Thread</div><div class="cc"><div class="cc-meta"><div class="cc-av" style="background:linear-gradient(135deg,#1a6bc1,#1559a8)">YO</div><div class="cc-auth">You</div><div class="cc-time">now</div></div><div class="cc-body">Pinned a comment on this block.</div></div><div id="rep-${tid}"></div><div class="ri-row"><textarea class="ri-ta" id="ri-${tid}" rows="2" placeholder="Ask a question..."></textarea><button class="ri-send" data-oc="sendReply('${tid}')">&#9658;</button></div>`; document.getElementById('csb').appendChild(d); toggleCS(true); setTimeout(()=>{ const r=document.getElementById('rep-'+tid); if(!r) return; const m=document.createElement('div'); m.className='cc'; m.style.borderLeft='3px solid #b03a2a'; m.innerHTML=`<div class="cc-meta"><div class="cc-av" style="background:#b03a2a">AX</div><div class="cc-auth" style="color:#b03a2a">Mentor: Alex</div><div class="cc-time">now</div></div><div class="cc-body">Make sure coordinates are non-zero!</div>`; r.appendChild(m); document.getElementById('av-alex').style.opacity='1'; toast('Mentor Alex replied','inf'); },2200); }
 function sendReply(tid){ const ta=document.getElementById('ri-'+tid); const txt=ta.value.trim(); if(!txt) return; const r=document.getElementById('rep-'+tid); const d=document.createElement('div'); d.className='cc'; d.innerHTML=`<div class="cc-meta"><div class="cc-av" style="background:#1a6bc1">YO</div><div class="cc-auth">You</div><div class="cc-time">now</div></div><div class="cc-body">${txt}</div>`; r.appendChild(d); ta.value=''; }
 function askHelp(){ toggleCS(true); document.getElementById('cse').style.display='none'; const d=document.createElement('div'); d.style.marginBottom='12px'; d.innerHTML=`<div style="font-size:10px;font-weight:700;color:#b03a2a;text-transform:uppercase;margin-bottom:7px;padding-bottom:5px;border-bottom:1px solid #fde">Help Request</div><div class="cc" style="border-left:3px solid #b03a2a"><div class="cc-meta"><div class="cc-av" style="background:#1a6bc1">YO</div><div class="cc-auth">You</div><div class="cc-time">now</div></div><div class="cc-body">I need help with my block setup.</div></div><div id="hr"></div>`; document.getElementById('csb').insertBefore(d,document.getElementById('csb').firstChild); toast('Help request sent','inf'); setTimeout(()=>{ const r=document.getElementById('hr'); if(!r) return; const m=document.createElement('div'); m.className='cc'; m.style.borderLeft='3px solid #b03a2a'; m.innerHTML=`<div class="cc-meta"><div class="cc-av" style="background:#b03a2a">AX</div><div class="cc-auth" style="color:#b03a2a">Mentor: Alex</div><div class="cc-time">now</div></div><div class="cc-body">Hey! Make sure setPos has non-zero coords — use Suggest Fix!</div>`; r.appendChild(m); document.getElementById('av-alex').style.opacity='1'; toast('Mentor Alex replied','inf'); },2000); }
 function selPage(el){ document.querySelectorAll('.page-item').forEach(p=>p.classList.remove('active')); el.classList.add('active'); }
 let _ttimer; function toast(msg,type){ const el=document.getElementById('toast'); clearTimeout(_ttimer); el.className='toast t-'+type+' show'; document.getElementById('tmsg').textContent=msg; _ttimer=setTimeout(()=>el.classList.remove('show'),3000); }
 
-// Onboarding
+// ══════════════════════════════════════════════
+//  ONBOARDING JS
+// ══════════════════════════════════════════════
 let _step=1;
+
+// ── Debris data (from Game Manual) ──
+const DEBRIS = [
+  {id:0, size:'15×15 cm', mass:'20 (heavy)', pos:'(0.2, 0.2)',  pts:'+50 pts', pen:'−20 pts', tip:'Object 0 is in the upper-right of the imaging field. Big score opportunity!'},
+  {id:1, size:'15×15 cm', mass:'20 (heavy)', pos:'(0.25,−0.25)',pts:'+50 pts', pen:'−20 pts', tip:'Object 1 is lower-right. Also worth 50 pts — worth clearing first!'},
+  {id:2, size:'15×15 cm', mass:'20 (heavy)', pos:'(−0.25,−0.1)',pts:'+50 pts', pen:'−20 pts', tip:'Object 2 is left-center. Heavy objects drain more battery per meter.'},
+  {id:3, size:'5×5 cm',   mass:'10 (light)', pos:'(−0.2, 0.2)', pts:'+30 pts', pen:'−10 pts', tip:'Object 3 is small — lighter to carry but fewer points. Clear after big ones.'},
+  {id:4, size:'5×5 cm',   mass:'10 (light)', pos:'(0.15, 0.0)', pts:'+30 pts', pen:'−10 pts', tip:'Object 4 is near center. Moving light objects costs only 22 battery/meter.'},
+  {id:5, size:'5×5 cm',   mass:'10 (light)', pos:'(0.0,−0.15)', pts:'+30 pts', pen:'−10 pts', tip:'Object 5 is just below center — close to several other objects. Plan your route!'},
+];
+let _debrisFound = new Set();
+let _cmdsTried   = new Set();
+let _revealCount = 0;
+let _ideSpotsHit = new Set();
+
+function selectDebris(id){
+  const d = DEBRIS[id];
+  document.querySelectorAll('.ob-idebris').forEach(el=>el.classList.remove('sel'));
+  document.querySelector(`.ob-idebris[data-id="${id}"]`).classList.add('sel');
+  document.getElementById('ob-dinfo-empty').style.display='none';
+  const c=document.getElementById('ob-dinfo-content');
+  c.style.display='block';
+  document.getElementById('ob-dinfo-id').textContent='Object '+id;
+  document.getElementById('ob-dinfo-size').textContent=d.size;
+  document.getElementById('ob-dinfo-mass').textContent=d.mass;
+  document.getElementById('ob-dinfo-pos').textContent=d.pos;
+  document.getElementById('ob-dinfo-pts').textContent=d.pts;
+  document.getElementById('ob-dinfo-pen').textContent=d.pen;
+  document.getElementById('ob-dinfo-tip').textContent='💡 '+d.tip;
+  _debrisFound.add(id);
+  document.getElementById('ob-dcount').textContent=_debrisFound.size;
+}
+
+// Mini sim state
+let _msPos={x:85,y:78}; // percent
+let _msCarrying=null;
+
+function tryCmd(cmd){
+  _cmdsTried.add(cmd);
+  document.getElementById('ob-ccount').textContent=_cmdsTried.size;
+  document.getElementById('cmd-'+cmd).classList.add('tried');
+  const log=document.getElementById('ob-ms-log');
+  const ab=document.getElementById('ob-ms-ab');
+  const target=document.getElementById('ob-ms-target');
+
+  if(cmd==='moveto'){
+    _msPos={x:60,y:20};
+    ab.style.left=_msPos.x+'%'; ab.style.top=_msPos.y+'%';
+    ab.style.bottom=''; ab.style.right='';
+    target.style.display='block';
+    target.style.left='60%'; target.style.top='20%';
+    log.textContent='→ MoveTo(0.5,0.5): Flying to target…';
+    setTimeout(()=>{target.style.display='none';log.textContent='✓ Arrived at (0.5, 0.5)';},700);
+  } else if(cmd==='grab'){
+    _msPos={x:58,y:25};
+    ab.style.left=_msPos.x+'%'; ab.style.top=_msPos.y+'%';
+    ab.style.bottom=''; ab.style.right='';
+    log.textContent='→ GrabObject(0): Moving to Object 0…';
+    setTimeout(()=>{
+      const d=document.getElementById('ms-d0');
+      if(d){d.classList.add('grabbed'); _msCarrying=0;}
+      log.textContent='✓ Grabbed Object 0! Carrying it now 🤏';
+    },600);
+  } else if(cmd==='drop'){
+    _msPos={x:12,y:12};
+    ab.style.left=_msPos.x+'%'; ab.style.top=_msPos.y+'%';
+    log.textContent='→ Moving outside imaging field…';
+    setTimeout(()=>{
+      const d=document.getElementById('ms-d0');
+      if(d){d.style.left='12%';d.style.top='12%';d.classList.remove('grabbed');d.classList.add('cleared');}
+      _msCarrying=null;
+      log.textContent='✓ Dropped! Object 0 is now OUTSIDE the imaging field. +50 pts!';
+    },600);
+  } else if(cmd==='home'){
+    ab.style.left='50%'; ab.style.top='50%';
+    _msPos={x:50,y:50};
+    log.textContent='→ MoveToHome(): Returning to (0,0)…';
+    setTimeout(()=>log.textContent='✓ At home position (0,0). Ready to EndGame!',600);
+  } else if(cmd==='end'){
+    log.textContent='→ EndGame(): Stopping timer…';
+    setTimeout(()=>log.textContent='🏆 Game ended! Score calculated. Well done!',600);
+  }
+}
+
+function revealScore(el, type){
+  const a=el.querySelector('.ob-reveal-a');
+  const isOpen=el.classList.contains('open');
+  // close all
+  document.querySelectorAll('.ob-reveal-item').forEach(i=>{ i.classList.remove('open'); i.querySelector('.ob-reveal-a').style.display='none'; });
+  if(!isOpen){
+    el.classList.add('open'); a.style.display='block';
+    if(!el.dataset.counted){ el.dataset.counted='1'; _revealCount++; document.getElementById('ob-rcount').textContent=_revealCount; }
+  }
+}
+
+function ideSpot(spot){
+  ['palette','canvas','sim'].forEach(s=>{
+    document.getElementById('isi-'+s).style.display='none';
+    document.getElementById('hs-'+s)?.classList.remove('active');
+  });
+  document.getElementById('isi-default').style.display='none';
+  document.getElementById('isi-'+spot).style.display='block';
+  _ideSpotsHit.add(spot);
+  document.getElementById('ob-icount').textContent=_ideSpotsHit.size;
+}
+
 function goStep(n){
   const prev=document.getElementById('ob'+_step);
-  prev.style.opacity='0'; prev.style.transform='scale(.96)';
+  if(prev){ prev.style.opacity='0'; prev.style.transform='scale(.96)'; }
   setTimeout(()=>{
-    prev.style.display='none';
-    prev.style.opacity=''; prev.style.transform='';
+    if(prev){ prev.style.display='none'; prev.style.opacity=''; prev.style.transform=''; }
     _step=n;
     const next=document.getElementById('ob'+n);
-    next.style.display='flex';
-    // Trigger bubble animations on step 1
+    if(next){ next.style.display='flex'; }
     if(n===1) triggerBubbles();
   },200);
 }
@@ -1643,17 +2548,506 @@ function startCoding(){
   const o=document.getElementById('ov');
   o.style.transition='opacity .45s';
   o.style.opacity='0';
-  setTimeout(()=>{ o.style.display='none'; document.getElementById('hfab').classList.add('show'); },450);
+  setTimeout(()=>{ o.style.display='none'; document.getElementById('hfab').classList.add('show'); document.getElementById('taskfab').classList.add('show'); setTimeout(gtStart, 400); },450);
 }
 function reopenGuide(){
   _step=1;
-  [1,2,3,4,5].forEach(n=>{ const e=document.getElementById('ob'+n); if(e){e.style.display='none';} });
+  [1,2,3,4,5,6,7].forEach(n=>{ const e=document.getElementById('ob'+n); if(e){e.style.display='none';} });
   document.getElementById('ob1').style.display='flex';
   const o=document.getElementById('ov'); o.style.opacity='1'; o.style.display='flex';
   triggerBubbles();
 }
 // Kick off bubble animations on first load
 setTimeout(triggerBubbles, 800);
+
+// ════ IN-IDE SPOTLIGHT GUIDED TOUR ════
+const GT_STEPS = [
+  {
+    title:"Welcome to the IDE! 🚀",
+    body:"You're in! Let me show you around in 7 quick steps. I'll point at exactly what to click each time.",
+    pos:"center", next:"Let's go! →"
+  },
+  {
+    title:"1 · Your block palette",
+    body:"This dark left panel is your palette. All your commands live here. <strong>SPHERES Controls</strong> at the top has your main movement blocks.",
+    target:".palette .cat-btn",
+    pos:"right", next:"Got it →",
+    hint:"Tip: Click a category name to see its blocks."
+  },
+  {
+    title:"2 · The canvas",
+    body:"The dotted white area is your <strong>canvas</strong>. You already have a starter <strong>loop</strong> block with <strong>setPos</strong> inside — that's where Astrobee gets its target!",
+    target:"#ci",
+    pos:"top", next:"I see it →"
+  },
+  {
+    title:"3 · Change the coordinates",
+    body:"Click a number inside the <strong>setPos</strong> block. Try <strong>X=0.3, Y=0.2, Z=0</strong>. That's where Astrobee will fly in the simulation!",
+    target:".zr-block .bi",
+    pos:"right", next:"Changed ✓ →",
+    hint:"🎯 Valid range: -0.5 to +0.5 on X and Y. Z stays 0 for this game!"
+  },
+  {
+    title:"4 · Hit Run ▶",
+    body:"Press the green <strong>▶ Run</strong> button. Watch Astrobee fly to your coordinates in the simulation panel on the right!",
+    target:"#run-btn",
+    pos:"below", next:"I pressed it →"
+  },
+  {
+    title:"5 · Watch the simulation",
+    body:"See Astrobee move in the right panel! The <strong>HUD</strong> shows live X/Y/Z coordinates. Your score appears after it lands.",
+    target:"#svp",
+    pos:"left", next:"Cool! →",
+    hint:"💡 Score is 0 for now — to get real points you need to clear debris from the imaging field!"
+  },
+  {
+    title:"You're a ZR pilot now! 🎉",
+    body:"You just programmed Astrobee to fly in space. Next: drag <strong>GrabObject</strong> and <strong>DropObject</strong> blocks into the loop to clear debris and earn real points!",
+    pos:"center", next:"Finish tour ✓"
+  },
+];
+
+let _gtStep = 0;
+
+function gtStart(){
+  const el = document.getElementById('gtour');
+  if(el) el.style.display='block';
+  _gtStep = 0;
+  gtRender();
+}
+function gtClose(){
+  const el = document.getElementById('gtour');
+  if(el) el.style.display='none';
+  gtClearHighlight();
+}
+function gtSkip(){ gtClose(); }
+function gtNext(){
+  _gtStep++;
+  if(_gtStep >= GT_STEPS.length){ gtClose(); return; }
+  gtRender();
+}
+function gtRender(){
+  const step = GT_STEPS[_gtStep];
+  const card = document.getElementById('gt-card');
+  if(!card) return;
+  document.getElementById('gt-title').innerHTML = step.title;
+  document.getElementById('gt-body').innerHTML = step.body;
+  document.getElementById('gt-step-lbl').textContent = 'Step '+(_gtStep+1)+' of '+GT_STEPS.length;
+  document.getElementById('gt-next').textContent = step.next || 'Next →';
+  const hintEl = document.getElementById('gt-hint');
+  if(step.hint){ hintEl.style.display='block'; hintEl.textContent=step.hint; }
+  else { hintEl.style.display='none'; }
+  // Dots
+  const dots = document.getElementById('gt-dots');
+  dots.innerHTML = GT_STEPS.map(function(_,i){
+    const bg = i<_gtStep?'#5a8a3c':i===_gtStep?'#1a6bc1':'#dde1e8';
+    return '<div style="width:7px;height:7px;border-radius:50%;background:'+bg+';transition:background .2s"></div>';
+  }).join('');
+  gtClearHighlight();
+  if(step.pos==='center'){
+    card.style.left='50%'; card.style.top='50%';
+    card.style.transform='translate(-50%,-50%)';
+    document.getElementById('gt-ring').style.display='none';
+    document.getElementById('gt-arrow').style.display='none';
+  } else if(step.target){
+    const el = document.querySelector(step.target);
+    if(el){
+      el.classList.add('gt-highlight');
+      setTimeout(function(){ gtPositionCard(el, step.pos, card); }, 60);
+    }
+  }
+}
+function gtPositionCard(el, pos, card){
+  const r = el.getBoundingClientRect();
+  const W = window.innerWidth, H = window.innerHeight;
+  const cw = 308, ch = card.offsetHeight||210;
+  const ring = document.getElementById('gt-ring');
+  const arrow = document.getElementById('gt-arrow');
+  if(ring){
+    ring.style.display='block';
+    ring.style.left=(r.left-6)+'px'; ring.style.top=(r.top-6)+'px';
+    ring.style.width=(r.width+12)+'px'; ring.style.height=(r.height+12)+'px';
+  }
+  card.style.transform='none';
+  let cx=20, cy=20;
+  if(pos==='right'){
+    cx=Math.min(r.right+16, W-cw-10); cy=Math.max(10, r.top);
+    if(arrow){ arrow.style.display='block'; arrow.style.left=(r.right+2)+'px'; arrow.style.top=(r.top+r.height/2-14)+'px'; arrow.style.transform='rotate(-90deg)'; }
+  } else if(pos==='left'){
+    cx=Math.max(10, r.left-cw-16); cy=Math.max(10, r.top);
+    if(arrow){ arrow.style.display='block'; arrow.style.left=(r.left-30)+'px'; arrow.style.top=(r.top+r.height/2-14)+'px'; arrow.style.transform='rotate(90deg)'; }
+  } else if(pos==='below'){
+    cx=Math.min(Math.max(10, r.left+r.width/2-cw/2), W-cw-10);
+    cy=Math.min(r.bottom+14, H-ch-10);
+    if(arrow){ arrow.style.display='block'; arrow.style.left=(r.left+r.width/2-11)+'px'; arrow.style.top=(r.bottom+2)+'px'; arrow.style.transform='none'; }
+  } else if(pos==='top'){
+    cx=Math.min(Math.max(10, r.left+r.width/2-cw/2), W-cw-10);
+    cy=Math.max(10, r.top-ch-16);
+    if(arrow){ arrow.style.display='block'; arrow.style.left=(r.left+r.width/2-11)+'px'; arrow.style.top=(r.top-30)+'px'; arrow.style.transform='rotate(180deg)'; }
+  }
+  card.style.left=cx+'px'; card.style.top=cy+'px';
+}
+function gtClearHighlight(){
+  document.querySelectorAll('.gt-highlight').forEach(function(e){ e.classList.remove('gt-highlight'); });
+  const ring=document.getElementById('gt-ring'), arrow=document.getElementById('gt-arrow');
+  if(ring) ring.style.display='none';
+  if(arrow) arrow.style.display='none';
+}
+
+// Expose all onclick-called functions as globals (belt + suspenders for strict mode / iframe)
+window.goStep = goStep;
+window.startCoding = startCoding;
+window.reopenGuide = reopenGuide;
+window.triggerBubbles = triggerBubbles;
+window.runCode = runCode;
+window.resetSim = resetSim;
+window.togglePinMode = togglePinMode;
+window.toggleCS = toggleCS;
+window.askHelp = askHelp;
+window.showCCode = showCCode;
+window.selCat = selCat;
+window.selPage = selPage;
+window.toggleExplain = toggleExplain;
+window.jumpToBlock = jumpToBlock;
+window.showFix = showFix;
+window.showNextHint = showNextHint;
+window.resetHints = resetHints;
+window.gtNext = gtNext;
+window.gtSkip = gtSkip;
+window.gtClose = gtClose;
+window.ideSpot = ideSpot;
+window.revealScore = revealScore;
+window.selectDebris = selectDebris;
+window.sendReply = sendReply;
+window.tryCmd = tryCmd;
+window.gfClick = typeof gfClick !== 'undefined' ? gfClick : ()=>{};
+window.gfReset = typeof gfReset !== 'undefined' ? gfReset : ()=>{};
+window.tryCmd = typeof tryCmd !== 'undefined' ? tryCmd : ()=>{};
+
+// ── Delegated click handler: replaces all inline onclick= attributes ──
+// This ensures functions are always defined before any click fires.
+document.addEventListener('click', function(e){
+  const el = e.target.closest('[data-oc]');
+  if(!el) return;
+  const expr = el.getAttribute('data-oc');
+  if(!expr) return;
+  // Parse "funcName(args)" and call directly on window
+  const m = expr.match(/^(\w+)\((.*)\)$/);
+  if(m){
+    const fn = window[m[1]];
+    if(typeof fn === 'function'){
+      try {
+        // Evaluate args safely and call
+        const args = m[2] ? m[2].split(',').map(a => {
+          const t = a.trim();
+          if(t === 'this') return el;
+          const n = Number(t);
+          return isNaN(n) ? t.replace(/^['"]|['"]$/g,'') : n;
+        }) : [];
+        fn.apply(window, args);
+      } catch(err){ console.error('data-oc error:', expr, err); }
+    } else {
+      console.error('data-oc: function not found:', m[1], '| known:', Object.keys(window).filter(k=>k.startsWith('go')||k.startsWith('start')||k.startsWith('run')));
+    }
+  }
+}, false);
+
+
+// Expose all functions on window so data-oc handlers can find them
+(function(){
+  var fns = ['goStep','startCoding','reopenGuide','triggerBubbles','runCode',
+    'resetSim','togglePinMode','toggleCS','askHelp','showCCode','selCat',
+    'selPage','toggleExplain','jumpToBlock','showNextHint','resetHints',
+    'gtNext','gtSkip','gtClose','ideSpot','revealScore','selectDebris',
+    'sendReply','tryCmd','showTasks','hideTasks','positionDebris',
+    'gfClick','gfReset','executeCommands','zrToSim'];
+  fns.forEach(function(name){
+    try {
+      var f = eval(name);
+      if(typeof f === 'function') window[name] = f;
+    } catch(e){}
+  });
+})();
 </script>
+
+<!-- In-IDE guided task overlay -->
+
+<!-- ════ IN-IDE GUIDED TASK COACH ════ -->
+<div id="gtour" style="display:none">
+  <!-- Spotlight overlay -->
+  <div id="gt-backdrop" style="position:fixed;inset:0;pointer-events:none;z-index:900;"></div>
+  <!-- Floating coach card -->
+  <div id="gt-card" style="
+    position:fixed;z-index:1000;
+    width:300px;background:#fff;border-radius:14px;
+    box-shadow:0 20px 60px rgba(0,0,0,.3);
+    border:2px solid #1a6bc1;
+    transition:all .3s cubic-bezier(.175,.885,.32,1.275);
+    overflow:hidden;
+  ">
+    <div style="background:linear-gradient(90deg,#1a6bc1,#7a4aab);height:4px"></div>
+    <div style="padding:14px 16px 10px">
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
+        <div style="width:32px;height:32px;background:#1a6bc1;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0">🤖</div>
+        <div>
+          <div style="font-size:10px;font-weight:700;color:#1a6bc1;text-transform:uppercase;letter-spacing:.06em">Mission Guide · Astrobee</div>
+          <div id="gt-step-lbl" style="font-size:10px;color:#8ab4d0"></div>
+        </div>
+        <button data-oc="gtClose()" style="margin-left:auto;background:none;border:none;font-size:16px;color:#aaa;cursor:pointer;padding:0 2px">×</button>
+      </div>
+      <div id="gt-title" style="font-size:13px;font-weight:700;color:#1c2733;margin-bottom:5px"></div>
+      <div id="gt-body" style="font-size:12px;color:#3a4a5a;line-height:1.6"></div>
+      <div id="gt-hint" style="display:none;margin-top:7px;background:#fffbee;border:1px solid #f0d080;border-radius:7px;padding:7px 10px;font-size:11px;line-height:1.5"></div>
+    </div>
+    <div style="padding:0 16px 14px;display:flex;justify-content:space-between;align-items:center">
+      <div id="gt-dots" style="display:flex;gap:4px"></div>
+      <div style="display:flex;gap:7px">
+        <button id="gt-skip" data-oc="gtSkip()" style="background:#f0f2f5;border:1px solid #dde1e8;border-radius:7px;padding:5px 11px;font-family:Inter,sans-serif;font-size:11px;color:#6b7a8d;cursor:pointer">Skip tour</button>
+        <button id="gt-next" data-oc="gtNext()" style="background:#1a6bc1;color:#fff;border:none;border-radius:7px;padding:5px 14px;font-family:Inter,sans-serif;font-size:12px;font-weight:700;cursor:pointer"></button>
+      </div>
+    </div>
+  </div>
+  <!-- Spotlight highlight ring -->
+  <div id="gt-ring" style="position:fixed;pointer-events:none;z-index:950;border:3px solid #1a6bc1;border-radius:10px;box-shadow:0 0 0 4000px rgba(0,0,10,.55);transition:all .4s;display:none"></div>
+  <!-- Arrow pointer -->
+  <div id="gt-arrow" style="position:fixed;pointer-events:none;z-index:1001;font-size:22px;transition:all .4s;display:none">👆</div>
+</div>
+
+<script>
+// Inline wiring — runs immediately after HTML is parsed
+// Belt+suspenders: wire every data-oc button directly
+(function wireButtons(){
+  function wire(){
+    document.querySelectorAll('[data-oc]').forEach(function(el){
+      if(el._wired) return;
+      el._wired = true;
+      el.addEventListener('click', function(){
+        var expr = el.getAttribute('data-oc');
+        var m = expr.match(/^(\w+)\((.*)\)$/);
+        if(!m) return;
+        var fn = window[m[1]];
+        if(typeof fn !== 'function'){ console.error('Not found:', m[1]); return; }
+        var args = m[2] ? m[2].split(',').map(function(a){
+          var t = a.trim();
+          if(t === 'this') return el;          // pass the element itself
+          var n = Number(t);
+          return isNaN(n) ? t.replace(/^['"]|['"]$/g,'') : n;
+        }) : [];
+        fn.apply(window, args);
+      });
+    });
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', wire);
+  } else {
+    wire();
+  }
+  // Also re-wire after any dynamic content changes
+  window._rewire = wire;
+})();
+
+function showTasks(){
+  const m = document.getElementById('tasks-modal');
+  m.style.display = 'flex';
+}
+function hideTasks(){
+  document.getElementById('tasks-modal').style.display = 'none';
+}
+window.showTasks = showTasks;
+window.hideTasks = hideTasks;
+
+
+// ── Debris field rendering ──
+const DEBRIS_DEFS = [
+  {id:0, zx:0.20,  zy:0.20,  big:true},
+  {id:1, zx:0.25,  zy:-0.25, big:true},
+  {id:2, zx:-0.25, zy:-0.10, big:true},
+  {id:3, zx:-0.20, zy:0.20,  big:false},
+  {id:4, zx:0.15,  zy:0.00,  big:false},
+  {id:5, zx:0.00,  zy:-0.15, big:false},
+];
+
+// Convert ZR game coords (±0.5) to pixel position in sim viewport
+function zrToSim(zx, zy){
+  const vp = document.getElementById('svp');
+  const W = vp.clientWidth  || 300;
+  const H = vp.clientHeight || 240;
+  // Center is 50%/50%, ±0.5 ZR = ±38% of viewport half
+  const px = W/2 + zx * (W * 0.76);   // 0.76 = boundary fraction
+  const py = H/2 - zy * (H * 0.76);   // flip y (screen y goes down)
+  return {px, py};
+}
+
+function positionDebris(){
+  DEBRIS_DEFS.forEach(d => {
+    const el = document.getElementById('gfd-'+d.id);
+    if(!el) return;
+    const {px, py} = zrToSim(d.zx, d.zy);
+    const half = d.big ? 9 : 4;
+    el.style.left = (px - half) + 'px';
+    el.style.top  = (py - half) + 'px';
+    el.textContent = d.id;
+  });
+}
+
+// Re-position debris when sim panel resizes
+if(window.ResizeObserver){
+  new ResizeObserver(positionDebris).observe(document.getElementById('svp'));
+}
+window.addEventListener('load', positionDebris);
+setTimeout(positionDebris, 300);
+
+// Track which objects have been "cleared" (moved out of imaging field)
+// Imaging field = |zx| < 0.35 && |zy| < 0.35
+const _debrisPos = DEBRIS_DEFS.map(d => ({...d})); // mutable copy
+
+function updateDebrisPositions(){
+  // Called after a simulated move — update debris visual positions
+  _debrisPos.forEach(d => {
+    const el = document.getElementById('gfd-'+d.id);
+    if(!el) return;
+    const {px, py} = zrToSim(d.zx, d.zy);
+    const half = d.big ? 9 : 4;
+    el.style.left = (px - half) + 'px';
+    el.style.top  = (py - half) + 'px';
+    const inField = Math.abs(d.zx) < 0.35 && Math.abs(d.zy) < 0.35;
+    el.classList.toggle('cleared', !inField);
+  });
+}
+window._debrisPos = _debrisPos;
+window.updateDebrisPositions = updateDebrisPositions;
+
+
+
+// ── Resizable simulation panel ──
+(function(){
+  const handle = document.getElementById('sim-resize-handle');
+  const panel  = document.getElementById('sim-panel');
+  if(!handle || !panel) return;
+
+  let startX, startW;
+
+  handle.addEventListener('mousedown', function(e){
+    e.preventDefault();
+    startX = e.clientX;
+    startW = panel.offsetWidth;
+    handle.classList.add('dragging');
+
+    function onMove(e){
+      // Dragging left = wider panel (subtract because handle is on left edge)
+      const delta = startX - e.clientX;
+      const newW  = Math.min(600, Math.max(180, startW + delta));
+      panel.style.width = newW + 'px';
+      panel.style.flexShrink = '0';
+      // Reposition debris after resize
+      if(typeof positionDebris === 'function') positionDebris();
+    }
+
+    function onUp(){
+      handle.classList.remove('dragging');
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup',   onUp);
+      if(typeof positionDebris === 'function') positionDebris();
+    }
+
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup',   onUp);
+  });
+})();
+
+</script>
+
+
+<!-- ════ TASKS MODAL ════ -->
+<div id="tasks-modal" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(6,12,22,.88);backdrop-filter:blur(6px);align-items:center;justify-content:center;">
+  <div style="width:520px;max-height:88vh;background:#fff;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.45);overflow:hidden;display:flex;flex-direction:column;">
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#111c2e,#1a3050);padding:18px 22px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+      <div>
+        <div style="font-size:16px;font-weight:800;color:#fff">📋 Competition Tasks</div>
+        <div style="font-size:11px;color:#8ab4d0;margin-top:2px">Zero Robotics 2024 · Lost in Space</div>
+      </div>
+      <button data-oc="hideTasks()" style="background:rgba(255,255,255,.12);border:none;color:#fff;border-radius:7px;padding:5px 11px;font-family:Inter,sans-serif;font-size:12px;cursor:pointer;">✕ Close</button>
+    </div>
+    <!-- Body -->
+    <div style="overflow-y:auto;padding:18px 20px 20px;">
+      <div style="background:#f0f6ff;border:1px solid #c8daf8;border-radius:9px;padding:10px 13px;font-size:12px;color:#1a3a5a;margin-bottom:14px;line-height:1.55;">
+        🤖 <strong>Astrobee:</strong> Debris is blocking my camera. Clear the imaging field so I can photograph the astronaut's hand gesture and unlock the escape hatch!
+      </div>
+
+      <!-- Task 1 -->
+      <div style="display:flex;gap:11px;align-items:flex-start;background:#f7f8fc;border:1px solid #e4e8f0;border-radius:9px;padding:11px 13px;margin-bottom:8px;">
+        <div style="min-width:26px;height:26px;border-radius:50%;background:#c0392b;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;margin-top:1px;">1</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#1c2733;margin-bottom:3px;">Navigate to a debris object</div>
+          <div style="font-size:11.5px;color:#4a5a6a;line-height:1.5;">Use <code style="background:#e8eaf0;border-radius:3px;padding:1px 5px;font-family:'Source Code Pro',monospace;font-size:10.5px;color:#1a6bc1">MoveTo(x, y)</code> to fly to the object's coordinates (see table below). Get within <strong>0.1m</strong> to grab it.</div>
+        </div>
+      </div>
+
+      <!-- Task 2 -->
+      <div style="display:flex;gap:11px;align-items:flex-start;background:#f7f8fc;border:1px solid #e4e8f0;border-radius:9px;padding:11px 13px;margin-bottom:8px;">
+        <div style="min-width:26px;height:26px;border-radius:50%;background:#e67e22;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;margin-top:1px;">2</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#1c2733;margin-bottom:3px;">Grab the debris</div>
+          <div style="font-size:11.5px;color:#4a5a6a;line-height:1.5;">Use <code style="background:#e8eaf0;border-radius:3px;padding:1px 5px;font-family:'Source Code Pro',monospace;font-size:10.5px;color:#1a6bc1">GrabObject(id)</code> — one at a time only! IDs 0–2 are heavy (mass 20), IDs 3–5 are light (mass 10).</div>
+        </div>
+      </div>
+
+      <!-- Task 3 -->
+      <div style="display:flex;gap:11px;align-items:flex-start;background:#f7f8fc;border:1px solid #e4e8f0;border-radius:9px;padding:11px 13px;margin-bottom:8px;">
+        <div style="min-width:26px;height:26px;border-radius:50%;background:#d4ac0d;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;margin-top:1px;">3</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#1c2733;margin-bottom:3px;">Move it out of the imaging field</div>
+          <div style="font-size:11.5px;color:#4a5a6a;line-height:1.5;">Fly to a position where <strong>|x| &gt; 0.35 or |y| &gt; 0.35</strong> — outside the green 0.7×0.7m zone. Then use <code style="background:#e8eaf0;border-radius:3px;padding:1px 5px;font-family:'Source Code Pro',monospace;font-size:10.5px;color:#1a6bc1">DropObject()</code>.</div>
+        </div>
+      </div>
+
+      <!-- Task 4 -->
+      <div style="display:flex;gap:11px;align-items:flex-start;background:#f7f8fc;border:1px solid #e4e8f0;border-radius:9px;padding:11px 13px;margin-bottom:8px;">
+        <div style="min-width:26px;height:26px;border-radius:50%;background:#2e7d32;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;margin-top:1px;">4</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#1c2733;margin-bottom:3px;">Repeat for all 6 objects</div>
+          <div style="font-size:11.5px;color:#4a5a6a;line-height:1.5;">Prioritise big objects (0,1,2) — <strong>+50 pts each</strong>. Small objects (3,4,5) — <strong>+30 pts each</strong>. Leaving any inside the field = −20 or −10 pts.</div>
+        </div>
+      </div>
+
+      <!-- Task 5 -->
+      <div style="display:flex;gap:11px;align-items:flex-start;background:#f7f8fc;border:1px solid #e4e8f0;border-radius:9px;padding:11px 13px;margin-bottom:14px;">
+        <div style="min-width:26px;height:26px;border-radius:50%;background:#1a6bc1;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;margin-top:1px;">5</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#1c2733;margin-bottom:3px;">Return home &amp; end the game</div>
+          <div style="font-size:11.5px;color:#4a5a6a;line-height:1.5;">Call <code style="background:#e8eaf0;border-radius:3px;padding:1px 5px;font-family:'Source Code Pro',monospace;font-size:10.5px;color:#1a6bc1">MoveToHome()</code> then <code style="background:#e8eaf0;border-radius:3px;padding:1px 5px;font-family:'Source Code Pro',monospace;font-size:10.5px;color:#1a6bc1">EndGame()</code> before the <strong>3-minute</strong> timer ends. Not doing this = −10 pts!</div>
+        </div>
+      </div>
+
+      <!-- Object reference table -->
+      <div style="font-size:12px;font-weight:700;color:#1c2733;margin-bottom:7px;">📍 Debris Object Positions</div>
+      <table style="width:100%;border-collapse:collapse;font-size:11.5px;">
+        <thead>
+          <tr style="background:#f0f2f5;">
+            <th style="padding:6px 10px;text-align:left;border:1px solid #e4e8f0;font-weight:700;color:#5a6b7d;">ID</th>
+            <th style="padding:6px 10px;text-align:left;border:1px solid #e4e8f0;font-weight:700;color:#5a6b7d;">Position (x, y)</th>
+            <th style="padding:6px 10px;text-align:left;border:1px solid #e4e8f0;font-weight:700;color:#5a6b7d;">Size</th>
+            <th style="padding:6px 10px;text-align:left;border:1px solid #e4e8f0;font-weight:700;color:#5a6b7d;">Mass</th>
+            <th style="padding:6px 10px;text-align:left;border:1px solid #e4e8f0;font-weight:700;color:#5a6b7d;">Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#fff8f0;"><td style="padding:6px 10px;border:1px solid #e4e8f0;font-weight:700">0</td><td style="padding:6px 10px;border:1px solid #e4e8f0;font-family:'Source Code Pro',monospace">(0.20, 0.20)</td><td style="padding:6px 10px;border:1px solid #e4e8f0">15 cm</td><td style="padding:6px 10px;border:1px solid #e4e8f0">20</td><td style="padding:6px 10px;border:1px solid #e4e8f0;color:#2e7d32;font-weight:700">+50</td></tr>
+          <tr style="background:#fff8f0;"><td style="padding:6px 10px;border:1px solid #e4e8f0;font-weight:700">1</td><td style="padding:6px 10px;border:1px solid #e4e8f0;font-family:'Source Code Pro',monospace">(0.25, -0.25)</td><td style="padding:6px 10px;border:1px solid #e4e8f0">15 cm</td><td style="padding:6px 10px;border:1px solid #e4e8f0">20</td><td style="padding:6px 10px;border:1px solid #e4e8f0;color:#2e7d32;font-weight:700">+50</td></tr>
+          <tr style="background:#fff8f0;"><td style="padding:6px 10px;border:1px solid #e4e8f0;font-weight:700">2</td><td style="padding:6px 10px;border:1px solid #e4e8f0;font-family:'Source Code Pro',monospace">(-0.25, -0.10)</td><td style="padding:6px 10px;border:1px solid #e4e8f0">15 cm</td><td style="padding:6px 10px;border:1px solid #e4e8f0">20</td><td style="padding:6px 10px;border:1px solid #e4e8f0;color:#2e7d32;font-weight:700">+50</td></tr>
+          <tr><td style="padding:6px 10px;border:1px solid #e4e8f0;font-weight:700">3</td><td style="padding:6px 10px;border:1px solid #e4e8f0;font-family:'Source Code Pro',monospace">(-0.20, 0.20)</td><td style="padding:6px 10px;border:1px solid #e4e8f0">5 cm</td><td style="padding:6px 10px;border:1px solid #e4e8f0">10</td><td style="padding:6px 10px;border:1px solid #e4e8f0;color:#2e7d32;font-weight:700">+30</td></tr>
+          <tr><td style="padding:6px 10px;border:1px solid #e4e8f0;font-weight:700">4</td><td style="padding:6px 10px;border:1px solid #e4e8f0;font-family:'Source Code Pro',monospace">(0.15, 0.00)</td><td style="padding:6px 10px;border:1px solid #e4e8f0">5 cm</td><td style="padding:6px 10px;border:1px solid #e4e8f0">10</td><td style="padding:6px 10px;border:1px solid #e4e8f0;color:#2e7d32;font-weight:700">+30</td></tr>
+          <tr><td style="padding:6px 10px;border:1px solid #e4e8f0;font-weight:700">5</td><td style="padding:6px 10px;border:1px solid #e4e8f0;font-family:'Source Code Pro',monospace">(0.00, -0.15)</td><td style="padding:6px 10px;border:1px solid #e4e8f0">5 cm</td><td style="padding:6px 10px;border:1px solid #e4e8f0">10</td><td style="padding:6px 10px;border:1px solid #e4e8f0;color:#2e7d32;font-weight:700">+30</td></tr>
+        </tbody>
+      </table>
+
+      <div style="background:#fffbee;border:1px solid #f0d080;border-radius:8px;padding:9px 13px;margin-top:12px;font-size:11.5px;line-height:1.55;">
+        💡 <strong>Strategy:</strong> Start at position S1 (0.5, 0.5). Grab object 0 first (closest to you), drop it at (0.45, 0.45) — just outside the green zone. Then object 1, then 2. Save battery for the return trip!
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
