@@ -50,8 +50,8 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 .ob-mouth{margin-left:14px;min-height:22px;background:rgba(255,255,255,.13);border-radius:3px;padding:4px 5px;display:flex;flex-direction:column;gap:4px;}
 .ob-cap{height:9px;border-radius:0 0 4px 4px;}
 .ob-s{background:rgba(255,255,255,.88);color:#1c2733;border-radius:3px;padding:2px 5px;font-size:10px;font-weight:600;}
-.help-fab{position:fixed;bottom:18px;left:18px;z-index:50;background:#1a6bc1;color:#fff;border:none;border-radius:9px;padding:8px 14px;font-family:'Inter',sans-serif;font-weight:600;font-size:12px;cursor:pointer;display:none;}
-.help-fab.show{display:block;}.help-fab:hover{background:#155fa8;}
+.help-fab{position:fixed;bottom:18px;left:18px;z-index:50;background:linear-gradient(135deg,#1a6bc1,#1559a8);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-family:'Inter',sans-serif;font-weight:700;font-size:12px;cursor:pointer;display:none;box-shadow:0 3px 12px rgba(26,107,193,.4);transition:all .15s;}
+.help-fab.show{display:block;}.help-fab:hover{transform:translateY(-2px);box-shadow:0 5px 18px rgba(26,107,193,.5);}.help-fab:hover{background:#155fa8;}
 
 /* ── IDE SHELL ── */
 #ide{display:flex;flex-direction:column;height:100vh;}
@@ -60,26 +60,26 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 .topnav{background:var(--nav);height:44px;display:flex;align-items:center;padding:0 16px;gap:8px;border-bottom:1px solid #243040;flex-shrink:0;}
 .logo{display:flex;align-items:center;gap:7px;font-weight:700;font-size:13px;color:#fff;}
 .logo-mark{width:26px;height:26px;background:#1a6bc1;border-radius:6px;display:flex;align-items:center;justify-content:center;}
-.navlink{background:transparent;border:none;color:#8ab4d0;font-family:'Inter',sans-serif;font-size:12px;padding:5px 10px;border-radius:5px;cursor:pointer;}
-.navlink:hover{background:#243040;color:#fff;}
+.navlink{background:transparent;border:none;color:#8ab4d0;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;padding:5px 12px;border-radius:8px;cursor:pointer;transition:all .12s;letter-spacing:.01em;}
+.navlink:hover{background:rgba(255,255,255,.1);color:#fff;}
 .nav-r{margin-left:auto;display:flex;align-items:center;gap:10px;}
 .av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;border:2px solid var(--nav);cursor:pointer;position:relative;}
 .av-tip{position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);background:#111;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:200;}
 .av:hover .av-tip{opacity:1;}
 .signin{font-size:11px;color:#8ab4d0;}.signin strong{color:#fff;}
-.signout-btn{background:transparent;border:1px solid #2a3f58;color:#8ab4d0;font-family:'Inter',sans-serif;font-size:11px;padding:3px 9px;border-radius:5px;cursor:pointer;}
+.signout-btn{background:transparent;border:1.5px solid rgba(100,160,220,.3);color:#8ab4d0;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;cursor:pointer;transition:all .12s;}
 .toolbar{background:#fff;border-bottom:1px solid var(--border);height:38px;display:flex;align-items:center;padding:0 14px;gap:5px;flex-shrink:0;}
-.tb{background:transparent;border:1px solid transparent;color:var(--muted);font-family:'Inter',sans-serif;font-size:12px;font-weight:500;padding:4px 9px;border-radius:5px;cursor:pointer;white-space:nowrap;}
-.tb:hover{background:#f4f6f8;border-color:var(--border);color:var(--text);}
+.tb{background:transparent;border:none;color:#8a98a8;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;padding:5px 10px;border-radius:7px;cursor:pointer;white-space:nowrap;transition:all .12s;}
+.tb:hover{background:#f0f2f5;color:#1c2733;}
 .tb-sep{width:1px;height:20px;background:var(--border);margin:0 2px;}
-.run-btn{background:#2e7d32;color:#fff;border:none;border-radius:6px;padding:5px 13px;font-family:'Inter',sans-serif;font-weight:600;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:5px;}
-.run-btn:hover{background:#256428;}.run-btn.running{opacity:.7;cursor:default;}
+.run-btn{background:linear-gradient(135deg,#2e7d32,#1b5e20);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 2px 8px rgba(46,125,50,.35);transition:all .15s;letter-spacing:.01em;}
+.run-btn:hover{background:linear-gradient(135deg,#388e3c,#2e7d32);box-shadow:0 4px 14px rgba(46,125,50,.45);transform:translateY(-1px);}.run-btn.running{opacity:.7;cursor:default;}
 .run-btn svg{width:10px;height:10px;fill:currentColor;}
-.pill-btn{background:#fff;border:1px solid var(--border);color:var(--muted);font-family:'Inter',sans-serif;font-size:12px;font-weight:500;padding:5px 11px;border-radius:6px;cursor:pointer;}
-.pill-btn:hover,.pill-btn.on{border-color:#1a6bc1;color:#1a6bc1;}
+.pill-btn{background:#f4f6f9;border:1.5px solid #dde3ea;color:#5a6b7d;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;padding:5px 13px;border-radius:20px;cursor:pointer;transition:all .15s;}
+.pill-btn:hover{background:#eef3fb;border-color:#1a6bc1;color:#1a6bc1;transform:translateY(-1px);box-shadow:0 2px 6px rgba(26,107,193,.15);}.pill-btn.on{background:#1a6bc1;border-color:#1a6bc1;color:#fff;box-shadow:0 2px 8px rgba(26,107,193,.3);}
 .pill-btn.on{background:#eef3fb;}
-.ask-btn{background:#eef3fb;border:1px solid #b3caf0;color:#1a6bc1;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;padding:5px 11px;border-radius:6px;cursor:pointer;}
-.ask-btn:hover{background:#d8e8f8;}
+.ask-btn{background:linear-gradient(135deg,#1a6bc1,#1559a8);border:none;color:#fff;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px;cursor:pointer;box-shadow:0 2px 8px rgba(26,107,193,.3);transition:all .15s;}
+.ask-btn:hover{background:linear-gradient(135deg,#1e7bd4,#1a6bc1);box-shadow:0 4px 14px rgba(26,107,193,.4);transform:translateY(-1px);}
 .proj-meta{text-align:right;margin-left:4px;}.proj-name{font-size:12.5px;font-weight:700;}.proj-sub{font-size:10.5px;color:var(--muted);}
 .save-st{font-size:11.5px;color:#5a8a3c;font-weight:500;}
 
@@ -91,7 +91,7 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 .page-item:hover{background:#eaedf1;color:var(--text);}
 .page-item.active{background:#dde6f5;color:#1a6bc1;border-left-color:#1a6bc1;font-weight:600;}
 .page-adds{display:flex;gap:4px;padding:7px 12px;}
-.paddbtn{width:24px;height:24px;background:#fff;border:1px solid var(--border);border-radius:5px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:15px;cursor:pointer;}
+.paddbtn{width:24px;height:24px;background:#f4f6f9;border:1.5px solid #dde3ea;border-radius:7px;display:flex;align-items:center;justify-content:center;color:#8a98a8;font-size:14px;cursor:pointer;transition:all .12s;}
 .log-head{padding:10px 14px 5px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;border-top:1px solid var(--border);}
 .log-list{flex:1;overflow-y:auto;}
 .log-entry{padding:7px 14px;border-bottom:1px solid #eaecf0;cursor:pointer;}.log-entry:hover{background:#eaedf1;}
@@ -268,8 +268,8 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 .sim-panel.collapsed{width:0;overflow:hidden;}
 .sim-hdr{padding:9px 13px;border-bottom:1px solid #1e2d3e;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
 .sim-title{font-size:11.5px;font-weight:700;color:#8ab4d0;text-transform:uppercase;letter-spacing:.06em;}
-.sim-hbtn{background:transparent;border:1px solid #1e2d3e;color:#8ab4d0;border-radius:5px;padding:3px 9px;font-family:'Inter',sans-serif;font-size:11px;cursor:pointer;}
-.sim-hbtn:hover{border-color:#3a6abf;color:#fff;}
+.sim-hbtn{background:rgba(255,255,255,.07);border:1px solid rgba(100,160,220,.2);color:#8ab4d0;border-radius:7px;padding:4px 10px;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;cursor:pointer;transition:all .12s;}
+.sim-hbtn:hover{background:rgba(255,255,255,.14);border-color:rgba(100,160,220,.5);color:#fff;}
 .sim-vp{flex:1;position:relative;overflow:hidden;background:radial-gradient(ellipse at center,#0a1628 0%,#060d18 100%);min-height:0;}
 .sim-vp::before{content:'';position:absolute;inset:0;background-image:radial-gradient(1px 1px at 15% 22%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 65% 15%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 85% 65%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1px 1px at 10% 78%,rgba(255,255,255,.4) 0%,transparent 100%),radial-gradient(1px 1px at 42% 50%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 92% 35%,rgba(255,255,255,.6) 0%,transparent 100%);pointer-events:none;}
 .iss-room{position:absolute;inset:12px;border:1px solid rgba(100,160,220,.1);border-radius:3px;}
@@ -332,7 +332,7 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 .scaff-msg{font-size:12px;line-height:1.6;color:#2a3a4a;}
 .scaff-hint:not(:last-child){margin-bottom:6px;}
 .eb-acts{display:flex;gap:5px;flex-wrap:wrap;}
-.eb-btn{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;padding:4px 11px;border-radius:5px;border:none;cursor:pointer;}.eb-btn:hover{filter:brightness(.92);}
+.eb-btn{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;padding:5px 13px;border-radius:20px;border:none;cursor:pointer;transition:all .12s;}.eb-btn:hover{filter:brightness(.9);transform:translateY(-1px);}
 .eb-xpl{background:#eef3fb;color:#1a6bc1;}.eb-jmp{background:#eefaf2;color:#2e7d32;}.eb-fix{background:#f5f0fc;color:#7a4aab;}.eb-apl{background:#2e7d32;color:#fff;}.eb-men{background:#fff0ee;color:#c0392b;}
 .toast{position:fixed;bottom:18px;right:18px;z-index:999;background:#fff;border:1px solid var(--border);border-radius:9px;padding:9px 14px;font-size:12px;font-weight:600;box-shadow:0 5px 20px rgba(0,0,0,.1);transform:translateY(60px);opacity:0;transition:all .28s;max-width:300px;}
 .toast.show{transform:translateY(0);opacity:1;}
@@ -517,23 +517,11 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 .ob-cl-sub{font-weight:400;color:#5a7a5a;}
 
 /* Buttons */
-.ob-btn-next{
-  background:#1a6bc1;color:#fff;border:none;border-radius:9px;
-  padding:9px 20px;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;cursor:pointer;
-  transition:background .15s,transform .1s;
-}
-.ob-btn-next:hover{background:#155fa8;transform:scale(1.03);}
-.ob-btn-back{
-  background:#f0f2f5;color:#6b7a8d;border:none;border-radius:9px;
-  padding:9px 14px;font-family:'Inter',sans-serif;font-weight:600;font-size:13px;cursor:pointer;
-}
-.ob-btn-back:hover{background:#e4e8f0;}
-.ob-btn-launch{
-  background:linear-gradient(135deg,#1a6bc1,#7a4aab);color:#fff;border:none;border-radius:9px;
-  padding:10px 22px;font-family:'Inter',sans-serif;font-weight:700;font-size:14px;cursor:pointer;
-  box-shadow:0 4px 18px rgba(26,107,193,.4);
-  transition:transform .15s,box-shadow .15s;
-}
+.ob-btn-next{background:linear-gradient(135deg,#1a6bc1,#1559a8);color:#fff;border:none;border-radius:20px;padding:9px 22px;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:all .15s;box-shadow:0 3px 12px rgba(26,107,193,.35);}
+.ob-btn-next:hover{background:linear-gradient(135deg,#1e7bd4,#1a6bc1);transform:translateY(-1px);box-shadow:0 5px 18px rgba(26,107,193,.45);}
+.ob-btn-back{background:#f0f2f5;color:#8a98a8;border:none;border-radius:20px;padding:9px 16px;font-family:'Inter',sans-serif;font-weight:600;font-size:13px;cursor:pointer;transition:all .12s;}
+.ob-btn-back:hover{background:#e4e8f0;color:#5a6b7d;}
+.ob-btn-launch{background:linear-gradient(135deg,#1a6bc1,#7a4aab);color:#fff;border:none;border-radius:20px;padding:11px 26px;font-family:'Inter',sans-serif;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 4px 18px rgba(26,107,193,.4);transition:all .15s;letter-spacing:.01em;}
 .ob-btn-launch:hover{transform:scale(1.04);box-shadow:0 6px 24px rgba(26,107,193,.55);}
 
 @keyframes popIn{from{opacity:0;transform:scale(.7) translateY(6px)}to{opacity:1;transform:none}}
@@ -545,7 +533,7 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
   cursor:pointer;display:none;box-shadow:0 3px 14px rgba(26,107,193,.4);
   transition:transform .15s;
 }
-.help-fab.show{display:block;}
+.help-fab.show{display:block;}.help-fab:hover{transform:translateY(-2px);box-shadow:0 5px 18px rgba(26,107,193,.5);}
 .help-fab:hover{transform:scale(1.05);}
 
 /* ══════════════════════════════════
@@ -940,6 +928,61 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 }
 .carrying .gf-imgzone .gf-iz-danger{ display:block; }
 .carrying .gf-imgzone .gf-iz-label{ display:none; }
+
+/* Progressive disclosure — toolbar phases */
+.tb-unlockable{
+  display:none;
+  animation: unlockSlide .4s cubic-bezier(.175,.885,.32,1.275);
+}
+@keyframes unlockSlide{
+  from{opacity:0;transform:translateX(-8px)}
+  to{opacity:1;transform:none}
+}
+.unlock-toast{
+  position:fixed;bottom:58px;left:50%;transform:translateX(-50%);
+  background:#1c2733;color:#fff;border-radius:20px;
+  padding:7px 18px;font-size:12px;font-weight:600;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+  animation:unlockPop .4s cubic-bezier(.175,.885,.32,1.275) forwards, unlockFade 2.5s 1.5s forwards;
+  z-index:800;pointer-events:none;
+}
+@keyframes unlockPop{from{opacity:0;transform:translateX(-50%) scale(.85)}to{opacity:1;transform:translateX(-50%) scale(1)}}
+@keyframes unlockFade{from{opacity:1}to{opacity:0}}
+
+/* Progressive disclosure */
+[data-adv-cat]{ display:none !important; }
+.phase2-unlocked [data-adv-cat="debug"]{ display:flex !important; }
+.phase3-unlocked [data-adv-cat="debug"],
+.phase3-unlocked [data-adv-cat="advanced"],
+.phase3-unlocked [data-adv-cat="fns"],
+.phase3-unlocked [data-adv-cat="spheres"]{ display:flex !important; }
+
+/* Unlock banner */
+.unlock-banner{
+  position:fixed; bottom:70px; left:50%; transform:translateX(-50%);
+  background:#1c2733; color:#fff; border-radius:22px;
+  padding:8px 20px; font-size:12px; font-weight:600;
+  box-shadow:0 4px 20px rgba(0,0,0,.35);
+  display:flex; align-items:center; gap:8px;
+  animation: bannerIn .4s cubic-bezier(.175,.885,.32,1.275),
+             bannerOut .4s 3s forwards;
+  z-index:900; pointer-events:none; white-space:nowrap;
+}
+.unlock-banner .ub-icon{ font-size:16px; }
+.unlock-banner .ub-sub{ font-size:10px; opacity:.7; margin-top:1px; }
+@keyframes bannerIn{ from{opacity:0;transform:translateX(-50%) translateY(12px)} to{opacity:1;transform:translateX(-50%) translateY(0)} }
+@keyframes bannerOut{ to{opacity:0;transform:translateX(-50%) translateY(8px)} }
+
+/* ── Mission task bar ── */
+.tp-dot{
+  width:8px; height:8px; border-radius:50%;
+  background:#e4e8f0; transition:background .3s;
+}
+.tp-dot.tp-done{ background:var(--tp-color, #c0392b); }
+.tp-dot.tp-active{ background:var(--tp-color,#c0392b); box-shadow:0 0 0 2px rgba(192,57,43,.25); }
+#task-bar{
+  transition: border-color .3s;
+}
 </style>
 </head>
 <body>
@@ -1317,7 +1360,6 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
 
 </div>
 <button class="help-fab" id="hfab" data-oc="reopenGuide()">📖 Replay Tutorial</button>
-<button class="help-fab" id="taskfab" style="left:170px" data-oc="showTasks()">📋 View Tasks</button>
 
 
 
@@ -1338,22 +1380,26 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
     </div>
   </div>
   <div class="toolbar">
-    <button class="tb">File</button><button class="tb">Edit</button><button class="tb">Simulate</button>
-    <div class="tb-sep"></div>
+    <!-- Phase 1: always visible -->
     <button class="run-btn" id="run-btn" data-oc="runCode()"><svg viewBox="0 0 10 12"><path d="M1 1l8 5-8 5V1z"/></svg>Run</button>
-    <div class="tb-sep"></div>
-    <span class="save-st">All changes saved.</span>
-    <div class="tb-sep"></div>
-    <button class="pill-btn" id="pm-btn" data-oc="togglePinMode()">Pin Mode</button>
-    <button class="pill-btn" data-oc="toggleCS()">Comments</button>
-    <div class="tb-sep"></div>
-    <button class="ask-btn" data-oc="askHelp()">Ask for Help</button>
-    <button class="pill-btn" data-oc="showCCode()">C Code</button>
-    <div class="tb-sep"></div>
-    <div class="proj-meta"><div class="proj-name">xxxx</div><div class="proj-sub">Free Mode (C language)</div></div>
+    <span class="save-st" style="margin-left:8px">All changes saved.</span>
+    <!-- Phase 2: revealed after first successful run -->
+    <div class="tb-unlockable" id="tb-phase2" style="display:none;align-items:center;gap:5px">
+      <div class="tb-sep"></div>
+      <button class="ask-btn" data-oc="askHelp()">Ask for Help</button>
+      <button class="pill-btn" id="pm-btn" data-oc="togglePinMode()">Pin Mode</button>
+      <button class="pill-btn" data-oc="toggleCS()">Comments</button>
+    </div>
+    <!-- Phase 3: revealed after first successful clearance -->
+    <div class="tb-unlockable" id="tb-phase3" style="display:none;align-items:center;gap:5px">
+      <div class="tb-sep"></div>
+      <button class="pill-btn" data-oc="showCCode()">C Code</button>
+      <button class="tb">File</button><button class="tb">Edit</button><button class="tb">Simulate</button>
+    </div>
+    
   </div>
   <div class="main">
-    <div class="pages-panel">
+    <div class="pages-panel" id="pages-panel" style="display:none">
       <div class="pp-head">Pages</div>
       <div class="page-item" data-oc="selPage(this)">init</div>
       <div class="page-item active" data-oc="selPage(this)">main</div>
@@ -1362,19 +1408,25 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
       <div class="log-list" id="log-list"><div style="padding:10px 14px;font-size:11px;color:var(--muted);font-style:italic" id="log-empty">No entries yet.</div></div>
     </div>
     <div class="palette" id="palette">
-      <button class="cat-btn active" data-oc="selCat(this,'spheres')"><span class="cat-dot" style="background:#5a8a3c"></span>SPHERES Controls</button>
-      <button class="cat-btn" data-oc="selCat(this,'debug')"><span class="cat-dot" style="background:#3a8a7a"></span>Debug</button>
+      <button class="cat-btn active" data-oc="selCat(this,'spheres')" data-adv-cat="spheres"><span class="cat-dot" style="background:#5a8a3c"></span>SPHERES Controls</button>
+      <button class="cat-btn" data-oc="selCat(this,'debug')" data-adv-cat="debug"><span class="cat-dot" style="background:#3a8a7a"></span>Debug</button>
       <button class="cat-btn" data-oc="selCat(this,'vars')"><span class="cat-dot" style="background:#c47a1a"></span>Variables</button>
       <button class="cat-btn" data-oc="selCat(this,'logic')"><span class="cat-dot" style="background:#3a6abf"></span>Logic</button>
       <button class="cat-btn" data-oc="selCat(this,'math')"><span class="cat-dot" style="background:#7a4aab"></span>Math</button>
       <div class="cat-sep"></div>
       <button class="cat-btn" data-oc="selCat(this,'loops')">Loops</button>
       <button class="cat-btn" data-oc="selCat(this,'zrms')"><span class="cat-dot" style="background:#c47a1a"></span>🎮 Game Commands</button>
-      <button class="cat-btn" data-oc="selCat(this,'advanced')"><span class="cat-dot" style="background:#5a6b7d"></span>Advanced</button>
-      <button class="cat-btn" data-oc="selCat(this,'fns')"><span class="cat-dot" style="background:#5a6b7d"></span>Functions</button>
+      <button class="cat-btn" data-oc="selCat(this,'advanced')" data-adv-cat="advanced"><span class="cat-dot" style="background:#5a6b7d"></span>Advanced</button>
+      <button class="cat-btn" data-oc="selCat(this,'fns')" data-adv-cat="fns"><span class="cat-dot" style="background:#5a6b7d"></span>Functions</button>
       <div class="pal-blocks" id="pal-blocks"></div>
     </div>
     <div class="work-area">
+      <!-- Mission title bar -->
+      <div id="task-bar" style="background:#f8f9fc;border-bottom:1px solid #e4e8f0;padding:7px 18px;display:flex;align-items:center;gap:10px;flex-shrink:0;">
+        <span style="font-size:11px;font-weight:700;color:#c0392b;background:#fdf0ee;border:1px solid #f5c6be;border-radius:10px;padding:2px 10px;letter-spacing:.03em;white-space:nowrap;flex-shrink:0;">🛸 MISSION</span>
+        <span style="font-size:13px;font-weight:600;color:#4a5a6a;">Remove debris so Astrobee can photograph the astronaut</span>
+        <button data-oc="showTasks()" style="margin-left:4px;background:transparent;color:#1a6bc1;border:1px solid #c8daf8;border-radius:6px;padding:2px 9px;font-family:Inter,sans-serif;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;">📋 Tasks</button>
+      </div>
       <div class="editor-sim">
         <div class="canvas-wrap" id="cw">
           <div id="ci"></div>
@@ -1416,27 +1468,27 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;color:var(-
         </div>
       </div>
       <div class="eb" id="eb">
-        <div class="eb-title">Block warning: "setPos" has zero coordinates — Astrobee won't move!</div>
-        <div class="eb-explain" id="ebx">The setPos block is telling Astrobee to move to (0,0,0) — where it already is. Change the X, Y, Z inputs to a real target like 0.3, 0.2, 0 and run again.</div>
+        <div class="eb-title">Something went wrong — read the hint below</div>
+        <div class="eb-explain" id="ebx">Check the simulation console for details, then use the hint to fix it.</div>
         <div class="scaff-panel" id="scaff" style="display:none">
           <div class="scaff-hint" id="sh1" style="display:none">
             <div class="scaff-lv">Hint 1 of 3</div>
-            <div class="scaff-msg">🤔 Think about what <strong>setPos</strong> does — it tells Astrobee where to move <em>to</em>. If X, Y, and Z are all zero, where will it go?</div>
+            <div class="scaff-msg">🤔 Read the error message carefully — it tells you exactly what went wrong and which block caused it.</div>
           </div>
           <div class="scaff-hint" id="sh2" style="display:none">
             <div class="scaff-lv">Hint 2 of 3</div>
-            <div class="scaff-msg">📍 The ISS workspace goes from <strong>-0.5 to +0.5</strong> on each axis. Try changing at least one of your setPos numbers to something non-zero — any value will do!</div>
+            <div class="scaff-msg">📍 Object 0 is at coordinates (0.20, 0.20). Use <strong>Move To 0.2, 0.2</strong> to fly right next to it — then Grab Object(0) will work.</div>
           </div>
           <div class="scaff-hint" id="sh3" style="display:none">
             <div class="scaff-lv">Hint 3 of 3 · Last hint!</div>
-            <div class="scaff-msg">🧭 Try <strong>X between 0.1 and 0.4</strong>, Y between 0.1 and 0.4, Z can stay 0. The exact values are up to you — experiment and see what score you get!</div>
+            <div class="scaff-msg">🧭 To score points, drop the object <strong>outside the green zone</strong>. Use Move To(0.45, 0.45) after grabbing — that puts you in a safe corner. Then Drop Object.</div>
           </div>
         </div>
         <div class="eb-acts">
-          <button class="eb-btn eb-xpl" data-oc="toggleExplain()">Explain Error</button>
-          <button class="eb-btn eb-jmp" data-oc="jumpToBlock()">Jump to Block</button>
+          <button class="eb-btn eb-xpl" id="eb-explain" style="display:none" data-oc="toggleExplain()">Explain Error</button>
+          <button class="eb-btn eb-jmp" id="eb-jump" style="display:none" data-oc="jumpToBlock()">Jump to Block</button>
           <button class="eb-btn eb-fix" id="hint-btn" data-oc="showNextHint()">💡 Hint</button>
-          <button class="eb-btn eb-men" data-oc="askHelp()">Ask Mentor</button>
+          <button class="eb-btn eb-men" id="eb-mentor" style="display:none" data-oc="askHelp()">Ask Mentor</button>
         </div>
       </div>
     </div>
@@ -2129,11 +2181,9 @@ function startPalDrag(e, def){
 //  INIT STARTER BLOCKS
 // ═══════════════════════════════════════════════
 function init(){
-  const loopId   = placeBlock(DEFS.loops[0], 70, 60);
-  const setPosId = placeBlock(DEFS.spheres[0], 0, 0);
-  const scanId   = placeBlock(DEFS.spheres[4], 0, 0);
-  snapIntoMouth(loopId, setPosId, null);
-  snapIntoMouth(loopId, scanId, null);
+  const loopId = placeBlock(DEFS.loops[0], 70, 60);
+  const moveId = placeBlock(DEFS.zrms[0],   0,  0); // Move To
+  snapIntoMouth(loopId, moveId, null);
 }
 init();
 
@@ -2143,34 +2193,45 @@ init();
 let _running = false;
 function runCode(){
   if(_running) return;
-  let tx=0,ty=0,tz=0;
-  // Search ONLY inside #ci (the canvas) — not the palette which has dummy inputs
-  let found=false;
-  const canvas = document.getElementById('ci');
-  if(canvas) canvas.querySelectorAll('input.bi').forEach(inp=>{
-    if(found) return;
-    const row = inp.closest('.zr-row');
-    if(!row) return;
-    let rowText = '';
-    row.childNodes.forEach(n=>{ if(n.nodeType===3) rowText += n.textContent; });
-    if(rowText.trim().startsWith('setPos')){
-      const all = Array.from(row.querySelectorAll('input.bi'));
-      if(all.length >= 3){
-        const parseVal = v => { const f = parseFloat(v); return isNaN(f) ? 0 : f; };
-        tx = parseVal(all[0].value);
-        ty = parseVal(all[1].value);
-        tz = parseVal(all[2].value);
-        found = true;
-      }
-    }
-  });
-  const btn=document.getElementById('run-btn');
-  btn.classList.add('running'); btn.innerHTML='<svg viewBox="0 0 10 12" style="width:10px;height:10px;fill:currentColor"><path d="M1 1l8 5-8 5V1z"/></svg> Running...';
+
+  const btn = document.getElementById('run-btn');
+  btn.classList.add('running');
+  btn.innerHTML = '<svg viewBox="0 0 10 12" style="width:10px;height:10px;fill:currentColor"><path d="M1 1l8 5-8 5V1z"/></svg> Running...';
   clearSC();
-  const allZero = (Math.abs(tx)<0.001 && Math.abs(ty)<0.001 && Math.abs(tz)<0.001);
-  // Show what values were read (helps students see if inputs are working)
-  scLog('dim', `[ZR] setPos read: X=${tx}, Y=${ty}, Z=${tz}`);
-  if(allZero) runA(); else runB(tx,ty,tz);
+  document.getElementById('eb')?.classList.remove('show'); resetHints();
+
+  // Read all command blocks from the canvas in DOM order
+  const canvas = document.getElementById('ci');
+  const cmds = [];
+  const pv = v => { const f = parseFloat(v); return isNaN(f) ? 0 : f; };
+
+  canvas.querySelectorAll('.zr-row').forEach(row => {
+    let txt = '';
+    row.childNodes.forEach(n => { if(n.nodeType === 3) txt += n.textContent; });
+    txt = txt.trim();
+    const inputs = Array.from(row.querySelectorAll('input.bi'));
+
+    if     (txt.startsWith('Move To Home'))   cmds.push({type:'home'});
+    else if(txt.startsWith('Move To'))        cmds.push({type:'moveto', x:pv(inputs[0]?.value), y:pv(inputs[1]?.value)});
+    else if(txt.startsWith('Grab Object'))    cmds.push({type:'grab',   id:Math.round(pv(inputs[0]?.value))});
+    else if(txt.startsWith('Drop Object'))    cmds.push({type:'drop'});
+    else if(txt.startsWith('End Game'))       cmds.push({type:'end'});
+    else if(txt.startsWith('setPos'))         cmds.push({type:'moveto', x:pv(inputs[0]?.value), y:pv(inputs[1]?.value)});
+  });
+
+  _running = true;
+  setHUD('run');
+  scLog('info', `[ZR] Compiled ${cmds.length} command(s)...`);
+
+  if(cmds.length === 0){
+    scLog('warn', '[ZR] No commands found — drag some blocks onto the canvas!');
+    finRun(); _running = false; return;
+  }
+
+  tt(400, () => {
+    scLog('dim', '[ZR] OK');
+    tt(200, () => executeCommands(cmds));
+  });
 }
 function runA(){
   _running=true; setHUD('run');
@@ -2248,8 +2309,10 @@ function executeCommands(cmds){
         const d=dp.find(d=>d.id===cmd.id);
         if(!d){ scLog('warn',`[SIM] GrabObject(${cmd.id}) — ID not found!`); return; }
         const dist=Math.hypot(curX-d.zx, curY-d.zy);
-        if(dist>0.1){ scLog('warn',`[SIM] GrabObject(${cmd.id}) FAILED — ${dist.toFixed(3)}m away (need ≤0.1m). Move closer first!`); return; }
-        if(carrying>=0){ scLog('warn',`[SIM] GrabObject(${cmd.id}) FAILED — already carrying object ${carrying}!`); return; }
+        if(dist>0.1){ scLog('warn',`[SIM] GrabObject(${cmd.id}) FAILED — ${dist.toFixed(3)}m away (need ≤0.1m). Move closer first!`);
+        showError(`GrabObject failed — you're ${dist.toFixed(2)}m from object ${cmd.id}. Move to (${d.zx}, ${d.zy}) first, then Grab.`); return; }
+        if(carrying>=0){ scLog('warn',`[SIM] GrabObject(${cmd.id}) FAILED — already carrying object ${carrying}!`);
+        showError(`GrabObject failed — you're already carrying object ${carrying}. Add a Drop Object block before grabbing again.`); return; }
         carrying=cmd.id;
         const el=document.getElementById('gfd-'+cmd.id);
         if(el) el.classList.add('grabbed');
@@ -2304,6 +2367,7 @@ function executeCommands(cmds){
         document.getElementById('hscore').textContent='Score: '+total;
         setHUD('idle'); finRun();
         addLog(total>0?'ok':'fail','Score: '+total);
+        unlockPhase(2, '🔓 New tools unlocked — Pin Mode, Comments & Ask for Help!');
         toast(`Game over — ${cleared}/6 cleared  Score: ${total}`,total>50?'ok':'inf');
         _running=false;
       });
@@ -2548,7 +2612,7 @@ function startCoding(){
   const o=document.getElementById('ov');
   o.style.transition='opacity .45s';
   o.style.opacity='0';
-  setTimeout(()=>{ o.style.display='none'; document.getElementById('hfab').classList.add('show'); document.getElementById('taskfab').classList.add('show'); setTimeout(gtStart, 400); },450);
+  setTimeout(()=>{ o.style.display='none'; document.getElementById('hfab').classList.add('show');  setTimeout(gtStart, 400); },450);
 }
 function reopenGuide(){
   _step=1;
@@ -2768,6 +2832,106 @@ document.addEventListener('click', function(e){
     } catch(e){}
   });
 })();
+
+
+// ══ Progressive Disclosure ══
+let _phase = 1;
+
+function showUnlockBanner(icon, title, sub){
+  const b = document.createElement('div');
+  b.className = 'unlock-banner';
+  b.innerHTML = `<span class="ub-icon">${icon}</span><div><div>${title}</div><div class="ub-sub">${sub}</div></div>`;
+  document.body.appendChild(b);
+  setTimeout(()=>b.remove(), 3600);
+}
+
+function unlockPhase(n){
+  if(_phase >= n) return;
+  _phase = n;
+
+  if(n === 2){
+    // Show phase 2 toolbar items
+    const p2 = document.getElementById('tb-phase2');
+    if(p2) p2.style.display = 'flex';
+    // Unlock debug palette category
+    document.getElementById('palette')?.classList.add('phase2-unlocked');
+    // Show more error bar buttons
+    ['eb-explain','eb-jump'].forEach(id=>{
+      const el=document.getElementById(id); if(el) el.style.display='';
+    });
+    showUnlockBanner('🔓','New tools unlocked!','Ask for Help · Pin Mode · Comments · Debug');
+  }
+
+  if(n === 3){
+    // Show phase 3 toolbar
+    const p3 = document.getElementById('tb-phase3');
+    if(p3) p3.style.display = 'flex';
+    // Show pages panel
+    const pp = document.getElementById('pages-panel');
+    if(pp) pp.style.display = '';
+    // Unlock all palette categories
+    document.getElementById('palette')?.classList.add('phase3-unlocked');
+    // Show mentor button in error bar
+    const em = document.getElementById('eb-mentor'); if(em) em.style.display='';
+    showUnlockBanner('🚀','Advanced tools unlocked!','C Code · Pages · Debug · All palette categories');
+  }
+}
+window.unlockPhase = unlockPhase;
+
+
+// ══ Mission Task Headline — auto-updates as student adds blocks ══
+const TASK_DEFS = [
+  { step:1, color:'#c0392b', title:'Step 1 — Navigate to a debris object' },
+  { step:2, color:'#e67e22', title:'Step 2 — Grab the debris' },
+  { step:3, color:'#d4ac0d', title:'Step 3 — Carry it out of the imaging field' },
+  { step:4, color:'#2e7d32', title:'Step 4 — Drop it & repeat for all 6 blocks' },
+  { step:5, color:'#1a6bc1', title:'Step 5 — Return home & end the game' },
+];
+
+function detectTaskStep(){
+  const ci = document.getElementById('ci');
+  if(!ci) return 1;
+  const rows = [];
+  ci.querySelectorAll('.zr-row').forEach(row => {
+    let txt = '';
+    row.childNodes.forEach(n => { if(n.nodeType===3) txt += n.textContent; });
+    rows.push(txt.trim());
+  });
+  const has = label => rows.some(r => r.startsWith(label));
+  if(has('End Game') || has('Move To Home')) return 5;
+  if(has('Drop Object')) return 4;
+  if(has('Grab Object')){
+    const moves = rows.filter(r => r.startsWith('Move To') && !r.startsWith('Move To Home'));
+    return moves.length >= 2 ? 3 : 2;
+  }
+  return 1;
+}
+
+function updateTaskBar(){
+  const step = detectTaskStep();
+  const def  = TASK_DEFS[step-1];
+  if(!def) return;
+  const title = document.getElementById('task-title');
+  if(title) title.textContent = def.title;
+}
+window.updateTaskBar = updateTaskBar;
+
+// Watch canvas for block changes
+window.addEventListener('load', ()=>{
+  const ci = document.getElementById('ci');
+  if(ci) new MutationObserver(updateTaskBar).observe(ci, {childList:true, subtree:true});
+  updateTaskBar();
+});
+setTimeout(updateTaskBar, 600);
+
+function showError(msg){
+  const eb = document.getElementById('eb');
+  const title = eb?.querySelector('.eb-title');
+  if(title) title.textContent = msg;
+  eb?.classList.add('show');
+  resetHints();
+}
+window.showError = showError;
 </script>
 
 <!-- In-IDE guided task overlay -->
